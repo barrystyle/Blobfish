@@ -6,7 +6,7 @@ PEPPAPOWX Core integration/staging repository
 PEPPAPOWX is an open source cryptocurrency focused on fast, private transactions using the Zerocoin protocol, with low transaction fees & environmental footprint.  It utilizes POW.
 The goal of PEPPAPOWX is to achieve a decentralized, sustainable cryptocurrency with near instant full-time private transactions, fair governance and community intelligence.
 
-More information at [peppapow.org](http://www.peppapow.com)
+More information at [peppapow.com](http://www.peppapow.com)
 
 ### Coin Specs
 <table>
