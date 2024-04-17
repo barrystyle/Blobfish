@@ -1,0 +1,726 @@
+# Copyright (c) 2013-2016 The Bitcoin Core developers
+# Distributed under the MIT software license, see the accompanying
+# file COPYING or http://www.opensource.org/licenses/mit-license.php.
+
+bin_PROGRAMS += qt/peppapow-qt
+EXTRA_LIBRARIES += qt/libbitcoinqt.a
+
+# peppapow qt core #
+include Makefile.qt_locale.include
+
+QT_FORMS_UI = \
+  qt/forms/addressbookpage.ui \
+  qt/forms/askpassphrasedialog.ui \
+  qt/forms/coincontroldialog.ui \
+  qt/forms/editaddressdialog.ui \
+  qt/forms/helpmessagedialog.ui \
+  qt/forms/intro.ui \
+  qt/forms/openuridialog.ui \
+  qt/forms/optionsdialog.ui \
+  qt/forms/rpcconsole.ui \
+  qt/peppapow/forms/loadingdialog.ui \
+  qt/peppapow/forms/snackbar.ui \
+  qt/peppapow/forms/navmenuwidget.ui \
+  qt/peppapow/forms/lockunlock.ui \
+  qt/peppapow/forms/expandablebutton.ui \
+  qt/peppapow/forms/receivedialog.ui \
+  qt/peppapow/forms/topbar.ui \
+  qt/peppapow/forms/txrow.ui \
+  qt/peppapow/forms/dashboardwidget.ui \
+  qt/peppapow/forms/addresslabelrow.ui \
+  qt/peppapow/forms/contactdropdownrow.ui \
+  qt/peppapow/forms/mninfodialog.ui \
+  qt/peppapow/forms/optionbutton.ui \
+  qt/peppapow/forms/masternodewizarddialog.ui \
+  qt/peppapow/forms/mnrow.ui \
+  qt/peppapow/forms/masternodeswidget.ui \
+  qt/peppapow/forms/myaddressrow.ui \
+  qt/peppapow/forms/csrow.ui \
+  qt/peppapow/forms/sendchangeaddressdialog.ui \
+  qt/peppapow/forms/sendconfirmdialog.ui \
+  qt/peppapow/forms/sendcustomfeedialog.ui \
+  qt/peppapow/forms/sendchangeaddressdialog.ui \
+  qt/peppapow/forms/sendmultirow.ui \
+  qt/peppapow/forms/send.ui \
+  qt/peppapow/forms/addnewaddressdialog.ui \
+  qt/peppapow/forms/addnewcontactdialog.ui \
+  qt/peppapow/forms/requestdialog.ui \
+  qt/peppapow/forms/receivewidget.ui \
+  qt/peppapow/forms/tooltipmenu.ui \
+  qt/peppapow/forms/addresseswidget.ui \
+  qt/peppapow/forms/defaultdialog.ui \
+  qt/peppapow/forms/coldstakingwidget.ui \
+  qt/peppapow/settings/forms/settingsbackupwallet.ui \
+  qt/peppapow/settings/forms/settingsexportcsv.ui \
+  qt/peppapow/settings/forms/settingsbittoolwidget.ui \
+  qt/peppapow/settings/forms/settingsconsolewidget.ui \
+  qt/peppapow/settings/forms/settingsdisplayoptionswidget.ui \
+  qt/peppapow/settings/forms/settingsfaqwidget.ui \
+  qt/peppapow/settings/forms/settingsinformationwidget.ui \
+  qt/peppapow/settings/forms/settingsmainoptionswidget.ui \
+  qt/peppapow/settings/forms/settingsmultisenddialog.ui \
+  qt/peppapow/settings/forms/settingsmultisendwidget.ui \
+  qt/peppapow/settings/forms/settingssignmessagewidgets.ui \
+  qt/peppapow/settings/forms/settingswalletoptionswidget.ui \
+  qt/peppapow/settings/forms/settingswalletrepairwidget.ui \
+  qt/peppapow/settings/forms/settingswidget.ui \
+  qt/peppapow/forms/welcomecontentwidget.ui \
+  qt/peppapow/forms/splash.ui
+
+QT_MOC_CPP = \
+  qt/moc_addressbookpage.cpp \
+  qt/moc_addresstablemodel.cpp \
+  qt/moc_askpassphrasedialog.cpp \
+  qt/moc_bantablemodel.cpp \
+  qt/moc_bitcoinaddressvalidator.cpp \
+  qt/peppapow/moc_peppapowgui.cpp \
+  qt/moc_bitcoinunits.cpp \
+  qt/moc_clientmodel.cpp \
+  qt/moc_coincontroldialog.cpp \
+  qt/moc_coincontroltreewidget.cpp \
+  qt/moc_csvmodelwriter.cpp \
+  qt/moc_editaddressdialog.cpp \
+  qt/moc_guiutil.cpp \
+  qt/moc_intro.cpp \
+  qt/moc_macdockiconhandler.cpp \
+  qt/moc_macnotificationhandler.cpp \
+  qt/moc_notificator.cpp \
+  qt/moc_openuridialog.cpp \
+  qt/moc_optionsdialog.cpp \
+  qt/moc_optionsmodel.cpp \
+  qt/moc_peertablemodel.cpp \
+  qt/moc_paymentserver.cpp \
+  qt/moc_qvalidatedlineedit.cpp \
+  qt/moc_qvaluecombobox.cpp \
+  qt/moc_recentrequeststablemodel.cpp \
+  qt/moc_rpcconsole.cpp \
+  qt/moc_trafficgraphwidget.cpp \
+  qt/moc_transactiondesc.cpp \
+  qt/moc_transactionfilterproxy.cpp \
+  qt/moc_transactiontablemodel.cpp \
+  qt/moc_utilitydialog.cpp \
+  qt/moc_walletmodel.cpp \
+  qt/peppapow/moc_loadingdialog.cpp \
+  qt/peppapow/moc_pwidget.cpp \
+  qt/peppapow/moc_focuseddialog.cpp \
+  qt/peppapow/moc_snackbar.cpp \
+  qt/peppapow/moc_navmenuwidget.cpp \
+  qt/peppapow/moc_lockunlock.cpp \
+  qt/peppapow/moc_expandablebutton.cpp \
+  qt/peppapow/moc_furabstractlistitemdelegate.cpp \
+  qt/peppapow/moc_receivedialog.cpp \
+  qt/peppapow/moc_pfborderimage.cpp \
+  qt/peppapow/moc_topbar.cpp \
+  qt/peppapow/moc_txrow.cpp \
+  qt/peppapow/moc_dashboardwidget.cpp \
+  qt/peppapow/moc_addresslabelrow.cpp \
+  qt/peppapow/moc_contactdropdownrow.cpp \
+  qt/peppapow/moc_mninfodialog.cpp \
+  qt/peppapow/moc_optionbutton.cpp \
+  qt/peppapow/moc_coldstakingmodel.cpp \
+  qt/peppapow/moc_mnmodel.cpp \
+  qt/peppapow/moc_masternodewizarddialog.cpp \
+  qt/peppapow/moc_mnrow.cpp \
+  qt/peppapow/moc_masternodeswidget.cpp \
+  qt/peppapow/moc_myaddressrow.cpp \
+  qt/peppapow/moc_csrow.cpp \
+  qt/peppapow/moc_contactsdropdown.cpp \
+  qt/peppapow/moc_sendchangeaddressdialog.cpp \
+  qt/peppapow/moc_sendconfirmdialog.cpp \
+  qt/peppapow/moc_sendcustomfeedialog.cpp \
+  qt/peppapow/moc_sendchangeaddressdialog.cpp \
+  qt/peppapow/moc_sendmultirow.cpp \
+  qt/peppapow/moc_send.cpp \
+  qt/peppapow/moc_addnewaddressdialog.cpp \
+  qt/peppapow/moc_addnewcontactdialog.cpp \
+  qt/peppapow/moc_requestdialog.cpp \
+  qt/peppapow/moc_receivewidget.cpp \
+  qt/peppapow/moc_tooltipmenu.cpp \
+  qt/peppapow/moc_addresseswidget.cpp \
+  qt/peppapow/moc_defaultdialog.cpp \
+  qt/peppapow/moc_coldstakingwidget.cpp \
+  qt/peppapow/settings/moc_settingsbackupwallet.cpp \
+  qt/peppapow/settings/moc_settingsexportcsv.cpp \
+  qt/peppapow/settings/moc_settingsbittoolwidget.cpp \
+  qt/peppapow/settings/moc_settingsconsolewidget.cpp \
+  qt/peppapow/settings/moc_settingsdisplayoptionswidget.cpp \
+  qt/peppapow/settings/moc_settingsfaqwidget.cpp \
+  qt/peppapow/settings/moc_settingsinformationwidget.cpp \
+  qt/peppapow/settings/moc_settingsmainoptionswidget.cpp \
+  qt/peppapow/settings/moc_settingsmultisenddialog.cpp \
+  qt/peppapow/settings/moc_settingsmultisendwidget.cpp \
+  qt/peppapow/settings/moc_settingssignmessagewidgets.cpp \
+  qt/peppapow/settings/moc_settingswalletoptionswidget.cpp \
+  qt/peppapow/settings/moc_settingswalletrepairwidget.cpp \
+  qt/peppapow/settings/moc_settingswidget.cpp \
+  qt/peppapow/moc_welcomecontentwidget.cpp \
+  qt/peppapow/moc_splash.cpp
+
+BITCOIN_MM = \
+  qt/macdockiconhandler.mm \
+  qt/macnotificationhandler.mm
+
+QT_MOC = \
+  qt/peppapow.moc \
+  qt/intro.moc \
+  qt/rpcconsole.moc \
+  qt/peppapow/settings/moc_settingsconsolewidget.cpp
+
+QT_QRC_CPP = qt/qrc_peppapow.cpp
+QT_QRC = qt/peppapow.qrc
+QT_QRC_LOCALE_CPP = qt/qrc_peppapow_locale.cpp
+QT_QRC_LOCALE = qt/peppapow_locale.qrc
+
+PROTOBUF_CC = qt/paymentrequest.pb.cc
+PROTOBUF_H = qt/paymentrequest.pb.h
+PROTOBUF_PROTO = qt/paymentrequest.proto
+
+BITCOIN_QT_H = \
+  qt/addressbookpage.h \
+  qt/addresstablemodel.h \
+  qt/askpassphrasedialog.h \
+  qt/bantablemodel.h \
+  qt/bitcoinaddressvalidator.h \
+  qt/peppapow/peppapowgui.h \
+  qt/bitcoinunits.h \
+  qt/clientmodel.h \
+  qt/coincontroldialog.h \
+  qt/coincontroltreewidget.h \
+  qt/csvmodelwriter.h \
+  qt/editaddressdialog.h \
+  qt/guiconstants.h \
+  qt/guiutil.h \
+  qt/intro.h \
+  qt/macdockiconhandler.h \
+  qt/macnotificationhandler.h \
+  qt/networkstyle.h \
+  qt/notificator.h \
+  qt/openuridialog.h \
+  qt/optionsdialog.h \
+  qt/optionsmodel.h \
+  qt/paymentrequestplus.h \
+  qt/paymentserver.h \
+  qt/peertablemodel.h \
+  qt/platformstyle.h \
+  qt/qvalidatedlineedit.h \
+  qt/qvaluecombobox.h \
+  qt/recentrequeststablemodel.h \
+  qt/rpcconsole.h \
+  qt/trafficgraphwidget.h \
+  qt/transactiondesc.h \
+  qt/transactionfilterproxy.h \
+  qt/transactionrecord.h \
+  qt/transactiontablemodel.h \
+  qt/utilitydialog.h \
+  qt/walletmodel.h \
+  qt/walletmodeltransaction.h \
+  qt/peppapow/prunnable.h \
+  qt/peppapow/pfborderimage.h \
+  qt/peppapow/loadingdialog.h \
+  qt/winshutdownmonitor.h \
+  qt/peppapow/pwidget.h \
+  qt/peppapow/focuseddialog.h \
+  qt/peppapow/guitransactionsutils.h \
+  qt/peppapow/snackbar.h \
+  qt/peppapow/navmenuwidget.h \
+  qt/peppapow/lockunlock.h \
+  qt/peppapow/receivedialog.h \
+  qt/peppapow/furlistrow.h \
+  qt/peppapow/furabstractlistitemdelegate.h \
+  qt/peppapow/txviewholder.h \
+  qt/peppapow/qtutils.h \
+  qt/peppapow/expandablebutton.h \
+  qt/peppapow/topbar.h \
+  qt/peppapow/txrow.h \
+  qt/peppapow/addressholder.h \
+  qt/peppapow/addressfilterproxymodel.h \
+  qt/peppapow/dashboardwidget.h \
+  qt/peppapow/addresslabelrow.h \
+  qt/peppapow/contactdropdownrow.h \
+  qt/peppapow/mninfodialog.h \
+  qt/peppapow/optionbutton.h \
+  qt/peppapow/coldstakingmodel.h \
+  qt/peppapow/mnmodel.h \
+  qt/peppapow/masternodewizarddialog.h \
+  qt/peppapow/mnrow.h \
+  qt/peppapow/masternodeswidget.h \
+  qt/peppapow/myaddressrow.h \
+  qt/peppapow/csrow.h \
+  qt/peppapow/contactsdropdown.h \
+  qt/peppapow/sendchangeaddressdialog.h \
+  qt/peppapow/sendconfirmdialog.h \
+  qt/peppapow/sendcustomfeedialog.h \
+  qt/peppapow/sendchangeaddressdialog.h \
+  qt/peppapow/sendmultirow.h \
+  qt/peppapow/send.h \
+  qt/peppapow/addnewaddressdialog.h \
+  qt/peppapow/addnewcontactdialog.h \
+  qt/peppapow/requestdialog.h \
+  qt/peppapow/receivewidget.h \
+  qt/peppapow/tooltipmenu.h \
+  qt/peppapow/addresseswidget.h \
+  qt/peppapow/defaultdialog.h \
+  qt/peppapow/coldstakingwidget.h \
+  qt/peppapow/settings/settingsbackupwallet.h \
+  qt/peppapow/settings/settingsexportcsv.h \
+  qt/peppapow/settings/settingsbittoolwidget.h \
+  qt/peppapow/settings/settingsconsolewidget.h \
+  qt/peppapow/settings/settingsdisplayoptionswidget.h \
+  qt/peppapow/settings/settingsfaqwidget.h \
+  qt/peppapow/settings/settingsinformationwidget.h \
+  qt/peppapow/settings/settingsmainoptionswidget.h \
+  qt/peppapow/settings/settingsmultisenddialog.h \
+  qt/peppapow/settings/settingsmultisendwidget.h \
+  qt/peppapow/settings/settingssignmessagewidgets.h \
+  qt/peppapow/settings/settingswalletoptionswidget.h \
+  qt/peppapow/settings/settingswalletrepairwidget.h \
+  qt/peppapow/settings/settingswidget.h \
+  qt/peppapow/welcomecontentwidget.h \
+  qt/peppapow/splash.h
+
+RES_ICONS = \
+  qt/res/icons/bitcoin.ico \
+  qt/res/icons/bitcoin.png \
+  qt/res/icons/bitcoin_testnet.ico \
+  qt/res/icons/bitcoin_testnet.png \
+  qt/res/icons/bitcoin_regtest.png \
+  qt/res/icons/lock_closed.png \
+  qt/res/icons/lock_open.png \
+  qt/res/icons/overview.png \
+  qt/res/icons/ic-transaction-received.svg \
+  qt/res/icons/ic-transaction-mint.svg \
+  qt/res/icons/ic-transaction-sent.svg \
+  qt/res/icons/ic-transaction-staked.svg \
+  qt/peppapow/res/img/bg-dashboard-banner.png \
+  qt/peppapow/res/img/bg-multi-number-dark.svg \
+  qt/peppapow/res/img/ic-check-locked.svg \
+  qt/peppapow/res/img/ic-nav-address.svg \
+  qt/peppapow/res/img/ic-update.svg \
+  qt/peppapow/res/img/bg-multi-number.svg \
+  qt/peppapow/res/img/ic-check-mint-off.svg \
+  qt/peppapow/res/img/ic-nav-cold-staking.svg \
+  qt/peppapow/res/img/ic-nav-cold-staking-active.svg \
+  qt/peppapow/res/img/ic-nav-dashboard-active.svg \
+  qt/peppapow/res/img/ic-wallet-status-locked.svg \
+  qt/peppapow/res/img/bg-splash.svg \
+  qt/peppapow/res/img/bg-splash.png \
+  qt/peppapow/res/img/ic-check-mint.svg \
+  qt/peppapow/res/img/ic-nav-dashboard-hover.svg \
+  qt/peppapow/res/img/ic-wallet-status-staking.svg \
+  qt/peppapow/res/img/ic-check-peers-off.svg \
+  qt/peppapow/res/img/ic-nav-dashboard.svg \
+  qt/peppapow/res/img/ic-wallet-status-unlocked.svg \
+  qt/peppapow/res/img/ic-check-peers.svg \
+  qt/peppapow/res/img/ic-nav-master-active.svg \
+  qt/peppapow/res/img/ic-watch-password-white.svg \
+  qt/peppapow/res/img/bg-welcome-container.jpg \
+  qt/peppapow/res/img/bg-welcome-container.png \
+  qt/peppapow/res/img/bg-welcome-container.svg \
+  qt/peppapow/res/img/bg-welcome-container@2x.png \
+  qt/peppapow/res/img/bg-welcome-container@3x.png \
+  qt/peppapow/res/img/ic-check-staking-off.svg \
+  qt/peppapow/res/img/ic-nav-master-hover.svg \
+  qt/peppapow/res/img/ic-watch-password.svg \
+  qt/peppapow/res/img/bg-welcome.jpg \
+  qt/peppapow/res/img/bg-welcome.svg \
+  qt/peppapow/res/img/bg-welcome@2x.jpg \
+  qt/peppapow/res/img/bg-welcome@3x.jpg \
+  qt/peppapow/res/img/bg-welcome.png \
+  qt/peppapow/res/img/ic-check-staking.svg \
+  qt/peppapow/res/img/ic-nav-master.svg \
+  qt/peppapow/res/img/img-dashboard-banner.jpg \
+  qt/peppapow/res/img/btn-radio-active.svg \
+  qt/peppapow/res/img/ic-check-sync-off.svg \
+  qt/peppapow/res/img/ic-nav-privacy-active.svg \
+  qt/peppapow/res/img/img-empty-contacts.svg \
+  qt/peppapow/res/img/btn-radio-off.svg \
+  qt/peppapow/res/img/ic-check-sync.png \
+  qt/peppapow/res/img/ic-nav-privacy-hover.svg \
+  qt/peppapow/res/img/img-empty-dark-contacts.svg \
+  qt/peppapow/res/img/ic-contact-arrow-down.svg \
+  qt/peppapow/res/img/ic-contact-arrow-down-white.svg \
+  qt/peppapow/res/img/ic-check-sync.svg \
+  qt/peppapow/res/img/ic-check-faq.svg \
+  qt/peppapow/res/img/ic-nav-privacy.svg \
+  qt/peppapow/res/img/img-empty-dark-error.svg \
+  qt/peppapow/res/img/ic-add-label.svg \
+  qt/peppapow/res/img/ic-pending.svg \
+  qt/peppapow/res/img/ic-check-theme-dark.svg \
+  qt/peppapow/res/img/ic-nav-receive-active.svg \
+  qt/peppapow/res/img/img-empty-dark-masternode.svg \
+  qt/peppapow/res/img/ic-add-liliac.svg \
+  qt/peppapow/res/img/ic-check-theme-light.svg \
+  qt/peppapow/res/img/ic-nav-receive-hover.svg \
+  qt/peppapow/res/img/img-empty-dark-multisend.svg \
+  qt/peppapow/res/img/ic-add-purple.svg \
+  qt/peppapow/res/img/ic-check-white.svg \
+  qt/peppapow/res/img/ic-nav-receive.svg \
+  qt/peppapow/res/img/img-empty-dark-peers.svg \
+  qt/peppapow/res/img/ic-add.svg \
+  qt/peppapow/res/img/ic-check.svg \
+  qt/peppapow/res/img/ic-nav-send-active.svg \
+  qt/peppapow/res/img/img-empty-dark-staking-off.svg \
+  qt/peppapow/res/img/img-empty-dark-staking-on.svg \
+  qt/peppapow/res/img/ic-address-book-grey.svg \
+  qt/peppapow/res/img/ic-chevron-left.svg \
+  qt/peppapow/res/img/ic-nav-send-hover.svg \
+  qt/peppapow/res/img/img-empty-dark-transactions.svg \
+  qt/peppapow/res/img/ic-address-book-white.svg \
+  qt/peppapow/res/img/ic-chevron-right.svg \
+  qt/peppapow/res/img/ic-nav-send.svg \
+  qt/peppapow/res/img/img-empty-error.svg \
+  qt/peppapow/res/img/ic-address-book.svg \
+  qt/peppapow/res/img/ic-clear-liliac.svg \
+  qt/peppapow/res/img/ic-nav-settings-active.svg \
+  qt/peppapow/res/img/img-empty-masternode.svg \
+  qt/peppapow/res/img/ic-address-send-white.svg \
+  qt/peppapow/res/img/ic-clear-purple.svg \
+  qt/peppapow/res/img/ic-nav-settings-hover.svg \
+  qt/peppapow/res/img/img-empty-multisend.svg \
+  qt/peppapow/res/img/ic-address-send.svg \
+  qt/peppapow/res/img/ic-close-white.svg \
+  qt/peppapow/res/img/ic-nav-settings.svg \
+  qt/peppapow/res/img/img-empty-peers.svg \
+  qt/peppapow/res/img/img-empty-privacy.svg \
+  qt/peppapow/res/img/img-empty-privacy-dark.svg \
+  qt/peppapow/res/img/ic-arrow-drop-down-white.svg \
+  qt/peppapow/res/img/ic-close.svg \
+  qt/peppapow/res/img/ic-radio-liliac-on.svg \
+  qt/peppapow/res/img/img-empty-staking-off.svg \
+  qt/peppapow/res/img/ic-arrow-drop-down.svg \
+  qt/peppapow/res/img/ic-coin-piv.svg \
+  qt/peppapow/res/img/ic-receive-off.svg \
+  qt/peppapow/res/img/img-empty-staking-on.svg \
+  qt/peppapow/res/img/ic-arrow-drop-up-white.svg \
+  qt/peppapow/res/img/ic-coin-zpiv.png \
+  qt/peppapow/res/img/ic-receive-on.svg \
+  qt/peppapow/res/img/img-empty-transactions.svg \
+  qt/peppapow/res/img/ic-arrow-drop-up.svg \
+  qt/peppapow/res/img/ic-coin-zpiv.svg \
+  qt/peppapow/res/img/ic-received.svg \
+  qt/peppapow/res/img/img-logo-peppapow.png \
+  qt/peppapow/res/img/ic-arrow-drop-white-down.svg \
+  qt/peppapow/res/img/ic-combo-box.svg \
+  qt/peppapow/res/img/ic-send.svg \
+  qt/peppapow/res/img/img-logo-peppapow@2x.png \
+  qt/peppapow/res/img/ic-arrow-purple-down.svg \
+  qt/peppapow/res/img/ic-connect.svg \
+  qt/peppapow/res/img/ic-submenu-lock.svg \
+  qt/peppapow/res/img/img-logo-peppapow@3x.png \
+  qt/peppapow/res/img/img-logo-peppapow.svg \
+  qt/peppapow/res/img/ic-arrow-right-white.svg \
+  qt/peppapow/res/img/ic-arrow-left-white.svg \
+  qt/peppapow/res/img/ic-arrow-left.svg \
+  qt/peppapow/res/img/ic-copy-liliac.svg \
+  qt/peppapow/res/img/ic-submenu-staking.svg \
+  qt/peppapow/res/img/img-nav-logo-peppapow.png \
+  qt/peppapow/res/img/ic-arrow-right.svg \
+  qt/peppapow/res/img/ic-copy.svg \
+  qt/peppapow/res/img/ic-copy-big.svg \
+  qt/peppapow/res/img/ic-copy-big-white.svg \
+  qt/peppapow/res/img/ic-submenu-unlock.svg \
+  qt/peppapow/res/img/img-nav-logo.png \
+  qt/peppapow/res/img/ic-arrow-white-left.svg \
+  qt/peppapow/res/img/ic-exit.svg \
+  qt/peppapow/res/img/ic-switch-liliac-on.svg \
+  qt/peppapow/res/img/img-nav-logo.svg \
+  qt/peppapow/res/img/ic-arrow-white-right.svg \
+  qt/peppapow/res/img/ic-expand.svg \
+  qt/peppapow/res/img/ic-switch-off.svg \
+  qt/peppapow/res/img/img-qr-test-big.png \
+  qt/peppapow/res/img/ic-check-active.svg \
+  qt/peppapow/res/img/ic-folder.svg \
+  qt/peppapow/res/img/ic-switch-on.svg \
+  qt/peppapow/res/img/img-qr-test.png \
+  qt/peppapow/res/img/ic-check-box.svg \
+  qt/peppapow/res/img/ic-check-box-dark-active.svg \
+  qt/peppapow/res/img/ic-check-box-indeterminate.svg \
+  qt/peppapow/res/img/ic-check-box-liliac-indeterminate.svg \
+  qt/peppapow/res/img/ic-label-liliac.svg \
+  qt/peppapow/res/img/ic-transaction-warning.svg \
+  qt/peppapow/res/img/ic-transaction-mint.svg \
+  qt/peppapow/res/img/ic-transaction-mint-inactive.svg \
+  qt/peppapow/res/img/ic-check-cold-staking.svg \
+  qt/peppapow/res/img/ic-check-cold-staking-off.svg \
+  qt/peppapow/res/img/ic-check-cold-staking-enabled.svg \
+  qt/peppapow/res/img/dark/ic-transaction-cs-contract.svg \
+  qt/peppapow/res/img/dark/ic-transaction-cs-contract-inactive.svg \
+  qt/peppapow/res/img/img-qr.svg \
+  qt/peppapow/res/img/ic-check-connect-off.svg \
+  qt/peppapow/res/img/ic-check-tor-off.svg \
+  qt/peppapow/res/img/ic-check-tor.svg \
+  qt/peppapow/res/img/ic-label.svg \
+  qt/peppapow/res/img/ic-transaction-received.svg \
+  qt/peppapow/res/img/dark/ic-transaction-received.svg \
+  qt/peppapow/res/img/dark/ic-transaction-warning.svg \
+  qt/peppapow/res/img/dark/ic-transaction-mint.svg \
+  qt/peppapow/res/img/dark/ic-transaction-mint-inactive.svg \
+  qt/peppapow/res/img/ic-transaction-received-inactive.svg \
+  qt/peppapow/res/img/dark/ic-transaction-received-inactive.svg \
+  qt/peppapow/res/img/img-welcome-step1.png \
+  qt/peppapow/res/img/ic-check-connect.svg \
+  qt/peppapow/res/img/ic-menu-hover.svg \
+  qt/peppapow/res/img/ic-transaction-sent.svg \
+  qt/peppapow/res/img/ic-transaction-sent-inactive.svg \
+  qt/peppapow/res/img/dark/ic-transaction-sent.svg \
+  qt/peppapow/res/img/dark/ic-transaction-sent-inactive.svg \
+  qt/peppapow/res/img/img-welcome-step2.png \
+  qt/peppapow/res/img/ic-check-dark.svg \
+  qt/peppapow/res/img/ic-mint.svg \
+  qt/peppapow/res/img/ic-transaction-staked.svg \
+  qt/peppapow/res/img/ic-transaction-staked-inactive.svg \
+  qt/peppapow/res/img/dark/ic-transaction-staked.svg \
+  qt/peppapow/res/img/dark/ic-transaction-staked-inactive.svg \
+  qt/peppapow/res/img/img-welcome-step3.png \
+  qt/peppapow/res/img/ic-check-liliac-on.svg \
+  qt/peppapow/res/img/ic-nav-address-active.svg \
+  qt/peppapow/res/img/ic-unlock-staking.svg \
+  qt/peppapow/res/img/img-welcome-step4.png \
+  qt/peppapow/res/img/ic-check-locked-off.svg \
+  qt/peppapow/res/img/ic-nav-address-hover.svg \
+  qt/peppapow/res/img/ic-update-liliac.svg \
+  qt/peppapow/res/img/ic-arrow-drop-down-purple.svg \
+  qt/peppapow/res/img/ic-arrow-drop-up-purple.svg \
+  qt/peppapow/res/img/ic-check-liliac-indeterminate.svg \
+  qt/peppapow/res/img/ic-check-box-liliac-indeterminate.svg \
+  qt/peppapow/res/img/ic-transaction-stake-delegated.svg \
+  qt/peppapow/res/img/ic-transaction-stake-delegated-inactive.svg \
+  qt/peppapow/res/img/ic-transaction-stake-hot.svg \
+  qt/peppapow/res/img/ic-transaction-stake-hot-inactive.svg \
+  qt/peppapow/res/img/dark/ic-transaction-stake-hot.svg \
+  qt/peppapow/res/img/dark/ic-transaction-stake-hot-inactive.svg \
+  qt/peppapow/res/img/dark/ic-transaction-stake-delegated.svg \
+  qt/peppapow/res/img/dark/ic-transaction-stake-delegated-inactive.svg \
+  qt/peppapow/res/img/ic-transaction-cs-contract.svg \
+  qt/peppapow/res/img/ic-transaction-cs-contract-inactive.svg \
+  qt/peppapow/res/img/ic-check-box-indeterminate.svg \
+  qt/peppapow/res/img/ani-loading-dark.gif \
+  qt/peppapow/res/img/ani-loading.gif
+
+
+
+BITCOIN_QT_BASE_CPP = \
+  qt/bantablemodel.cpp \
+  qt/bitcoinaddressvalidator.cpp \
+  qt/peppapow/peppapowgui.cpp \
+  qt/bitcoinunits.cpp \
+  qt/clientmodel.cpp \
+  qt/csvmodelwriter.cpp \
+  qt/guiutil.cpp \
+  qt/intro.cpp \
+  qt/networkstyle.cpp \
+  qt/notificator.cpp \
+  qt/optionsdialog.cpp \
+  qt/optionsmodel.cpp \
+  qt/peertablemodel.cpp \
+  qt/platformstyle.cpp \
+  qt/qvalidatedlineedit.cpp \
+  qt/qvaluecombobox.cpp \
+  qt/rpcconsole.cpp \
+  qt/trafficgraphwidget.cpp \
+  qt/utilitydialog.cpp
+
+BITCOIN_QT_WINDOWS_CPP = qt/winshutdownmonitor.cpp
+
+BITCOIN_QT_WALLET_CPP = \
+  qt/addressbookpage.cpp \
+  qt/addresstablemodel.cpp \
+  qt/askpassphrasedialog.cpp \
+  qt/coincontroldialog.cpp \
+  qt/coincontroltreewidget.cpp \
+  qt/editaddressdialog.cpp \
+  qt/openuridialog.cpp \
+  qt/paymentrequestplus.cpp \
+  qt/paymentserver.cpp \
+  qt/recentrequeststablemodel.cpp \
+  qt/transactiondesc.cpp \
+  qt/transactionfilterproxy.cpp \
+  qt/transactionrecord.cpp \
+  qt/transactiontablemodel.cpp \
+  qt/walletmodel.cpp \
+  qt/walletmodeltransaction.cpp \
+  qt/peppapow/loadingdialog.cpp \
+  qt/peppapow/pwidget.cpp \
+  qt/peppapow/focuseddialog.cpp \
+  qt/peppapow/guitransactionsutils.cpp \
+  qt/peppapow/snackbar.cpp \
+  qt/peppapow/navmenuwidget.cpp \
+  qt/peppapow/lockunlock.cpp \
+  qt/peppapow/receivedialog.cpp \
+  qt/peppapow/furabstractlistitemdelegate.cpp \
+  qt/peppapow/txviewholder.cpp \
+  qt/peppapow/qtutils.cpp \
+  qt/peppapow/expandablebutton.cpp \
+  qt/peppapow/topbar.cpp \
+  qt/peppapow/txrow.cpp \
+  qt/peppapow/addressholder.cpp \
+  qt/peppapow/addressfilterproxymodel.cpp \
+  qt/peppapow/dashboardwidget.cpp \
+  qt/peppapow/addresslabelrow.cpp \
+  qt/peppapow/contactdropdownrow.cpp \
+  qt/peppapow/contactsdropdown.cpp \
+  qt/peppapow/optionbutton.cpp \
+  qt/peppapow/mninfodialog.cpp \
+  qt/peppapow/coldstakingmodel.cpp \
+  qt/peppapow/mnmodel.cpp \
+  qt/peppapow/masternodewizarddialog.cpp \
+  qt/peppapow/mnrow.cpp \
+  qt/peppapow/masternodeswidget.cpp \
+  qt/peppapow/myaddressrow.cpp \
+  qt/peppapow/csrow.cpp \
+  qt/peppapow/sendchangeaddressdialog.cpp \
+  qt/peppapow/sendconfirmdialog.cpp \
+  qt/peppapow/sendcustomfeedialog.cpp \
+  qt/peppapow/sendchangeaddressdialog.cpp \
+  qt/peppapow/sendmultirow.cpp \
+  qt/peppapow/send.cpp \
+  qt/peppapow/addnewaddressdialog.cpp \
+  qt/peppapow/addnewcontactdialog.cpp \
+  qt/peppapow/requestdialog.cpp \
+  qt/peppapow/receivewidget.cpp \
+  qt/peppapow/tooltipmenu.cpp \
+  qt/peppapow/addresseswidget.cpp \
+  qt/peppapow/defaultdialog.cpp \
+  qt/peppapow/coldstakingwidget.cpp \
+  qt/peppapow/settings/settingsbackupwallet.cpp \
+  qt/peppapow/settings/settingsexportcsv.cpp \
+  qt/peppapow/settings/settingsbittoolwidget.cpp \
+  qt/peppapow/settings/settingsconsolewidget.cpp \
+  qt/peppapow/settings/settingsdisplayoptionswidget.cpp \
+  qt/peppapow/settings/settingsfaqwidget.cpp \
+  qt/peppapow/settings/settingsinformationwidget.cpp \
+  qt/peppapow/settings/settingsmainoptionswidget.cpp \
+  qt/peppapow/settings/settingsmultisenddialog.cpp \
+  qt/peppapow/settings/settingsmultisendwidget.cpp \
+  qt/peppapow/settings/settingssignmessagewidgets.cpp \
+  qt/peppapow/settings/settingswalletoptionswidget.cpp \
+  qt/peppapow/settings/settingswalletrepairwidget.cpp \
+  qt/peppapow/settings/settingswidget.cpp \
+  qt/peppapow/welcomecontentwidget.cpp \
+  qt/peppapow/splash.cpp
+
+
+BITCOIN_QT_CPP = $(BITCOIN_QT_BASE_CPP)
+if TARGET_WINDOWS
+BITCOIN_QT_CPP += $(BITCOIN_QT_WINDOWS_CPP)
+endif
+if ENABLE_WALLET
+BITCOIN_QT_CPP += $(BITCOIN_QT_WALLET_CPP)
+endif
+
+RES_IMAGES = \
+  qt/res/images/about.png \
+  qt/res/images/splash.png \
+  qt/res/images/splash_testnet.png \
+  qt/res/images/splash_regtest.png
+
+RES_CSS = \
+  qt/res/css/default.css \
+  qt/peppapow/res/css/style_dark.css \
+  qt/peppapow/res/css/style_light.css
+
+BITCOIN_RC = qt/res/peppapow-qt-res.rc
+
+BITCOIN_QT_INCLUDES = -I$(builddir)/qt -I$(srcdir)/qt -I$(srcdir)/qt/forms \
+  -I$(builddir)/qt/forms -DQT_NO_KEYWORDS
+
+qt_libbitcoinqt_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
+  $(QT_INCLUDES) $(QT_DBUS_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS) $(SVG_CFLAGS) $(CHARTS_CFLAGS)
+qt_libbitcoinqt_a_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
+qt_libbitcoinqt_a_OBJCXXFLAGS = $(AM_OBJCXXFLAGS) $(QT_PIE_FLAGS)
+
+qt_libbitcoinqt_a_SOURCES = $(BITCOIN_QT_CPP) $(BITCOIN_QT_H) $(QT_FORMS_UI) \
+  $(QT_QRC) $(QT_QRC_LOCALE) $(QT_TS) $(PROTOBUF_PROTO) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS)
+
+nodist_qt_libbitcoinqt_a_SOURCES = $(QT_MOC_CPP) $(QT_MOC) $(PROTOBUF_CC) \
+  $(PROTOBUF_H) $(QT_QRC_CPP) $(QT_QRC_LOCALE_CPP)
+
+# forms/foo.h -> forms/ui_foo.h
+QT_FORMS_H=$(join $(dir $(QT_FORMS_UI)),$(addprefix ui_, $(notdir $(QT_FORMS_UI:.ui=.h))))
+
+# Most files will depend on the forms and moc files as includes. Generate them
+# before anything else.
+$(QT_MOC): $(QT_FORMS_H)
+$(qt_libbitcoinqt_a_OBJECTS) $(qt_peppapow_qt_OBJECTS) : | $(QT_MOC)
+
+#Generating these with a half-written protobuf header leads to wacky results.
+#This makes sure it's done.
+$(QT_MOC): $(PROTOBUF_H)
+$(QT_MOC_CPP): $(PROTOBUF_H)
+
+# peppapow-qt binary #
+qt_peppapow_qt_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
+  $(QT_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS) $(SVG_CFLAGS) $(CHARTS_CFLAGS)
+qt_peppapow_qt_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
+
+qt_peppapow_qt_SOURCES = qt/peppapow.cpp
+if TARGET_DARWIN
+  qt_peppapow_qt_SOURCES += $(BITCOIN_MM)
+endif
+if TARGET_WINDOWS
+  qt_peppapow_qt_SOURCES += $(BITCOIN_RC)
+endif
+qt_peppapow_qt_LDADD = qt/libbitcoinqt.a $(LIBBITCOIN_SERVER)
+if ENABLE_WALLET
+qt_peppapow_qt_LDADD += $(LIBBITCOIN_UTIL) $(LIBBITCOIN_WALLET)
+endif
+if ENABLE_ZMQ
+qt_peppapow_qt_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
+endif
+qt_peppapow_qt_LDADD += $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_CRYPTO) $(LIBUNIVALUE) $(LIBBITCOIN_ZEROCOIN) $(LIBLEVELDB) $(LIBLEVELDB_SSE42) $(LIBMEMENV) \
+  $(BOOST_LIBS) $(QT_LIBS) $(QT_DBUS_LIBS) $(QR_LIBS) $(PROTOBUF_LIBS) $(SVG_LIBS) $(CHARTS_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(LIBSECP256K1) \
+  $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
+qt_peppapow_qt_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+qt_peppapow_qt_LIBTOOLFLAGS = $(AM_LIBTOOLFLAGS) --tag CXX
+
+#locale/foo.ts -> locale/foo.qm
+QT_QM=$(QT_TS:.ts=.qm)
+
+SECONDARY: $(QT_QM)
+
+$(srcdir)/qt/peppapowstrings.cpp: $(libbitcoin_server_a_SOURCES) $(libbitcoin_wallet_a_SOURCES) $(libbitcoin_common_a_SOURCES) $(libbitcoin_zmq_a_SOURCES) $(libbitcoin_util_a_SOURCES)
+	@test -n $(XGETTEXT) || echo "xgettext is required for updating translations"
+	$(AM_V_GEN) cd $(srcdir); XGETTEXT=$(XGETTEXT) PACKAGE_NAME="$(PACKAGE_NAME)" $(PYTHON) ../share/qt/extract_strings_qt.py $^
+
+translate: $(srcdir)/qt/peppapowstrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(BITCOIN_QT_BASE_CPP) qt/peppapow.cpp $(BITCOIN_QT_WINDOWS_CPP) $(BITCOIN_QT_WALLET_CPP) $(BITCOIN_QT_H) $(BITCOIN_MM)
+	@test -n $(LUPDATE) || echo "lupdate is required for updating translations"
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LUPDATE) $^ -locations relative -no-obsolete -ts $(srcdir)/qt/locale/peppapow_en.ts
+
+$(QT_QRC_LOCALE_CPP): $(QT_QRC_LOCALE) $(QT_QM)
+	@test -f $(RCC)
+	@cp -f $< $(@D)/temp_$(<F)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name peppapow_locale $(@D)/temp_$(<F) | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+	@rm $(@D)/temp_$(<F)
+
+$(QT_QRC_CPP): $(QT_QRC) $(QT_FORMS_H) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS) $(PROTOBUF_H)
+	@test -f $(RCC)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name peppapow $< | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+
+CLEAN_QT = $(nodist_qt_libbitcoinqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda qt/*.gcno qt/temp_peppapow_locale.qrc
+
+CLEANFILES += $(CLEAN_QT)
+
+peppapow_qt_clean: FORCE
+	rm -f $(CLEAN_QT) $(qt_libbitcoinqt_a_OBJECTS) $(qt_peppapow_qt_OBJECTS) qt/peppapow-qt$(EXEEXT) $(LIBBITCOINQT)
+
+peppapow_qt : qt/peppapow-qt$(EXEEXT)
+
+ui_%.h: %.ui
+	@test -f $(UIC)
+	@$(MKDIR_P) $(@D)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(UIC) -o $@ $< || (echo "Error creating $@"; false)
+
+%.moc: %.cpp
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(MOC) $(DEFAULT_INCLUDES) $(QT_INCLUDES) $(MOC_DEFS) $< | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+
+moc_%.cpp: %.h
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(MOC) $(DEFAULT_INCLUDES) $(QT_INCLUDES) $(MOC_DEFS) $< | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+
+%.qm: %.ts
+	@test -f $(LRELEASE)
+	@$(MKDIR_P) $(@D)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LRELEASE) -silent $< -qm $@

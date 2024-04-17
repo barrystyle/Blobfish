@@ -1,0 +1,8 @@
+/usr/bin/peppapow-cli		--	gen_context(system_u:object_r:peppapow_exec_t,s0)
+/usr/sbin/peppapowd		--	gen_context(system_u:object_r:peppapow_exec_t,s0)
+/usr/lib(64)?/peppapow/peppapowd		--	gen_context(system_u:object_r:peppapow_exec_t,s0)
+
+/etc/peppapow(/.*)?		gen_context(system_u:object_r:peppapow_conf_t,s0)
+/var/lib/peppapow(/.*)?		gen_context(system_u:object_r:peppapow_var_lib_t,s0)
+
+(/var)?/run/peppapowd(/.*)?   gen_context(system_u:object_r:peppapow_var_run_t,s0)

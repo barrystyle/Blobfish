@@ -1,0 +1,6 @@
+usr/local/bin/peppapow-qt usr/bin
+share/pixmaps/peppapow32.xpm usr/share/pixmaps
+share/pixmaps/peppapow16.xpm usr/share/pixmaps
+share/pixmaps/peppapow128.png usr/share/pixmaps
+debian/peppapow-qt.desktop usr/share/applications
+debian/peppapow-qt.protocol usr/share/kde4/services/

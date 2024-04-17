@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Name=PEPPAPOWX Core
+Comment=PEPPAPOWX P2P Cryptocurrency
+Comment[fr]=PEPPAPOWX, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=PEPPAPOWX, eşten eşe kriptografik sanal para birimi
+Exec=peppapow-qt %u
+Terminal=false
+Type=Application
+Icon=peppapow128
+MimeType=x-scheme-handler/peppapow;
+Categories=Office;Finance;
+StartupWMClass=PeppaPow-qt
