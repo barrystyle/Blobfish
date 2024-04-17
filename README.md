@@ -22,7 +22,7 @@ More information at [peppapow.org](http://www.peppapow.com)
 <table>
 <th colspan=4>Genesis Block</th>
 <tr><th>Block Height</th><th>Reward Amount</th><th>Notes</th></tr>
-<tr><td>1</td><td>50,000 PEPPAPOW</td>/tr>
+<tr><td>1</td><td>50,000 PEPPAPOW</td></tr>
 </table>
 
 ### PoW Rewards Breakdown
@@ -30,7 +30,7 @@ More information at [peppapow.org](http://www.peppapow.com)
 <table>
 <th>Block Height</th><th>Miner</th>
 <tr><td>2-5.000</td><td>100% (7500 PEPPAPOW)</td></tr>
-<tr><td>5.000-10.000</td><td>100% (3250 PEPPAPOW)</td><</tr>
+<tr><td>5.000-10.000</td><td>100% (3250 PEPPAPOW)</td></tr>
 <tr><td>10.000+</td><td>45% (2250 PEPPAPOW)</td></tr>
 </table>
 
