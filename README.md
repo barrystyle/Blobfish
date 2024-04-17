@@ -21,7 +21,7 @@ More information at [peppapow.org](http://www.peppapow.com)
 
 <table>
 <th colspan=4>Genesis Block</th>
-<tr><th>Block Height</th><th>Reward Amount</th><th>Notes</th></tr>
+<tr><th>Block Height</th><th>Reward Amount</th></tr>
 <tr><td>1</td><td>50,000 PEPPAPOW</td></tr>
 </table>
 
