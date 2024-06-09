@@ -191,9 +191,9 @@ public:
         pchMessageStart[3] = 0xa9;
         nDefaultPort = 50472;
 
-        vSeeds.push_back(CDNSSeedData("168.100.10.23", "168.100.10.23"));     
-        vSeeds.push_back(CDNSSeedData("72.5.42.2", "72.5.42.2"));   
-        vSeeds.push_back(CDNSSeedData("149.248.78.20", "149.248.78.20"));    
+        vSeeds.push_back(CDNSSeedData("168.100.9.128", "168.100.9.128"));     
+        vSeeds.push_back(CDNSSeedData("64.7.199.224", "64.7.199.224"));   
+        vSeeds.push_back(CDNSSeedData("193.149.190.61", "193.149.190.61"));    
 
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 55);

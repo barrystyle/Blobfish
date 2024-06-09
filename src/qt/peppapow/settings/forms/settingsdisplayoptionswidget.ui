@@ -200,12 +200,16 @@
           </item>
          </layout>
         </item>
-        <item>
+          <item>
          <layout class="QHBoxLayout" name="horizontalHideCharts">
           <item>
            <widget class="QCheckBox" name="checkBoxHideCharts">
             <property name="text">
              <string>Hide stake charts in the dashboard</string>
+            </property>
+            <!-- PPP hide -->
+            <property name="visible">
+               <bool>false</bool>
             </property>
            </widget>
           </item>

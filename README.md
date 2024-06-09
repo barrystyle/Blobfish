@@ -1,9 +1,7 @@
-PEPPAPOWX Core integration/staging repository
+PEPPAPOW Core integration/staging repository
 =====================================
 
-[![Build Status](https://travis-ci.org/PEPPAPOWX-Project/PEPPAPOWX.svg?branch=master)](https://travis-ci.org/PEPPAPOWX-Project/PEPPAPOWX) [![GitHub version](https://badge.fury.io/gh/PEPPAPOWX-Project%2FPEPPAPOWX.svg)](https://badge.fury.io/gh/PEPPAPOWX-Project%2FPEPPAPOWX)
-
-PEPPAPOWX is an open source cryptocurrency focused on fast, private transactions using the Zerocoin protocol, with low transaction fees & environmental footprint.  It utilizes POW.
+PEPPAPOW is an open source cryptocurrency focused on fast, private transactions using the Zerocoin protocol, with low transaction fees & environmental footprint.  It utilizes POW.
 The goal of PEPPAPOWX is to achieve a decentralized, sustainable cryptocurrency with near instant full-time private transactions, fair governance and community intelligence.
 
 More information at [peppapow.com](http://www.peppapow.com)

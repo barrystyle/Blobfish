@@ -1,4 +1,5 @@
 // Copyright (c) 2019-2020 The PIVX developers
+// Copyright (c) 2023 The CeilingCatCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -53,19 +54,14 @@ DashboardWidget::DashboardWidget(PEPPAPOWXGUI* parent) :
     // Staking Information
     setCssSubtitleScreen(ui->labelMessage);
     setCssProperty(ui->labelSquarePiv, "square-chart-piv");
-    setCssProperty(ui->labelSquarezPiv, "square-chart-zpiv");
     setCssProperty(ui->labelPiv, "text-chart-piv");
-    setCssProperty(ui->labelZpiv, "text-chart-zpiv");
-    ui->labelPiv->setVisible(false);
-    ui->labelSquarePiv->setVisible(false);
-    ui->labelAmountPiv->setVisible(false);
+
     // Staking Amount
     QFont fontBold;
     fontBold.setWeight(QFont::Bold);
 
     setCssProperty(ui->labelChart, "legend-chart");
     setCssProperty(ui->labelAmountPiv, "text-stake-piv-disable");
-    setCssProperty(ui->labelAmountZpiv, "text-stake-zpiv-disable");
 
     setCssProperty({ui->pushButtonAll,  ui->pushButtonMonth, ui->pushButtonYear}, "btn-check-time");
     setCssProperty({ui->comboBoxMonths,  ui->comboBoxYears}, "btn-combo-chart-selected");
@@ -78,6 +74,7 @@ DashboardWidget::DashboardWidget(PEPPAPOWXGUI* parent) :
 
     setCssProperty(ui->pushButtonChartArrow, "btn-chart-arrow");
     setCssProperty(ui->pushButtonChartRight, "btn-chart-arrow-right");
+
 #ifdef USE_QTCHARTS
     setCssProperty(ui->right, "container-right");
     ui->right->setContentsMargins(20,20,20,0);
@@ -87,6 +84,7 @@ DashboardWidget::DashboardWidget(PEPPAPOWXGUI* parent) :
     // hide charts container if not USE_QTCHARTS
     ui->right->setVisible(false);
 #endif // USE_QTCHARTS
+
     // Sort Transactions
     SortEdit* lineEdit = new SortEdit(ui->comboBoxSort);
     connect(lineEdit, &SortEdit::Mouse_Pressed, [this](){ui->comboBoxSort->showPopup();});
@@ -108,6 +106,8 @@ DashboardWidget::DashboardWidget(PEPPAPOWXGUI* parent) :
     ui->listTransactions->setMinimumHeight(NUM_ITEMS * (DECORATION_SIZE + 2));
     ui->listTransactions->setAttribute(Qt::WA_MacShowFocusRect, false);
     ui->listTransactions->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->listTransactions->setLayoutMode(QListView::LayoutMode::Batched);
+    ui->listTransactions->setBatchSize(50);
     ui->listTransactions->setUniformItemSizes(true);
 
     // Sync Warning
@@ -124,7 +124,7 @@ DashboardWidget::DashboardWidget(PEPPAPOWXGUI* parent) :
     setCssProperty(ui->pushImgEmptyChart, "img-empty-staking-on");
 
     setCssBtnSecondary(ui->btnHowTo);
-
+    ui->btnHowTo->setVisible(false);
     setCssProperty(ui->labelEmptyChart, "text-empty");
     setCssSubtitleScreen(ui->labelMessageEmpty);
 
@@ -482,6 +482,7 @@ void DashboardWidget::changeChartColors()
     axisY->setLinePenColor(linePenColorY);
     chart->setBackgroundBrush(QBrush(backgroundColor));
     if (set0) set0->setBorderColor(gridLineColorX);
+    if (set1) set1->setBorderColor(gridLineColorX);
 }
 
 void DashboardWidget::updateStakeFilter()
@@ -520,7 +521,7 @@ void DashboardWidget::updateStakeFilter()
     }
 }
 
-// pair PEPPAPOW, zPEPPAPOW
+
 const QMap<int, std::pair<qint64, qint64>> DashboardWidget::getAmountBy()
 {
     updateStakeFilter();
@@ -531,7 +532,7 @@ const QMap<int, std::pair<qint64, qint64>> DashboardWidget::getAmountBy()
         QModelIndex modelIndex = stakesFilter->index(i, TransactionTableModel::ToAddress);
         qint64 amount = llabs(modelIndex.data(TransactionTableModel::AmountRole).toLongLong());
         QDate date = modelIndex.data(TransactionTableModel::DateRole).toDateTime().date();
-        bool isPiv = modelIndex.data(TransactionTableModel::TypeRole).toInt() != TransactionRecord::StakeZPEPPAPOW;
+        bool isPiv = true;
 
         int time = 0;
         switch (chartShow) {
@@ -561,7 +562,6 @@ const QMap<int, std::pair<qint64, qint64>> DashboardWidget::getAmountBy()
                 amountBy[time] = std::make_pair(amount, 0);
             } else {
                 amountBy[time] = std::make_pair(0, amount);
-                hasZpivStakes = true;
             }
         }
     }
@@ -576,7 +576,7 @@ bool DashboardWidget::loadChartData(bool withMonthNames)
     }
 
     chartData = new ChartData();
-    chartData->amountsByCache = getAmountBy(); // pair PEPPAPOW, zPEPPAPOW
+    chartData->amountsByCache = getAmountBy();
 
     std::pair<int,int> range = getChartRange(chartData->amountsByCache);
     if (range.first == 0 && range.second == 0) {
@@ -590,21 +590,17 @@ bool DashboardWidget::loadChartData(bool withMonthNames)
     for (int j = range.first; j < range.second; j++) {
         int num = (isOrderedByMonth && j > daysInMonth) ? (j % daysInMonth) : j;
         qreal piv = 0;
-        qreal zpiv = 0;
         if (chartData->amountsByCache.contains(num)) {
             std::pair <qint64, qint64> pair = chartData->amountsByCache[num];
             piv = (pair.first != 0) ? pair.first / 100000000 : 0;
-            zpiv = (pair.second != 0) ? pair.second / 100000000 : 0;
             chartData->totalPiv += pair.first;
-            chartData->totalZpiv += pair.second;
         }
 
         chartData->xLabels << ((withMonthNames) ? monthsNames[num - 1] : QString::number(num));
 
         chartData->valuesPiv.append(piv);
-        chartData->valueszPiv.append(zpiv);
 
-        int max = std::max(piv, zpiv);
+        int max = std::max(piv, piv);
         if (max > chartData->maxValue) {
             chartData->maxValue = max;
         }
@@ -660,7 +656,7 @@ void DashboardWidget::onChartRefreshed()
         }
         axisX->clear();
     }
-    // init set
+    // init sets
     set0 = new QBarSet(CURRENCY_UNIT.c_str());
     set0->setColor(QColor(92,75,125));
 
@@ -679,11 +675,9 @@ void DashboardWidget::onChartRefreshed()
         setCssProperty(ui->labelAmountPiv, "text-stake-piv");
     } else {
         setCssProperty(ui->labelAmountPiv, "text-stake-piv-disable");
-        setCssProperty(ui->labelAmountZpiv, "text-stake-zpiv-disable");
     }
-    forceUpdateStyle({ui->labelAmountPiv, ui->labelAmountZpiv});
+    forceUpdateStyle({ui->labelAmountPiv});
     ui->labelAmountPiv->setText(GUIUtil::formatBalance(chartData->totalPiv, nDisplayUnit));
-    ui->labelAmountZpiv->setText(GUIUtil::formatBalance(chartData->totalZpiv, nDisplayUnit, true));
 
     series->append(set0);
 

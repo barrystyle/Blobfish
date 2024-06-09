@@ -78,28 +78,30 @@ TopBar::TopBar(PEPPAPOWXGUI* _mainWindow, QWidget *parent) :
     ui->pushButtonConnection->setButtonClassStyle("cssClass", "btn-check-connect-inactive");
     ui->pushButtonConnection->setButtonText(tr("No Connection"));
 
-    ui->pushButtonTor->setButtonClassStyle("cssClass", "btn-check-tor-inactive");
-    ui->pushButtonTor->setButtonText(tr("Tor Disabled"));
-    ui->pushButtonTor->setChecked(false);
+    //ui->pushButtonTor->setButtonClassStyle("cssClass", "btn-check-tor-inactive");
+    //ui->pushButtonTor->setButtonText(tr("Tor Disabled"));
+    //ui->pushButtonTor->setChecked(false);
 
     ui->pushButtonStack->setButtonClassStyle("cssClass", "btn-check-stack-inactive");
     ui->pushButtonStack->setButtonText(tr("Staking Disabled"));
+    ui->pushButtonStack->setVisible(false);
 
     ui->pushButtonColdStaking->setButtonClassStyle("cssClass", "btn-check-cold-staking-inactive");
     ui->pushButtonColdStaking->setButtonText(tr("Cold Staking Disabled"));
+    ui->pushButtonColdStaking->setVisible(false);
 
     ui->pushButtonSync->setButtonClassStyle("cssClass", "btn-check-sync");
     ui->pushButtonSync->setButtonText(tr(" %54 Synchronizing.."));
 
     ui->pushButtonLock->setButtonClassStyle("cssClass", "btn-check-lock");
 
-    if (isLightTheme()) {
-        ui->pushButtonTheme->setButtonClassStyle("cssClass", "btn-check-theme-light");
-        ui->pushButtonTheme->setButtonText(tr("Light Theme"));
-    } else {
-        ui->pushButtonTheme->setButtonClassStyle("cssClass", "btn-check-theme-dark");
-        ui->pushButtonTheme->setButtonText(tr("Dark Theme"));
-    }
+      //if (isLightTheme()) {
+        //ui->pushButtonTheme->setButtonClassStyle("cssClass", "btn-check-theme-light");
+        //ui->pushButtonTheme->setButtonText(tr("Light Theme"));
+    //} else {
+        //ui->pushButtonTheme->setButtonClassStyle("cssClass", "btn-check-theme-dark");
+        //ui->pushButtonTheme->setButtonText(tr("Dark Theme"));
+    //}
 
     setCssProperty(ui->qrContainer, "container-qr");
     setCssProperty(ui->pushButtonQR, "btn-qr");
@@ -120,7 +122,7 @@ TopBar::TopBar(PEPPAPOWXGUI* _mainWindow, QWidget *parent) :
     connect(ui->pushButtonQR, &QPushButton::clicked, this, &TopBar::onBtnReceiveClicked);
     connect(ui->btnQr, &QPushButton::clicked, this, &TopBar::onBtnReceiveClicked);
     connect(ui->pushButtonLock, &ExpandableButton::Mouse_Pressed, this, &TopBar::onBtnLockClicked);
-    connect(ui->pushButtonTheme, &ExpandableButton::Mouse_Pressed, this, &TopBar::onThemeClicked);
+    //connect(ui->pushButtonTheme, &ExpandableButton::Mouse_Pressed, this, &TopBar::onThemeClicked);
     connect(ui->pushButtonFAQ, &ExpandableButton::Mouse_Pressed, [this](){window->openFAQ();});
     connect(ui->pushButtonColdStaking, &ExpandableButton::Mouse_Pressed, this, &TopBar::onColdStakingClicked);
     connect(ui->pushButtonSync, &ExpandableButton::Mouse_HoverLeave, this, &TopBar::refreshProgressBarSize);
@@ -136,14 +138,14 @@ void TopBar::onThemeClicked()
 
     setTheme(lightTheme);
 
-    if (lightTheme) {
-        ui->pushButtonTheme->setButtonClassStyle("cssClass", "btn-check-theme-light",  true);
-        ui->pushButtonTheme->setButtonText(tr("Light Theme"));
-    } else {
-        ui->pushButtonTheme->setButtonClassStyle("cssClass", "btn-check-theme-dark", true);
-        ui->pushButtonTheme->setButtonText(tr("Dark Theme"));
-    }
-    updateStyle(ui->pushButtonTheme);
+//if (lightTheme) {
+        //ui->pushButtonTheme->setButtonClassStyle("cssClass", "btn-check-theme-light",  true);
+        //ui->pushButtonTheme->setButtonText(tr("Light Theme"));
+    //} else {
+        //ui->pushButtonTheme->setButtonClassStyle("cssClass", "btn-check-theme-dark", true);
+        //ui->pushButtonTheme->setButtonText(tr("Dark Theme"));
+    //}
+    //updateStyle(ui->pushButtonTheme);
 
     Q_EMIT themeChanged(lightTheme);
 }
@@ -400,7 +402,7 @@ void TopBar::updateStakingStatus()
                            walletModel->isStakingStatusActive());
 
     // Taking advantage of this timer to update Tor status if needed.
-    updateTorIcon();
+    //updateTorIcon();
 }
 
 void TopBar::setNumConnections(int count)
@@ -558,7 +560,7 @@ void TopBar::loadWalletModel()
 
     isInitializing = false;
 }
-
+/*
 void TopBar::updateTorIcon()
 {
     std::string ip_port;
@@ -579,7 +581,7 @@ void TopBar::updateTorIcon()
         }
     }
 }
-
+*/
 void TopBar::refreshStatus()
 {
     // Check lock status

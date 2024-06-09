@@ -466,9 +466,9 @@
    </item>
    <item>
     <widget class="QWidget" name="right" native="true">
-     <property name="minimumSize">
+     <property name="maximumSize"><!-- PPP was minimumSize -->
       <size>
-       <width>200</width>
+       <width>1</width><!-- PPP was 300 -->
        <height>0</height>
       </size>
      </property>
@@ -519,7 +519,7 @@
             <item>
              <widget class="QLabel" name="labelMessage">
               <property name="text">
-               <string>Amount of PEPPAPOW and zPEPPAPOW staked.</string>
+               <string>Amount of PEPPAPOW staked.</string>
               </property>
              </widget>
             </item>
@@ -568,16 +568,6 @@
            <widget class="QLabel" name="labelAmountPiv">
             <property name="text">
              <string notr="true">0 PEPPAPOW</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="labelAmountZpiv">
-            <property name="text">
-             <string notr="true">0 zPEPPAPOW</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -714,32 +704,6 @@
                   </property>
                  </spacer>
                 </item>
-                <item>
-                 <widget class="QLabel" name="labelSquarezPiv">
-                  <property name="minimumSize">
-                   <size>
-                    <width>14</width>
-                    <height>14</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>14</width>
-                    <height>14</height>
-                   </size>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLabel" name="labelZpiv">
-                  <property name="text">
-                   <string notr="true">zPEPPAPOW</string>
-                  </property>
-                 </widget>
-                </item>
                </layout>
               </item>
               <item>
@@ -791,8 +755,8 @@
                    </property>
                    <property name="styleSheet">
                     <string notr="true">#widget{
-	padding:0px;
-	margin:0px;
+    padding:0px;
+    margin:0px;
 }</string>
                    </property>
                    <layout class="QVBoxLayout" name="verticalLayout_10">
@@ -1318,8 +1282,8 @@ margin:0px;</string>
             <widget class="QLabel" name="labelMessageEmpty">
              <property name="styleSheet">
               <string notr="true">#labelMessageEmpty {
-	padding-left:30px;
-	padding-right:30px;
+    padding-left:30px;
+    padding-right:30px;
 }</string>
              </property>
              <property name="text">

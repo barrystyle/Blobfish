@@ -739,7 +739,7 @@
                      <enum>Qt::NoFocus</enum>
                     </property>
                     <property name="text">
-                     <string>Masternodes</string>
+                     <string>Scrypt</string>
                     </property>
                     <property name="checkable">
                      <bool>true</bool>
@@ -1116,7 +1116,7 @@ PEPPAPOW Core Wallet</string>
                    </size>
                   </property>
                   <property name="text">
-                   <string>What is a Masternode?</string>
+                   <string>What is a Scrypt PoW?</string>
                   </property>
                  </widget>
                 </item>
@@ -1139,7 +1139,7 @@ PEPPAPOW Core Wallet</string>
                 <item>
                  <widget class="QLabel" name="labelMessage4">
                   <property name="text">
-                   <string>The masternode network is PEPPAPOW's second layer network on top of the blockchain that enables our DAO to provide decentralized governance and a treasury.</string>
+                   <string>Scrypt is one of the most popular PoW algos. It is used to secure the PeppaPow Coin network and let miners earn PPPW.</string>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignCenter</set>

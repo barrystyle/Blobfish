@@ -526,6 +526,10 @@
         </item>
         <item>
          <widget class="QWidget" name="layoutOptions2" native="true">
+          <!-- PPPW hide -->
+           <property name="visible">
+             <bool>false</bool>
+           </property>
           <layout class="QHBoxLayout" name="horizontalMasternodes" stretch="0,1">
            <property name="spacing">
              <number>0</number>
