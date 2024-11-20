@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef PEPPAPOWX_DETERMINISTICMINT_H
-#define PEPPAPOWX_DETERMINISTICMINT_H
+#ifndef BLOBFISHX_DETERMINISTICMINT_H
+#define BLOBFISHX_DETERMINISTICMINT_H
 
 #include <libzerocoin/Denominations.h>
 #include <uint256.h>
@@ -64,4 +64,4 @@ public:
     };
 };
 
-#endif //PEPPAPOWX_DETERMINISTICMINT_H
+#endif //BLOBFISHX_DETERMINISTICMINT_H

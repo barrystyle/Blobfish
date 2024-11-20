@@ -455,7 +455,7 @@ void AddressTableModel::updateEntry(const QString& address,
     const QString& purpose,
     int status)
 {
-    // Update address book model from PeppaPow core
+    // Update address book model from Blobfish core
     priv->updateEntry(address, label, isMine, purpose, status);
 }
 

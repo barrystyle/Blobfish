@@ -11,7 +11,7 @@
 
 /**
  * CBaseChainParams defines the base parameters (shared between peppapow-cli and peppapowd)
- * of a given instance of the PeppaPow system.
+ * of a given instance of the Blobfish system.
  */
 class CBaseChainParams
 {

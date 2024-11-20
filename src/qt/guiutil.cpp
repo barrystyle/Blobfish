@@ -137,7 +137,7 @@ void setupAddressWidget(QValidatedLineEdit* widget, QWidget* parent)
     widget->setFont(bitcoinAddressFont());
     // We don't want translators to use own addresses in translations
     // and this is the only place, where this address is supplied.
-    widget->setPlaceholderText(QObject::tr("Enter PEPPAPOW address (e.g. %1)").arg("D7VFR83SQbiezrW72hjcWJtcfip5krte2Z"));
+    widget->setPlaceholderText(QObject::tr("Enter BLOBFISH address (e.g. %1)").arg("D7VFR83SQbiezrW72hjcWJtcfip5krte2Z"));
     widget->setValidator(new BitcoinAddressEntryValidator(parent));
     widget->setCheckValidator(new BitcoinAddressCheckValidator(parent));
 }
@@ -159,7 +159,7 @@ void updateWidgetTextAndCursorPosition(QLineEdit* widget, const QString& str)
 
 bool parseBitcoinURI(const QUrl& uri, SendCoinsRecipient* out)
 {
-    // return if URI is not valid or is no PEPPAPOW: URI
+    // return if URI is not valid or is no BLOBFISH: URI
     if (!uri.isValid() || uri.scheme() != QString(URI_SCHEME))
         return false;
 
@@ -190,7 +190,7 @@ bool parseBitcoinURI(const QUrl& uri, SendCoinsRecipient* out)
             fShouldReturnFalse = false;
         } else if (i->first == "amount") {
             if (!i->second.isEmpty()) {
-                if (!BitcoinUnits::parse(BitcoinUnits::PEPPAPOW, i->second, &rv.amount)) {
+                if (!BitcoinUnits::parse(BitcoinUnits::BLOBFISH, i->second, &rv.amount)) {
                     return false;
                 }
             }
@@ -225,7 +225,7 @@ QString formatBitcoinURI(const SendCoinsRecipient& info)
     int paramCount = 0;
 
     if (info.amount) {
-        ret += QString("?amount=%1").arg(BitcoinUnits::format(BitcoinUnits::PEPPAPOW, info.amount, false, BitcoinUnits::separatorNever));
+        ret += QString("?amount=%1").arg(BitcoinUnits::format(BitcoinUnits::BLOBFISH, info.amount, false, BitcoinUnits::separatorNever));
         paramCount++;
     }
 
@@ -629,12 +629,12 @@ bool DHMSTableWidgetItem::operator<(QTableWidgetItem const& item) const
 #ifdef WIN32
 fs::path static StartupShortcutPath()
 {
-    return GetSpecialFolderPath(CSIDL_STARTUP) / "PEPPAPOW.lnk";
+    return GetSpecialFolderPath(CSIDL_STARTUP) / "BLOBFISH.lnk";
 }
 
 bool GetStartOnSystemStartup()
 {
-    // check for PEPPAPOW.lnk
+    // check for BLOBFISH.lnk
     return fs::exists(StartupShortcutPath());
 }
 
@@ -745,7 +745,7 @@ bool SetStartOnSystemStartup(bool fAutoStart)
         // Write a peppapow.desktop file to the autostart directory:
         optionFile << "[Desktop Entry]\n";
         optionFile << "Type=Application\n";
-        optionFile << "Name=PEPPAPOW\n";
+        optionFile << "Name=BLOBFISH\n";
         optionFile << "Exec=" << pszExePath << " -min\n";
         optionFile << "Terminal=false\n";
         optionFile << "Hidden=false\n";

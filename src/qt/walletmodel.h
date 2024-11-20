@@ -4,8 +4,8 @@
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef PEPPAPOWX_QT_WALLETMODEL_H
-#define PEPPAPOWX_QT_WALLETMODEL_H
+#ifndef BLOBFISHX_QT_WALLETMODEL_H
+#define BLOBFISHX_QT_WALLETMODEL_H
 
 #include "askpassphrasedialog.h"
 #include "paymentrequestplus.h"
@@ -104,7 +104,7 @@ public:
     }
 };
 
-/** Interface to PEPPAPOWX wallet from Qt view code. */
+/** Interface to BLOBFISHX wallet from Qt view code. */
 class WalletModel : public QObject
 {
     Q_OBJECT
@@ -364,4 +364,4 @@ public Q_SLOTS:
     bool updateAddressBookLabels(const CTxDestination& address, const std::string& strName, const std::string& strPurpose);
 };
 
-#endif // PEPPAPOWX_QT_WALLETMODEL_H
+#endif // BLOBFISHX_QT_WALLETMODEL_H

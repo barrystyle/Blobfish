@@ -35,9 +35,9 @@ bool TransactionRecord::decomposeCoinStake(const CWallet* wallet, const CWalletT
     TransactionRecord sub(hash, wtx.GetTxTime(), wtx.GetTotalSize());
 
     if (wtx.HasZerocoinSpendInputs() && (fZSpendFromMe || wallet->zpivTracker->HasMintTx(hash))) {
-        //zPEPPAPOW stake reward
+        //zBLOBFISH stake reward
         sub.involvesWatchAddress = false;
-        sub.type = TransactionRecord::StakeZPEPPAPOW;
+        sub.type = TransactionRecord::StakeZBLOBFISH;
         sub.address = getValueOrReturnEmpty(wtx.mapValue, "zerocoinmint");
         sub.credit = 0;
         for (const CTxOut& out : wtx.vout) {
@@ -53,7 +53,7 @@ bool TransactionRecord::decomposeCoinStake(const CWallet* wallet, const CWalletT
             sub.debit = -nDebit;
             loadHotOrColdStakeOrContract(wallet, wtx, sub);
         } else {
-            // PEPPAPOW stake reward
+            // BLOBFISH stake reward
             CTxDestination address;
             if (!ExtractDestination(wtx.vout[1].scriptPubKey, address))
                 return true;
@@ -192,7 +192,7 @@ bool TransactionRecord::decomposeCreditTransaction(const CWallet* wallet, const 
             sub.credit = txout.nValue;
             sub.involvesWatchAddress = mine & ISMINE_WATCH_ONLY;
             if (ExtractDestination(txout.scriptPubKey, address) && IsMine(*wallet, address)) {
-                // Received by PEPPAPOWX Address
+                // Received by BLOBFISHX Address
                 sub.type = TransactionRecord::RecvWithAddress;
                 sub.address = EncodeDestination(address);
             } else {
@@ -273,7 +273,7 @@ bool TransactionRecord::decomposeDebitTransaction(const CWallet* wallet, const C
             //private keys that the change was sent to. Do not display a "sent to" here.
             if (wtx.HasZerocoinMintOutputs())
                 continue;
-            // Sent to PEPPAPOWX Address
+            // Sent to BLOBFISHX Address
             sub.type = TransactionRecord::SendToAddress;
             sub.address = EncodeDestination(address);
         } else if (txout.IsZerocoinMint()){
@@ -310,7 +310,7 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet* 
     bool fZSpendFromMe = false;
 
     if (wtx.HasZerocoinSpendInputs()) {
-        libzerocoin::CoinSpend zcspend = wtx.HasZerocoinPublicSpendInputs() ? ZPEPPAPOWModule::parseCoinSpend(wtx.vin[0]) : TxInToZerocoinSpend(wtx.vin[0]);
+        libzerocoin::CoinSpend zcspend = wtx.HasZerocoinPublicSpendInputs() ? ZBLOBFISHModule::parseCoinSpend(wtx.vin[0]) : TxInToZerocoinSpend(wtx.vin[0]);
         fZSpendFromMe = wallet->IsMyZerocoinSpend(zcspend.getCoinSerialNumber());
     }
 
@@ -479,10 +479,10 @@ bool TransactionRecord::ExtractAddress(const CScript& scriptPubKey, bool fColdSt
     }
 }
 
-bool IsZPEPPAPOWType(TransactionRecord::Type type)
+bool IsZBLOBFISHType(TransactionRecord::Type type)
 {
     switch (type) {
-        case TransactionRecord::StakeZPEPPAPOW:
+        case TransactionRecord::StakeZBLOBFISH:
         case TransactionRecord::ZerocoinMint:
         case TransactionRecord::ZerocoinSpend:
         case TransactionRecord::RecvFromZerocoinSpend:
@@ -541,7 +541,7 @@ void TransactionRecord::updateStatus(const CWalletTx& wtx)
     // For generated transactions, determine maturity
     else if (type == TransactionRecord::Generated ||
             type == TransactionRecord::StakeMint ||
-            type == TransactionRecord::StakeZPEPPAPOW ||
+            type == TransactionRecord::StakeZBLOBFISH ||
             type == TransactionRecord::MNReward ||
             type == TransactionRecord::StakeDelegated ||
             type == TransactionRecord::StakeHot) {
@@ -594,7 +594,7 @@ int TransactionRecord::getOutputIndex() const
 
 bool TransactionRecord::isCoinStake() const
 {
-    return (type == TransactionRecord::StakeMint || type == TransactionRecord::Generated || type == TransactionRecord::StakeZPEPPAPOW);
+    return (type == TransactionRecord::StakeMint || type == TransactionRecord::Generated || type == TransactionRecord::StakeZBLOBFISH);
 }
 
 bool TransactionRecord::isAnyColdStakingType() const

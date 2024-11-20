@@ -5,10 +5,10 @@
 """Verify that starting peppapow with -h works as expected."""
 import subprocess
 
-from test_framework.test_framework import PeppaPowTestFramework
+from test_framework.test_framework import BlobfishTestFramework
 from test_framework.util import assert_equal
 
-class HelpTest(PeppaPowTestFramework):
+class HelpTest(BlobfishTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 1

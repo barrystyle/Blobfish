@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef PEPPAPOWX_UINT512_H
-#define PEPPAPOWX_UINT512_H
+#ifndef BLOBFISHX_UINT512_H
+#define BLOBFISHX_UINT512_H
 
 #include "arith_uint256.h"
 #include "blob_uint256.h"
@@ -39,4 +39,4 @@ inline blob_uint512 blob_uint512S(const char* str)
     return rv;
 }
 
-#endif // PEPPAPOWX_UINT512_H
+#endif // BLOBFISHX_UINT512_H

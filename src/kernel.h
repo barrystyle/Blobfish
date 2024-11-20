@@ -5,8 +5,8 @@
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef PEPPAPOWX_KERNEL_H
-#define PEPPAPOWX_KERNEL_H
+#ifndef BLOBFISHX_KERNEL_H
+#define BLOBFISHX_KERNEL_H
 
 #include "main.h"
 #include "stakeinput.h"
@@ -75,4 +75,4 @@ bool CheckProofOfStake(const CBlock& block, std::string& strError, const CBlockI
  */
 bool GetStakeKernelHash(uint256& hashRet, const CBlock& block, const CBlockIndex* pindexPrev = nullptr);
 
-#endif // PEPPAPOWX_KERNEL_H
+#endif // BLOBFISHX_KERNEL_H

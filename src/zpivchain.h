@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef PEPPAPOWX_ZPEPPAPOWCHAIN_H
-#define PEPPAPOWX_ZPEPPAPOWCHAIN_H
+#ifndef BLOBFISHX_ZBLOBFISHCHAIN_H
+#define BLOBFISHX_ZBLOBFISHCHAIN_H
 
 #include "chain.h"
 #include "libzerocoin/Coin.h"
@@ -41,7 +41,7 @@ std::list<libzerocoin::CoinDenomination> ZerocoinSpendListFromBlock(const CBlock
 /** Global variable for the zerocoin supply */
 extern std::map<libzerocoin::CoinDenomination, int64_t> mapZerocoinSupply;
 int64_t GetZerocoinSupply();
-bool UpdateZPEPPAPOWSupplyConnect(const CBlock& block, CBlockIndex* pindex, bool fJustCheck);
-bool UpdateZPEPPAPOWSupplyDisconnect(const CBlock& block, CBlockIndex* pindex);
+bool UpdateZBLOBFISHSupplyConnect(const CBlock& block, CBlockIndex* pindex, bool fJustCheck);
+bool UpdateZBLOBFISHSupplyDisconnect(const CBlock& block, CBlockIndex* pindex);
 
-#endif //PEPPAPOWX_ZPEPPAPOWCHAIN_H
+#endif //BLOBFISHX_ZBLOBFISHCHAIN_H

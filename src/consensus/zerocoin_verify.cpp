@@ -57,7 +57,7 @@ bool CheckZerocoinSpend(const CTransaction& tx, bool fVerifySignature, CValidati
             }
             libzerocoin::ZerocoinParams* params = consensus.Zerocoin_Params(false);
             PublicCoinSpend publicSpend(params);
-            if (!ZPEPPAPOWModule::parseCoinSpend(txin, tx, prevOut, publicSpend)){
+            if (!ZBLOBFISHModule::parseCoinSpend(txin, tx, prevOut, publicSpend)){
                 return state.DoS(100, error("CheckZerocoinSpend(): public zerocoin spend parse failed"));
             }
             newSpend = publicSpend;
@@ -80,7 +80,7 @@ bool CheckZerocoinSpend(const CTransaction& tx, bool fVerifySignature, CValidati
         if (isPublicSpend) {
             libzerocoin::ZerocoinParams* params = consensus.Zerocoin_Params(false);
             PublicCoinSpend ret(params);
-            if (!ZPEPPAPOWModule::validateInput(txin, prevOut, tx, ret)){
+            if (!ZBLOBFISHModule::validateInput(txin, prevOut, tx, ret)){
                 return state.DoS(100, error("CheckZerocoinSpend(): public zerocoin spend did not verify"));
             }
         }
@@ -143,7 +143,7 @@ bool ContextualCheckZerocoinSpend(const CTransaction& tx, const libzerocoin::Coi
     //Reject serial's that are already in the blockchain
     int nHeightTx = 0;
     if (IsSerialInBlockchain(spend->getCoinSerialNumber(), nHeightTx))
-        return error("%s : zPEPPAPOW spend with serial %s is already in block %d\n", __func__,
+        return error("%s : zBLOBFISH spend with serial %s is already in block %d\n", __func__,
                      spend->getCoinSerialNumber().GetHex(), nHeightTx);
 
     return true;
@@ -152,11 +152,11 @@ bool ContextualCheckZerocoinSpend(const CTransaction& tx, const libzerocoin::Coi
 bool ContextualCheckZerocoinSpendNoSerialCheck(const CTransaction& tx, const libzerocoin::CoinSpend* spend, int nHeight, const uint256& hashBlock)
 {
     const Consensus::Params& consensus = Params().GetConsensus();
-    //Check to see if the zPEPPAPOW is properly signed
+    //Check to see if the zBLOBFISH is properly signed
     if (consensus.NetworkUpgradeActive(nHeight, Consensus::UPGRADE_ZC_V2)) {
         try {
             if (!spend->HasValidSignature())
-                return error("%s: V2 zPEPPAPOW spend does not have a valid signature\n", __func__);
+                return error("%s: V2 zBLOBFISH spend does not have a valid signature\n", __func__);
         } catch (const libzerocoin::InvalidSerialException& e) {
             // Check if we are in the range of the attack
             if(!isBlockBetweenFakeSerialAttackRange(nHeight))
@@ -169,7 +169,7 @@ bool ContextualCheckZerocoinSpendNoSerialCheck(const CTransaction& tx, const lib
         if (tx.IsCoinStake())
             expectedType = libzerocoin::SpendType::STAKE;
         if (spend->getSpendType() != expectedType) {
-            return error("%s: trying to spend zPEPPAPOW without the correct spend type. txid=%s\n", __func__,
+            return error("%s: trying to spend zBLOBFISH without the correct spend type. txid=%s\n", __func__,
                          tx.GetHash().GetHex());
         }
     }
@@ -180,7 +180,7 @@ bool ContextualCheckZerocoinSpendNoSerialCheck(const CTransaction& tx, const lib
     if (!spend->HasValidSerial(consensus.Zerocoin_Params(fUseV1Params)))  {
         // Up until this block our chain was not checking serials correctly..
         if (!isBlockBetweenFakeSerialAttackRange(nHeight))
-            return error("%s : zPEPPAPOW spend with serial %s from tx %s is not in valid range\n", __func__,
+            return error("%s : zBLOBFISH spend with serial %s from tx %s is not in valid range\n", __func__,
                      spend->getCoinSerialNumber().GetHex(), tx.GetHash().GetHex());
         else
             LogPrintf("%s:: HasValidSerial :: Invalid serial detected within range in block %d\n", __func__, nHeight);
@@ -190,7 +190,7 @@ bool ContextualCheckZerocoinSpendNoSerialCheck(const CTransaction& tx, const lib
     return true;
 }
 
-bool RecalculatePEPPAPOWSupply(int nHeightStart, bool fSkipZpiv)
+bool RecalculateBLOBFISHSupply(int nHeightStart, bool fSkipZpiv)
 {
     AssertLockHeld(cs_main);
 
@@ -209,12 +209,12 @@ bool RecalculatePEPPAPOWSupply(int nHeightStart, bool fSkipZpiv)
         for (auto& denom : libzerocoin::zerocoinDenomList) mapZerocoinSupply.insert(std::make_pair(denom, 0));
     }
 
-    uiInterface.ShowProgress(_("Recalculating PEPPAPOW supply..."), 0);
+    uiInterface.ShowProgress(_("Recalculating BLOBFISH supply..."), 0);
     while (true) {
         if (pindex->nHeight % 1000 == 0) {
             LogPrintf("%s : block %d...\n", __func__, pindex->nHeight);
             int percent = std::max(1, std::min(99, (int)((double)((pindex->nHeight - nHeightStart) * 100) / (chainHeight - nHeightStart))));
-            uiInterface.ShowProgress(_("Recalculating PEPPAPOW supply..."), percent);
+            uiInterface.ShowProgress(_("Recalculating BLOBFISH supply..."), percent);
         }
 
         CBlock block;
@@ -252,7 +252,7 @@ bool RecalculatePEPPAPOWSupply(int nHeightStart, bool fSkipZpiv)
 
         // Rewrite zpiv supply too
         if (!fSkipZpiv && consensus.NetworkUpgradeActive(pindex->nHeight, Consensus::UPGRADE_ZC)) {
-            UpdateZPEPPAPOWSupplyConnect(block, pindex, true);
+            UpdateZBLOBFISHSupplyConnect(block, pindex, true);
         }
 
         // Add fraudulent funds to the supply and remove any recovered funds.

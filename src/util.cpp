@@ -84,7 +84,7 @@
 #include <openssl/rand.h>
 
 
-// PEPPAPOWX only features
+// BLOBFISHX only features
 // Masternode
 bool fMasterNode = false;
 std::string strMasterNodePrivKey = "";
@@ -284,13 +284,13 @@ void PrintExceptionContinue(const std::exception* pex, const char* pszThread)
 
 fs::path GetDefaultDataDir()
 {
-// Windows < Vista: C:\Documents and Settings\Username\Application Data\PEPPAPOWX
-// Windows >= Vista: C:\Users\Username\AppData\Roaming\PEPPAPOWX
-// Mac: ~/Library/Application Support/PEPPAPOWX
+// Windows < Vista: C:\Documents and Settings\Username\Application Data\BLOBFISHX
+// Windows >= Vista: C:\Users\Username\AppData\Roaming\BLOBFISHX
+// Mac: ~/Library/Application Support/BLOBFISHX
 // Unix: ~/.peppapow
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "PEPPAPOWX";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "BLOBFISHX";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -302,7 +302,7 @@ fs::path GetDefaultDataDir()
     // Mac
     pathRet /= "Library/Application Support";
     TryCreateDirectory(pathRet);
-    return pathRet / "PEPPAPOWX";
+    return pathRet / "BLOBFISHX";
 #else
     // Unix
     return pathRet / ".peppapow";

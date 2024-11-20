@@ -35,7 +35,7 @@ bool CWallet::AddDeterministicSeed(const uint256& seed)
             //attempt encrypt
             if (EncryptSecret(vMasterKey, kmSeed, hashSeed, vchSeedSecret)) {
                 //write to wallet with hashSeed as unique key
-                if (db.WriteZPEPPAPOWSeed(hashSeed, vchSeedSecret)) {
+                if (db.WriteZBLOBFISHSeed(hashSeed, vchSeedSecret)) {
                     return true;
                 }
             }
@@ -43,12 +43,12 @@ bool CWallet::AddDeterministicSeed(const uint256& seed)
         }
         strErr = "save since wallet is locked";
     } else { //wallet not encrypted
-        if (db.WriteZPEPPAPOWSeed(hashSeed, ToByteVector(seed))) {
+        if (db.WriteZBLOBFISHSeed(hashSeed, ToByteVector(seed))) {
             return true;
         }
         strErr = "save zpivseed to wallet";
     }
-    //the use case for this is no password set seed, mint dzPEPPAPOW,
+    //the use case for this is no password set seed, mint dzBLOBFISH,
 
     return error("s%: Failed to %s\n", __func__, strErr);
 }
@@ -63,7 +63,7 @@ bool CWallet::GetDeterministicSeed(const uint256& hashSeed, uint256& seedOut)
 
             std::vector<unsigned char> vchCryptedSeed;
             //read encrypted seed
-            if (db.ReadZPEPPAPOWSeed(hashSeed, vchCryptedSeed)) {
+            if (db.ReadZBLOBFISHSeed(hashSeed, vchCryptedSeed)) {
                 uint256 seedRetrieved = uint256S(ReverseEndianString(HexStr(vchCryptedSeed)));
                 //this checks if the hash of the seed we just read matches the hash given, meaning it is not encrypted
                 //the use case for this is when not crypted, seed is set, then password set, the seed not yet crypted in memory
@@ -84,7 +84,7 @@ bool CWallet::GetDeterministicSeed(const uint256& hashSeed, uint256& seedOut)
     } else {
         std::vector<unsigned char> vchSeed;
         // wallet not crypted
-        if (db.ReadZPEPPAPOWSeed(hashSeed, vchSeed)) {
+        if (db.ReadZBLOBFISHSeed(hashSeed, vchSeed)) {
             seedOut = uint256S(ReverseEndianString(HexStr(vchSeed)));
             return true;
         }
@@ -95,10 +95,10 @@ bool CWallet::GetDeterministicSeed(const uint256& hashSeed, uint256& seedOut)
 }
 
 void CWallet::doZPivRescan(const CBlockIndex* pindex, const CBlock& block,
-        std::set<uint256>& setAddedToWallet, const Consensus::Params& consensus, bool fCheckZPEPPAPOW)
+        std::set<uint256>& setAddedToWallet, const Consensus::Params& consensus, bool fCheckZBLOBFISH)
 {
     //If this is a zapwallettx, need to read zpiv
-    if (fCheckZPEPPAPOW && consensus.NetworkUpgradeActive(pindex->nHeight, Consensus::UPGRADE_ZC)) {
+    if (fCheckZBLOBFISH && consensus.NetworkUpgradeActive(pindex->nHeight, Consensus::UPGRADE_ZC)) {
         std::list<CZerocoinMint> listMints;
         BlockToZerocoinMintList(block, listMints, true);
         CWalletDB walletdb(strWalletFile);
@@ -218,11 +218,11 @@ std::string CWallet::MintZerocoinFromOutPoint(CAmount nValue, CWalletTx& wtxNew,
     return strError;
 }
 
-bool CWallet::CreateZPEPPAPOWOutPut(libzerocoin::CoinDenomination denomination, CTxOut& outMint, CDeterministicMint& dMint)
+bool CWallet::CreateZBLOBFISHOutPut(libzerocoin::CoinDenomination denomination, CTxOut& outMint, CDeterministicMint& dMint)
 {
     // mint a new coin (create Pedersen Commitment) and extract PublicCoin that is shareable from it
     libzerocoin::PrivateCoin coin(Params().GetConsensus().Zerocoin_Params(false), denomination, false);
-    zwalletMain->GenerateDeterministicZPEPPAPOW(denomination, coin, dMint);
+    zwalletMain->GenerateDeterministicZBLOBFISH(denomination, coin, dMint);
 
     libzerocoin::PublicCoin pubCoin = coin.getPublicCoin();
 
@@ -288,7 +288,7 @@ bool CWallet::CreateZerocoinMintTransaction(const CAmount nValue,
 
         CTxOut outMint;
         CDeterministicMint dMint;
-        if (!CreateZPEPPAPOWOutPut(denomination, outMint, dMint)) {
+        if (!CreateZBLOBFISHOutPut(denomination, outMint, dMint)) {
             strFailReason = strprintf("%s: failed to create new zpiv output", __func__);
             return error(strFailReason.c_str());
         }
@@ -351,10 +351,10 @@ bool CWallet::SpendZerocoin(CAmount nAmount, CWalletTx& wtxNew, CZerocoinSpendRe
         std::list<std::pair<CTxDestination, CAmount>> addressesTo, CTxDestination* changeAddress)
 {
     // Default: assume something goes wrong. Depending on the problem this gets more specific below
-    int nStatus = ZPEPPAPOW_SPEND_ERROR;
+    int nStatus = ZBLOBFISH_SPEND_ERROR;
 
     if (IsLocked()) {
-        receipt.SetStatus("Error: Wallet locked, unable to create transaction!", ZPEPPAPOW_WALLET_LOCKED);
+        receipt.SetStatus("Error: Wallet locked, unable to create transaction!", ZBLOBFISH_WALLET_LOCKED);
         return false;
     }
 
@@ -378,7 +378,7 @@ bool CWallet::SpendZerocoin(CAmount nAmount, CWalletTx& wtxNew, CZerocoinSpendRe
     const CWallet::CommitResult& res = CommitTransaction(wtxNew, reserveKey);
     if (res.status != CWallet::CommitStatus::OK) {
         LogPrintf("%s: failed to commit\n", __func__);
-        nStatus = ZPEPPAPOW_COMMIT_FAILED;
+        nStatus = ZBLOBFISH_COMMIT_FAILED;
 
         //reset all mints
         for (CZerocoinMint mint : vMintsSelected) {
@@ -390,7 +390,7 @@ bool CWallet::SpendZerocoin(CAmount nAmount, CWalletTx& wtxNew, CZerocoinSpendRe
         //erase spends
         for (CZerocoinSpend spend : receipt.GetSpends()) {
             if (!walletdb.EraseZerocoinSpendSerialEntry(spend.GetSerial())) {
-                receipt.SetStatus("Error: It cannot delete coin serial number in wallet", ZPEPPAPOW_ERASE_SPENDS_FAILED);
+                receipt.SetStatus("Error: It cannot delete coin serial number in wallet", ZBLOBFISH_ERASE_SPENDS_FAILED);
             }
 
             //Remove from public zerocoinDB
@@ -400,7 +400,7 @@ bool CWallet::SpendZerocoin(CAmount nAmount, CWalletTx& wtxNew, CZerocoinSpendRe
         // erase new mints
         for (auto& dMint : vNewMints) {
             if (!walletdb.EraseDeterministicMint(dMint.GetPubcoinHash())) {
-                receipt.SetStatus("Error: Unable to cannot delete zerocoin mint in wallet", ZPEPPAPOW_ERASE_NEW_MINTS_FAILED);
+                receipt.SetStatus("Error: Unable to cannot delete zerocoin mint in wallet", ZBLOBFISH_ERASE_NEW_MINTS_FAILED);
             }
         }
 
@@ -427,7 +427,7 @@ bool CWallet::SpendZerocoin(CAmount nAmount, CWalletTx& wtxNew, CZerocoinSpendRe
         zpivTracker->Add(dMint, true);
     }
 
-    receipt.SetStatus("Spend Successful", ZPEPPAPOW_SPEND_OKAY);  // When we reach this point spending zPEPPAPOW was successful
+    receipt.SetStatus("Spend Successful", ZBLOBFISH_SPEND_OKAY);  // When we reach this point spending zBLOBFISH was successful
 
     return true;
 }
@@ -436,7 +436,7 @@ bool CWallet::MintsToInputVectorPublicSpend(std::map<CBigNum, CZerocoinMint>& ma
                                     CZerocoinSpendReceipt& receipt, libzerocoin::SpendType spendType, CBlockIndex* pindexCheckpoint)
 {
     // Default error status if not changed below
-    receipt.SetStatus(_("Transaction Mint Started"), ZPEPPAPOW_TXMINT_GENERAL);
+    receipt.SetStatus(_("Transaction Mint Started"), ZBLOBFISH_TXMINT_GENERAL);
 
     // Get the chain tip to determine the active public spend version
     int nHeight = 0;
@@ -457,11 +457,11 @@ bool CWallet::MintsToInputVectorPublicSpend(std::map<CBigNum, CZerocoinMint>& ma
         CTransaction txMint;
         uint256 hashBlock;
         if (!GetTransaction(mint.GetTxHash(), txMint, hashBlock)) {
-            receipt.SetStatus(strprintf(_("Unable to find transaction containing mint %s"), mint.GetTxHash().GetHex()), ZPEPPAPOW_TXMINT_GENERAL);
+            receipt.SetStatus(strprintf(_("Unable to find transaction containing mint %s"), mint.GetTxHash().GetHex()), ZBLOBFISH_TXMINT_GENERAL);
             return false;
         } else if (mapBlockIndex.count(hashBlock) < 1) {
             // check that this mint made it into the blockchain
-            receipt.SetStatus(_("Mint did not make it into blockchain"), ZPEPPAPOW_TXMINT_GENERAL);
+            receipt.SetStatus(_("Mint did not make it into blockchain"), ZBLOBFISH_TXMINT_GENERAL);
             return false;
         }
 
@@ -482,21 +482,21 @@ bool CWallet::MintsToInputVectorPublicSpend(std::map<CBigNum, CZerocoinMint>& ma
         }
 
         if (outputIndex == -1) {
-            receipt.SetStatus(_("Pubcoin not found in mint tx"), ZPEPPAPOW_TXMINT_GENERAL);
+            receipt.SetStatus(_("Pubcoin not found in mint tx"), ZBLOBFISH_TXMINT_GENERAL);
             return false;
         }
 
         mint.SetOutputIndex(outputIndex);
         CTxIn in;
-        if(!ZPEPPAPOWModule::createInput(in, mint, hashTxOut, spendVersion)) {
-            receipt.SetStatus(_("Cannot create public spend input"), ZPEPPAPOW_TXMINT_GENERAL);
+        if(!ZBLOBFISHModule::createInput(in, mint, hashTxOut, spendVersion)) {
+            receipt.SetStatus(_("Cannot create public spend input"), ZBLOBFISH_TXMINT_GENERAL);
             return false;
         }
         vin.emplace_back(in);
         receipt.AddSpend(CZerocoinSpend(mint.GetSerialNumber(), UINT256_ZERO, mint.GetValue(), mint.GetDenomination(), 0));
     }
 
-    receipt.SetStatus(_("Spend Valid"), ZPEPPAPOW_SPEND_OKAY); // Everything okay
+    receipt.SetStatus(_("Spend Valid"), ZBLOBFISH_SPEND_OKAY); // Everything okay
 
     return true;
 }
@@ -512,19 +512,19 @@ bool CWallet::CreateZCPublicSpendTransaction(
         CTxDestination * changeAddress)
 {
     // Check available funds
-    int nStatus = ZPEPPAPOW_TRX_FUNDS_PROBLEMS;
+    int nStatus = ZBLOBFISH_TRX_FUNDS_PROBLEMS;
     if (nValue > GetZerocoinBalance(true)) {
         receipt.SetStatus(_("You don't have enough Zerocoins in your wallet"), nStatus);
         return false;
     }
 
     if (nValue < 1) {
-        receipt.SetStatus(_("Value is below the smallest available denomination (= 1) of zPEPPAPOW"), nStatus);
+        receipt.SetStatus(_("Value is below the smallest available denomination (= 1) of zBLOBFISH"), nStatus);
         return false;
     }
 
     // Create transaction
-    nStatus = ZPEPPAPOW_TRX_CREATE;
+    nStatus = ZBLOBFISH_TRX_CREATE;
 
     // If not already given pre-selected mints, then select mints from the wallet
     CWalletDB walletdb(strWalletFile);
@@ -532,10 +532,10 @@ bool CWallet::CreateZCPublicSpendTransaction(
     CAmount nValueSelected = 0;
     int nCoinsReturned = 0; // Number of coins returned in change from function below (for debug)
     int nNeededSpends = 0;  // Number of spends which would be needed if selection failed
-    const int nMaxSpends = Params().GetConsensus().ZC_MaxPublicSpendsPerTx; // Maximum possible spends for one zPEPPAPOW public spend transaction
+    const int nMaxSpends = Params().GetConsensus().ZC_MaxPublicSpendsPerTx; // Maximum possible spends for one zBLOBFISH public spend transaction
     std::vector<CMintMeta> vMintsToFetch;
     if (vSelectedMints.empty()) {
-        //  All of the zPEPPAPOW used in the public coin spend are mature by default (everything is public now.. no need to wait for any accumulation)
+        //  All of the zBLOBFISH used in the public coin spend are mature by default (everything is public now.. no need to wait for any accumulation)
         setMints = zpivTracker->ListMints(true, false, true, true); // need to find mints to spend
         if(setMints.empty()) {
             receipt.SetStatus(_("Failed to find Zerocoins in wallet.dat"), nStatus);
@@ -549,7 +549,7 @@ bool CWallet::CreateZCPublicSpendTransaction(
         if(!fWholeNumber)
             nValueToSelect = static_cast<CAmount>(ceil(dValue) * COIN);
 
-        // Select the zPEPPAPOW mints to use in this spend
+        // Select the zBLOBFISH mints to use in this spend
         std::map<libzerocoin::CoinDenomination, CAmount> DenomMap = GetMyZerocoinDistribution();
         std::list<CMintMeta> listMints(setMints.begin(), setMints.end());
         vMintsToFetch = SelectMintsFromList(nValueToSelect, nValueSelected, nMaxSpends,
@@ -633,7 +633,7 @@ bool CWallet::CreateZCPublicSpendTransaction(
 
 
     // Create change if needed
-    nStatus = ZPEPPAPOW_TRX_CHANGE;
+    nStatus = ZBLOBFISH_TRX_CHANGE;
 
     CMutableTransaction txNew;
     wtxNew.BindWallet(this);
@@ -708,7 +708,7 @@ bool CWallet::CreateZCPublicSpendTransaction(
             // Limit size
             unsigned int nBytes = ::GetSerializeSize(txNew, SER_NETWORK, PROTOCOL_VERSION);
             if (nBytes >= MAX_ZEROCOIN_TX_SIZE) {
-                receipt.SetStatus(_("In rare cases, a spend with 7 coins exceeds our maximum allowable transaction size, please retry spend using 6 or less coins"), ZPEPPAPOW_TX_TOO_LARGE);
+                receipt.SetStatus(_("In rare cases, a spend with 7 coins exceeds our maximum allowable transaction size, please retry spend using 6 or less coins"), ZBLOBFISH_TX_TOO_LARGE);
                 return false;
             }
 
@@ -730,7 +730,7 @@ bool CWallet::CreateZCPublicSpendTransaction(
         }
     }
 
-    receipt.SetStatus(_("Transaction Created"), ZPEPPAPOW_SPEND_OKAY); // Everything okay
+    receipt.SetStatus(_("Transaction Created"), ZBLOBFISH_SPEND_OKAY); // Everything okay
 
     return true;
 }
@@ -740,7 +740,7 @@ bool CWallet::CreateZCPublicSpendTransaction(
 CAmount CWallet::GetZerocoinBalance(bool fMatureOnly) const
 {
     if (fMatureOnly) {
-        // This code is not removed just for when we back to use zPEPPAPOW in the future, for now it's useless,
+        // This code is not removed just for when we back to use zBLOBFISH in the future, for now it's useless,
         // every public coin spend is now spendable without need to have new mints on top.
 
         //if (chainActive.Height() > nLastMaturityCheck)
@@ -785,15 +785,15 @@ std::map<libzerocoin::CoinDenomination, CAmount> CWallet::GetMyZerocoinDistribut
     return spread;
 }
 
-// zPEPPAPOW wallet
+// zBLOBFISH wallet
 
-void CWallet::setZWallet(CzPEPPAPOWWallet* zwallet)
+void CWallet::setZWallet(CzBLOBFISHWallet* zwallet)
 {
     zwalletMain = zwallet;
-    zpivTracker = std::unique_ptr<CzPEPPAPOWTracker>(new CzPEPPAPOWTracker(this));
+    zpivTracker = std::unique_ptr<CzBLOBFISHTracker>(new CzBLOBFISHTracker(this));
 }
 
-CzPEPPAPOWWallet* CWallet::getZWallet()
+CzBLOBFISHWallet* CWallet::getZWallet()
 {
     return zwalletMain;
 }
@@ -838,7 +838,7 @@ std::string CWallet::ResetMintZerocoin()
             LogPrintf("%s: failed to archive mint\n", __func__);
     }
 
-    NotifyzPEPPAPOWReset();
+    NotifyzBLOBFISHReset();
 
     std::string strResult = _("ResetMintZerocoin finished: ") + std::to_string(updates) + _(" mints updated, ") + std::to_string(deletions) + _(" mints deleted\n");
     return strResult;
@@ -878,7 +878,7 @@ std::string CWallet::ResetSpentZerocoin()
         }
     }
 
-    NotifyzPEPPAPOWReset();
+    NotifyzBLOBFISHReset();
 
     std::string strResult = _("ResetSpentZerocoin finished: ") + std::to_string(removed) + _(" unconfirmed transactions removed\n");
     return strResult;

@@ -479,10 +479,10 @@ UniValue getblocktemplate(const JSONRPCRequest& request)
         throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid mode");
 
     if (vNodes.empty())
-        throw JSONRPCError(RPC_CLIENT_NOT_CONNECTED, "PEPPAPOWX is not connected!");
+        throw JSONRPCError(RPC_CLIENT_NOT_CONNECTED, "BLOBFISHX is not connected!");
 
     if (IsInitialBlockDownload())
-        throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "PEPPAPOWX is downloading blocks...");
+        throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "BLOBFISHX is downloading blocks...");
 
     static unsigned int nTransactionsUpdatedLast;
 

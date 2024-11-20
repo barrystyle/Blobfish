@@ -121,8 +121,8 @@ struct Params {
     int height_ZC_RecalcAccumulators;
 
     // validation by-pass
-    int64_t nPeppaPowBadBlockTime;
-    unsigned int nPeppaPowBadBlockBits;
+    int64_t nBlobfishBadBlockTime;
+    unsigned int nBlobfishBadBlockBits;
 
     // Map with network updates
     NetworkUpgrade vUpgrades[MAX_NETWORK_UPGRADES];

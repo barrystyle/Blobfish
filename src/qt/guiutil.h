@@ -42,7 +42,7 @@ public:
     GUIException(const std::string &message) : message(message) {}
 };
 
-/** Utility functions used by the PEPPAPOWX Qt UI.
+/** Utility functions used by the BLOBFISHX Qt UI.
  */
 namespace GUIUtil
 {
@@ -51,7 +51,7 @@ QString dateTimeStr(const QDateTime& datetime);
 QString dateTimeStrWithSeconds(const QDateTime& date);
 QString dateTimeStr(qint64 nTime);
 
-// Render PEPPAPOWX addresses in monospace font
+// Render BLOBFISHX addresses in monospace font
 QFont bitcoinAddressFont();
 
 // Parse string into a CAmount value

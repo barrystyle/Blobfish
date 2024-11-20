@@ -2,8 +2,8 @@
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef PEPPAPOWX_CSPORKDB_H
-#define PEPPAPOWX_CSPORKDB_H
+#ifndef BLOBFISHX_CSPORKDB_H
+#define BLOBFISHX_CSPORKDB_H
 
 #include "fs.h"
 #include "dbwrapper.h"
@@ -25,4 +25,4 @@ public:
 };
 
 
-#endif //PEPPAPOWX_CSPORKDB_H
+#endif //BLOBFISHX_CSPORKDB_H

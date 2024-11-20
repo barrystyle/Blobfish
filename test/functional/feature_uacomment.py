@@ -4,10 +4,10 @@
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test the -uacomment option."""
 
-from test_framework.test_framework import PeppaPowTestFramework
+from test_framework.test_framework import BlobfishTestFramework
 from test_framework.util import assert_equal
 
-class UacommentTest(PeppaPowTestFramework):
+class UacommentTest(BlobfishTestFramework):
     def set_test_params(self):
         self.num_nodes = 1
         self.setup_clean_chain = True

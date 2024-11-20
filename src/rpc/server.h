@@ -128,7 +128,7 @@ public:
 };
 
 /**
- * PEPPAPOWX RPC command dispatcher.
+ * BLOBFISHX RPC command dispatcher.
  */
 class CRPCTable
 {

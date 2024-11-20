@@ -13,7 +13,7 @@
  * for both peppapowd and peppapow-qt, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
-const std::string CLIENT_NAME("PEPPAPOW Core");
+const std::string CLIENT_NAME("BLOBFISH Core");
 
 /**
  * Client version number

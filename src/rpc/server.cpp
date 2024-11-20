@@ -265,11 +265,11 @@ UniValue stop(const JSONRPCRequest& jsonRequest)
     if (jsonRequest.fHelp || jsonRequest.params.size() > 1)
         throw std::runtime_error(
             "stop\n"
-            "\nStop PEPPAPOWX server.");
+            "\nStop BLOBFISHX server.");
     // Event loop will exit after current HTTP requests have been handled, so
     // this reply will get back to the client.
     StartShutdown();
-    return "PEPPAPOWX server stopping";
+    return "BLOBFISHX server stopping";
 }
 
 
@@ -359,7 +359,7 @@ static const CRPCCommand vRPCCommands[] =
         { "hidden",             "waitforblock",           &waitforblock,           true },
         { "hidden",             "waitforblockheight",     &waitforblockheight,     true },
 
-        /* PEPPAPOWX features */
+        /* BLOBFISHX features */
         {"peppapow", "listmasternodes", &listmasternodes, true },
         {"peppapow", "getmasternodecount", &getmasternodecount, true },
         {"peppapow", "createmasternodebroadcast", &createmasternodebroadcast, true },

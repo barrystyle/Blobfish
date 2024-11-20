@@ -2,18 +2,18 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef PEPPAPOWX_ZPEPPAPOWTRACKER_H
-#define PEPPAPOWX_ZPEPPAPOWTRACKER_H
+#ifndef BLOBFISHX_ZBLOBFISHTRACKER_H
+#define BLOBFISHX_ZBLOBFISHTRACKER_H
 
 #include "zerocoin.h"
 #include "sync.h"
 #include <list>
 
 class CDeterministicMint;
-class CzPEPPAPOWWallet;
+class CzBLOBFISHWallet;
 class CWallet;
 
-class CzPEPPAPOWTracker
+class CzBLOBFISHTracker
 {
 private:
     bool fInitialized;
@@ -23,9 +23,9 @@ private:
     std::map<uint256, uint256> mapPendingSpends; //serialhash, txid of spend
     bool UpdateStatusInternal(const std::set<uint256>& setMempool, CMintMeta& mint);
 public:
-    CzPEPPAPOWTracker(CWallet* parent);
-    ~CzPEPPAPOWTracker();
-    void Add(const CDeterministicMint& dMint, bool isNew = false, bool isArchived = false, CzPEPPAPOWWallet* zPEPPAPOWWallet = NULL);
+    CzBLOBFISHTracker(CWallet* parent);
+    ~CzBLOBFISHTracker();
+    void Add(const CDeterministicMint& dMint, bool isNew = false, bool isArchived = false, CzBLOBFISHWallet* zBLOBFISHWallet = NULL);
     void Add(const CZerocoinMint& mint, bool isNew = false, bool isArchived = false);
     bool Archive(CMintMeta& meta);
     bool HasPubcoin(const CBigNum& bnValue) const;
@@ -52,4 +52,4 @@ public:
     void Clear();
 };
 
-#endif //PEPPAPOWX_ZPEPPAPOWTRACKER_H
+#endif //BLOBFISHX_ZBLOBFISHTRACKER_H

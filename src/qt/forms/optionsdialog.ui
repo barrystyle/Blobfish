@@ -30,10 +30,10 @@
        <item>
         <widget class="QCheckBox" name="bitcoinAtStartup">
          <property name="toolTip">
-          <string>Automatically start PEPPAPOW after logging in to the system.</string>
+          <string>Automatically start BLOBFISH after logging in to the system.</string>
          </property>
          <property name="text">
-          <string>&amp;Start PEPPAPOW on system login</string>
+          <string>&amp;Start BLOBFISH on system login</string>
          </property>
         </widget>
        </item>
@@ -141,20 +141,20 @@
             <item>
              <widget class="QCheckBox" name="checkBoxZeromintEnable">
               <property name="toolTip">
-               <string>Enable automatic minting of PEPPAPOW units to zPEPPAPOW</string>
+               <string>Enable automatic minting of BLOBFISH units to zBLOBFISH</string>
               </property>
               <property name="layoutDirection">
                <enum>Qt::LeftToRight</enum>
               </property>
               <property name="text">
-               <string>Enable zPEPPAPOW Automint</string>
+               <string>Enable zBLOBFISH Automint</string>
               </property>
              </widget>
             </item>
             <item>
              <widget class="QCheckBox" name="checkBoxZeromintAddresses">
               <property name="toolTip">
-               <string>Enable automatic zPEPPAPOW minting from specific addresses</string>
+               <string>Enable automatic zBLOBFISH minting from specific addresses</string>
               </property>
               <property name="layoutDirection">
                <enum>Qt::LeftToRight</enum>
@@ -171,10 +171,10 @@
             <item>
              <widget class="QLabel" name="percentage_label">
               <property name="toolTip">
-               <string>Percentage of incoming PEPPAPOW which get automatically converted to zPEPPAPOW via Zerocoin Protocol (min: 10%)</string>
+               <string>Percentage of incoming BLOBFISH which get automatically converted to zBLOBFISH via Zerocoin Protocol (min: 10%)</string>
               </property>
               <property name="text">
-               <string>Percentage of autominted zPEPPAPOW</string>
+               <string>Percentage of autominted zBLOBFISH</string>
               </property>
              </widget>
             </item>
@@ -204,10 +204,10 @@
                </size>
               </property>
               <property name="toolTip">
-               <string>Wait with automatic conversion to Zerocoin until enough PEPPAPOW for this denomination is available</string>
+               <string>Wait with automatic conversion to Zerocoin until enough BLOBFISH for this denomination is available</string>
               </property>
               <property name="text">
-               <string>Preferred Automint zPEPPAPOW Denomination</string>
+               <string>Preferred Automint zBLOBFISH Denomination</string>
               </property>
              </widget>
             </item>
@@ -220,7 +220,7 @@
                </size>
               </property>
               <property name="toolTip">
-               <string>Wait with automatic conversion to Zerocoin until enough PEPPAPOW for this denomination is available</string>
+               <string>Wait with automatic conversion to Zerocoin until enough BLOBFISH for this denomination is available</string>
               </property>
               <property name="maxVisibleItems">
                <number>9</number>
@@ -325,7 +325,7 @@
        <item>
         <widget class="QCheckBox" name="mapPortUpnp">
          <property name="toolTip">
-          <string>Automatically open the PEPPAPOW client port on the router. This only works when your router supports UPnP and it is enabled.</string>
+          <string>Automatically open the BLOBFISH client port on the router. This only works when your router supports UPnP and it is enabled.</string>
          </property>
          <property name="text">
           <string>Map port using &amp;UPnP</string>
@@ -345,7 +345,7 @@
        <item>
         <widget class="QCheckBox" name="connectSocks">
          <property name="toolTip">
-          <string>Connect to the PEPPAPOW network through a SOCKS5 proxy.</string>
+          <string>Connect to the BLOBFISH network through a SOCKS5 proxy.</string>
          </property>
          <property name="text">
           <string>&amp;Connect through SOCKS5 proxy (default proxy):</string>
@@ -511,7 +511,7 @@
          <item>
           <widget class="QValueComboBox" name="lang">
            <property name="toolTip">
-            <string>The user interface language can be set here. This setting will take effect after restarting PEPPAPOW.</string>
+            <string>The user interface language can be set here. This setting will take effect after restarting BLOBFISH.</string>
            </property>
           </widget>
          </item>

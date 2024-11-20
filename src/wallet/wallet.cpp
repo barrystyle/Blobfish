@@ -352,7 +352,7 @@ bool CWallet::Unlock(const CKeyingMaterial& vMasterKeyIn)
             if (CWalletDB(strWalletFile).ReadCurrentSeedHash(hashSeed)) {
                 uint256 nSeed;
                 if (!GetDeterministicSeed(hashSeed, nSeed)) {
-                    return error("Failed to read zPEPPAPOW seed from DB. Wallet is probably corrupt.");
+                    return error("Failed to read zBLOBFISH seed from DB. Wallet is probably corrupt.");
                 }
                 zwalletMain->SetMasterSeed(nSeed, false);
             }
@@ -1606,8 +1606,8 @@ int CWallet::ScanForWalletTransactions(CBlockIndex* pindexStart, bool fUpdate, b
 {
     int ret = 0;
     int64_t nNow = GetTime();
-    bool fCheckZPEPPAPOW = GetBoolArg("-zapwallettxes", false);
-    if (fCheckZPEPPAPOW)
+    bool fCheckZBLOBFISH = GetBoolArg("-zapwallettxes", false);
+    if (fCheckZBLOBFISH)
         zpivTracker->Init();
 
     const Consensus::Params& consensus = Params().GetConsensus();
@@ -1641,8 +1641,8 @@ int CWallet::ScanForWalletTransactions(CBlockIndex* pindexStart, bool fUpdate, b
                     ret++;
             }
 
-            // Will try to rescan it if zPEPPAPOW upgrade is active.
-            doZPivRescan(pindex, block, setAddedToWallet, consensus, fCheckZPEPPAPOW);
+            // Will try to rescan it if zBLOBFISH upgrade is active.
+            doZPivRescan(pindex, block, setAddedToWallet, consensus, fCheckZBLOBFISH);
 
             pindex = chainActive.Next(pindex);
             if (GetTime() >= nNow + 60) {
@@ -2039,7 +2039,7 @@ bool CWallet::GetMasternodeVinAndKeys(CTxIn& txinRet, CPubKey& pubKeyRet, CKey& 
 
     // Masternode collateral value
     if (txOut.nValue != GetCollateral() * COIN) {
-        strError = "Invalid collateral tx value, must be 10,000 PEPPAPOW";
+        strError = "Invalid collateral tx value, must be 10,000 BLOBFISH";
         return error("%s: tx %s, index %d not a masternode collateral", __func__, strTxHash, nOutputIndex);
     }
 
@@ -2393,7 +2393,7 @@ bool CWallet::GetBudgetSystemCollateralTX(CWalletTx& tx, uint256 hash, bool useI
     CAmount nFeeRet = 0;
     std::string strFail = "";
     std::vector<CRecipient> vecSend;
-    vecSend.push_back(CRecipient{scriptChange, BUDGET_FEE_TX_OLD, false}); // Old 50 PEPPAPOW collateral
+    vecSend.push_back(CRecipient{scriptChange, BUDGET_FEE_TX_OLD, false}); // Old 50 BLOBFISH collateral
 
     CCoinControl* coinControl = NULL;
     int nChangePosInOut = -1;
@@ -2417,7 +2417,7 @@ bool CWallet::GetBudgetFinalizationCollateralTX(CWalletTx& tx, uint256 hash, boo
     CAmount nFeeRet = 0;
     std::string strFail = "";
     std::vector<CRecipient> vecSend;
-    vecSend.push_back(CRecipient{scriptChange, BUDGET_FEE_TX, false}); // New 5 PEPPAPOW collateral
+    vecSend.push_back(CRecipient{scriptChange, BUDGET_FEE_TX, false}); // New 5 BLOBFISH collateral
 
     CCoinControl* coinControl = NULL;
     int nChangePosInOut = -1;
@@ -2805,7 +2805,7 @@ bool CWallet::CreateCoinStake(
         if (IsLocked() || ShutdownRequested()) return false;
 
         // This should never happen
-        if (stakeInput->IsZPEPPAPOW()) {
+        if (stakeInput->IsZBLOBFISH()) {
             LogPrintf("%s: ERROR - zPOS is disabled\n", __func__);
             continue;
         }
@@ -2879,7 +2879,7 @@ bool CWallet::CreateCoinStake(
     if (!fKernelFound)
         return false;
 
-    // Sign for PEPPAPOW
+    // Sign for BLOBFISH
     int nIn = 0;
     if (!txNew.vin[0].scriptSig.IsZerocoinSpend()) {
         for (CTxIn txIn : txNew.vin) {
@@ -4001,7 +4001,7 @@ void CWallet::SetNull()
     // Stake split threshold
     nStakeSplitThreshold = DEFAULT_STAKE_SPLIT_THRESHOLD;
 
-    // User-defined fee PEPPAPOW/kb
+    // User-defined fee BLOBFISH/kb
     fUseCustomFee = false;
     nCustomFee = CWallet::minTxFee.GetFeePerK();
 

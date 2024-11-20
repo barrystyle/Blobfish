@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef PEPPAPOWX_CONSENSUS_ZEROCOIN_VERIFY_H
-#define PEPPAPOWX_CONSENSUS_ZEROCOIN_VERIFY_H
+#ifndef BLOBFISHX_CONSENSUS_ZEROCOIN_VERIFY_H
+#define BLOBFISHX_CONSENSUS_ZEROCOIN_VERIFY_H
 
 #include "consensus/consensus.h"
 #include "main.h"
@@ -20,7 +20,7 @@ int CurrentPublicCoinSpendVersion();
 bool CheckPublicCoinSpendVersion(int version);
 bool ContextualCheckZerocoinSpend(const CTransaction& tx, const libzerocoin::CoinSpend* spend, int nHeight, const uint256& hashBlock);
 bool ContextualCheckZerocoinSpendNoSerialCheck(const CTransaction& tx, const libzerocoin::CoinSpend* spend, int nHeight, const uint256& hashBlock);
-bool RecalculatePEPPAPOWSupply(int nHeightStart, bool fSkipZpiv = true);
+bool RecalculateBLOBFISHSupply(int nHeightStart, bool fSkipZpiv = true);
 CAmount GetInvalidUTXOValue();
 
-#endif //PEPPAPOWX_CONSENSUS_ZEROCOIN_VERIFY_H
+#endif //BLOBFISHX_CONSENSUS_ZEROCOIN_VERIFY_H

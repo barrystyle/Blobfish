@@ -4,8 +4,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef PEPPAPOWX_PUBKEY_H
-#define PEPPAPOWX_PUBKEY_H
+#ifndef BLOBFISHX_PUBKEY_H
+#define BLOBFISHX_PUBKEY_H
 
 #include "hash.h"
 #include "serialize.h"
@@ -264,4 +264,4 @@ public:
     ~ECCVerifyHandle();
 };
 
-#endif // PEPPAPOWX_PUBKEY_H
+#endif // BLOBFISHX_PUBKEY_H

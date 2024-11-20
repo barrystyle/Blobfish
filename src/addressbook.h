@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef PEPPAPOWX_ADDRESSBOOK_H
-#define PEPPAPOWX_ADDRESSBOOK_H
+#ifndef BLOBFISHX_ADDRESSBOOK_H
+#define BLOBFISHX_ADDRESSBOOK_H
 
 #include <map>
 #include <string>
@@ -43,4 +43,4 @@ namespace AddressBook {
 
 }
 
-#endif //PEPPAPOWX_ADDRESSBOOK_H
+#endif //BLOBFISHX_ADDRESSBOOK_H

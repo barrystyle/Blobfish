@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 //
-#ifndef PEPPAPOWX_ZPEPPAPOWMODULE_H
-#define PEPPAPOWX_ZPEPPAPOWMODULE_H
+#ifndef BLOBFISHX_ZBLOBFISHMODULE_H
+#define BLOBFISHX_ZBLOBFISHMODULE_H
 
 #include "libzerocoin/bignum.h"
 #include "libzerocoin/Denominations.h"
@@ -81,7 +81,7 @@ public:
 
 class CValidationState;
 
-namespace ZPEPPAPOWModule {
+namespace ZBLOBFISHModule {
     CDataStream ScriptSigToSerializedSpend(const CScript& scriptSig);
     bool createInput(CTxIn &in, CZerocoinMint& mint, uint256 hashTxOut, const int spendVersion);
     PublicCoinSpend parseCoinSpend(const CTxIn &in);
@@ -100,4 +100,4 @@ namespace ZPEPPAPOWModule {
 };
 
 
-#endif //PEPPAPOWX_ZPEPPAPOWMODULE_H
+#endif //BLOBFISHX_ZBLOBFISHMODULE_H

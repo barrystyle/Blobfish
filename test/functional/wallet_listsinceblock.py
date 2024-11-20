@@ -4,7 +4,7 @@
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test the listsincelast RPC."""
 
-from test_framework.test_framework import PeppaPowTestFramework
+from test_framework.test_framework import BlobfishTestFramework
 from test_framework.util import (
     assert_equal,
     assert_array_result,
@@ -12,7 +12,7 @@ from test_framework.util import (
     connect_nodes,
 )
 
-class ListSinceBlockTest (PeppaPowTestFramework):
+class ListSinceBlockTest (BlobfishTestFramework):
     def set_test_params(self):
         self.num_nodes = 4
         self.setup_clean_chain = True

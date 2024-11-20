@@ -84,7 +84,7 @@ enum WalletFeature {
     FEATURE_WALLETCRYPT = 40000, // wallet encryption
     FEATURE_COMPRPUBKEY = 60000, // compressed public keys
 
-    FEATURE_PRE_PEPPAPOWX = 61000, // inherited version..
+    FEATURE_PRE_BLOBFISHX = 61000, // inherited version..
 
     // The following features were implemented in BTC but not in our wallet, we can simply skip them.
     // FEATURE_HD = 130000,  Hierarchical key derivation after BIP32 (HD Wallet)
@@ -101,25 +101,25 @@ enum AvailableCoinsType {
     STAKEABLE_COINS = 6                             // UTXO's that are valid for staking
 };
 
-// Possible states for zPEPPAPOW send
+// Possible states for zBLOBFISH send
 enum ZerocoinSpendStatus {
-    ZPEPPAPOW_SPEND_OKAY = 0,                            // No error
-    ZPEPPAPOW_SPEND_ERROR = 1,                           // Unspecified class of errors, more details are (hopefully) in the returning text
-    ZPEPPAPOW_WALLET_LOCKED = 2,                         // Wallet was locked
-    ZPEPPAPOW_COMMIT_FAILED = 3,                         // Commit failed, reset status
-    ZPEPPAPOW_ERASE_SPENDS_FAILED = 4,                   // Erasing spends during reset failed
-    ZPEPPAPOW_ERASE_NEW_MINTS_FAILED = 5,                // Erasing new mints during reset failed
-    ZPEPPAPOW_TRX_FUNDS_PROBLEMS = 6,                    // Everything related to available funds
-    ZPEPPAPOW_TRX_CREATE = 7,                            // Everything related to create the transaction
-    ZPEPPAPOW_TRX_CHANGE = 8,                            // Everything related to transaction change
-    ZPEPPAPOW_TXMINT_GENERAL = 9,                        // General errors in MintsToInputVectorPublicSpend
-    ZPEPPAPOW_INVALID_COIN = 10,                         // Selected mint coin is not valid
-    ZPEPPAPOW_FAILED_ACCUMULATOR_INITIALIZATION = 11,    // Failed to initialize witness
-    ZPEPPAPOW_INVALID_WITNESS = 12,                      // Spend coin transaction did not verify
-    ZPEPPAPOW_BAD_SERIALIZATION = 13,                    // Transaction verification failed
-    ZPEPPAPOW_SPENT_USED_ZPEPPAPOW = 14,                      // Coin has already been spend
-    ZPEPPAPOW_TX_TOO_LARGE = 15,                         // The transaction is larger than the max tx size
-    ZPEPPAPOW_SPEND_V1_SEC_LEVEL                         // Spend is V1 and security level is not set to 100
+    ZBLOBFISH_SPEND_OKAY = 0,                            // No error
+    ZBLOBFISH_SPEND_ERROR = 1,                           // Unspecified class of errors, more details are (hopefully) in the returning text
+    ZBLOBFISH_WALLET_LOCKED = 2,                         // Wallet was locked
+    ZBLOBFISH_COMMIT_FAILED = 3,                         // Commit failed, reset status
+    ZBLOBFISH_ERASE_SPENDS_FAILED = 4,                   // Erasing spends during reset failed
+    ZBLOBFISH_ERASE_NEW_MINTS_FAILED = 5,                // Erasing new mints during reset failed
+    ZBLOBFISH_TRX_FUNDS_PROBLEMS = 6,                    // Everything related to available funds
+    ZBLOBFISH_TRX_CREATE = 7,                            // Everything related to create the transaction
+    ZBLOBFISH_TRX_CHANGE = 8,                            // Everything related to transaction change
+    ZBLOBFISH_TXMINT_GENERAL = 9,                        // General errors in MintsToInputVectorPublicSpend
+    ZBLOBFISH_INVALID_COIN = 10,                         // Selected mint coin is not valid
+    ZBLOBFISH_FAILED_ACCUMULATOR_INITIALIZATION = 11,    // Failed to initialize witness
+    ZBLOBFISH_INVALID_WITNESS = 12,                      // Spend coin transaction did not verify
+    ZBLOBFISH_BAD_SERIALIZATION = 13,                    // Transaction verification failed
+    ZBLOBFISH_SPENT_USED_ZBLOBFISH = 14,                      // Coin has already been spend
+    ZBLOBFISH_TX_TOO_LARGE = 15,                         // The transaction is larger than the max tx size
+    ZBLOBFISH_SPEND_V1_SEC_LEVEL                         // Spend is V1 and security level is not set to 100
 };
 
 /** A key pool entry */
@@ -295,7 +295,7 @@ public:
     // Staker status (last hashed block and time)
     CStakerStatus* pStakerStatus = nullptr;
 
-    // User-defined fee PEPPAPOW/kb
+    // User-defined fee BLOBFISH/kb
     bool fUseCustomFee;
     CAmount nCustomFee;
 
@@ -364,7 +364,7 @@ public:
 
     std::map<CTxDestination, std::vector<COutput> > AvailableCoinsByAddress(bool fConfirmed = true, CAmount maxCoinValue = 0);
 
-    /// Get 10000 PEPPAPOW output and keys which can be used for the Masternode
+    /// Get 10000 BLOBFISH output and keys which can be used for the Masternode
     bool GetMasternodeVinAndKeys(CTxIn& txinRet, CPubKey& pubKeyRet,
             CKey& keyRet, std::string strTxHash, std::string strOutputIndex, std::string& strError);
     /// Extract txin information and keys from output
@@ -613,12 +613,12 @@ public:
     bool AddDeterministicSeed(const uint256& seed);
 
     // Par of the tx rescan process
-    void doZPivRescan(const CBlockIndex* pindex, const CBlock& block, std::set<uint256>& setAddedToWallet, const Consensus::Params& consensus, bool fCheckZPEPPAPOW);
+    void doZPivRescan(const CBlockIndex* pindex, const CBlock& block, std::set<uint256>& setAddedToWallet, const Consensus::Params& consensus, bool fCheckZBLOBFISH);
 
     //- ZC Mints (Only for regtest)
     std::string MintZerocoin(CAmount nValue, CWalletTx& wtxNew, std::vector<CDeterministicMint>& vDMints, const CCoinControl* coinControl = NULL);
     std::string MintZerocoinFromOutPoint(CAmount nValue, CWalletTx& wtxNew, std::vector<CDeterministicMint>& vDMints, const std::vector<COutPoint> vOutpts);
-    bool CreateZPEPPAPOWOutPut(libzerocoin::CoinDenomination denomination, CTxOut& outMint, CDeterministicMint& dMint);
+    bool CreateZBLOBFISHOutPut(libzerocoin::CoinDenomination denomination, CTxOut& outMint, CDeterministicMint& dMint);
     bool CreateZerocoinMintTransaction(const CAmount nValue,
             CMutableTransaction& txNew,
             std::vector<CDeterministicMint>& vDMints,
@@ -645,11 +645,11 @@ public:
     CAmount GetImmatureZerocoinBalance() const;
     std::map<libzerocoin::CoinDenomination, CAmount> GetMyZerocoinDistribution() const;
 
-    // zPEPPAPOW wallet
-    CzPEPPAPOWWallet* zwalletMain{nullptr};
-    std::unique_ptr<CzPEPPAPOWTracker> zpivTracker{nullptr};
-    void setZWallet(CzPEPPAPOWWallet* zwallet);
-    CzPEPPAPOWWallet* getZWallet();
+    // zBLOBFISH wallet
+    CzBLOBFISHWallet* zwalletMain{nullptr};
+    std::unique_ptr<CzBLOBFISHTracker> zpivTracker{nullptr};
+    void setZWallet(CzBLOBFISHWallet* zwallet);
+    CzBLOBFISHWallet* getZWallet();
     bool IsMyZerocoinSpend(const CBigNum& bnSerial) const;
     bool IsMyMint(const CBigNum& bnValue) const;
     std::string ResetMintZerocoin();
@@ -663,8 +663,8 @@ public:
     bool UpdateMint(const CBigNum& bnValue, const int& nHeight, const uint256& txid, const libzerocoin::CoinDenomination& denom);
     // Zerocoin entry changed. (called with lock cs_wallet held)
     boost::signals2::signal<void(CWallet* wallet, const std::string& pubCoin, const std::string& isUsed, ChangeType status)> NotifyZerocoinChanged;
-    // zPEPPAPOW reset
-    boost::signals2::signal<void()> NotifyzPEPPAPOWReset;
+    // zBLOBFISH reset
+    boost::signals2::signal<void()> NotifyzBLOBFISHReset;
 
     /* Wallets parameter interaction */
     static bool ParameterInteraction();

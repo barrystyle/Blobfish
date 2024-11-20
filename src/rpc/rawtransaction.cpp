@@ -127,7 +127,7 @@ UniValue getrawtransaction(const JSONRPCRequest& request)
             "  ],\n"
             "  \"vout\" : [              (array of json objects)\n"
             "     {\n"
-            "       \"value\" : x.xxx,            (numeric) The value in PEPPAPOW\n"
+            "       \"value\" : x.xxx,            (numeric) The value in BLOBFISH\n"
             "       \"n\" : n,                    (numeric) index\n"
             "       \"scriptPubKey\" : {          (json object)\n"
             "         \"asm\" : \"asm\",          (string) the asm\n"
@@ -289,7 +289,7 @@ UniValue createrawtransaction(const JSONRPCRequest& request)
     for (const std::string& name_ : addrList) {
         CTxDestination address = DecodeDestination(name_);
         if (!IsValidDestination(address))
-            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid PEPPAPOW address: ")+name_);
+            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid BLOBFISH address: ")+name_);
 
         if (setAddress.count(address))
             throw JSONRPCError(RPC_INVALID_PARAMETER, std::string("Invalid parameter, duplicated address: ")+name_);
@@ -335,7 +335,7 @@ UniValue decoderawtransaction(const JSONRPCRequest& request)
             "  ],\n"
             "  \"vout\" : [             (array of json objects)\n"
             "     {\n"
-            "       \"value\" : x.xxx,            (numeric) The value in PEPPAPOW\n"
+            "       \"value\" : x.xxx,            (numeric) The value in BLOBFISH\n"
             "       \"n\" : n,                    (numeric) index\n"
             "       \"scriptPubKey\" : {          (json object)\n"
             "         \"asm\" : \"asm\",          (string) the asm\n"
@@ -442,11 +442,11 @@ UniValue fundrawtransaction(const JSONRPCRequest& request)
             "1. \"hexstring\"    (string, required) The hex string of the raw transaction\n"
             "2. options          (object, optional)\n"
             "   {\n"
-            "     \"changeAddress\"     (string, optional, default pool address) The PEPPAPOW address to receive the change\n"
+            "     \"changeAddress\"     (string, optional, default pool address) The BLOBFISH address to receive the change\n"
             "     \"changePosition\"    (numeric, optional, default random) The index of the change output\n"
             "     \"includeWatching\"   (boolean, optional, default false) Also select inputs which are watch only\n"
             "     \"lockUnspents\"      (boolean, optional, default false) Lock selected unspent outputs\n"
-                " \"feeRate\"           (numeric, optional, default 0=estimate) Set a specific feerate (PEPPAPOW per KB)\n"
+                " \"feeRate\"           (numeric, optional, default 0=estimate) Set a specific feerate (BLOBFISH per KB)\n"
             "   }\n"
             "\nResult:\n"
             "{\n"
@@ -487,7 +487,7 @@ UniValue fundrawtransaction(const JSONRPCRequest& request)
             changeAddress = DecodeDestination(options["changeAddress"].get_str());
 
             if (!IsValidDestination(changeAddress))
-                throw JSONRPCError(RPC_INVALID_PARAMETER, "changeAddress must be a valid PEPPAPOW address");
+                throw JSONRPCError(RPC_INVALID_PARAMETER, "changeAddress must be a valid BLOBFISH address");
         }
 
         if (options.exists("changePosition"))
@@ -905,7 +905,7 @@ UniValue createrawzerocoinspend(const JSONRPCRequest& request)
     if (request.fHelp || request.params.size() < 1 || request.params.size() > 3)
         throw std::runtime_error(
             "createrawzerocoinspend mint_input ( \"address\" )\n"
-            "\nCreates raw zPEPPAPOW public spend.\n" +
+            "\nCreates raw zBLOBFISH public spend.\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
@@ -931,7 +931,7 @@ UniValue createrawzerocoinspend(const JSONRPCRequest& request)
     if (address_str != "") {
         dest = DecodeDestination(address_str);
         if(!IsValidDestination(dest))
-            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid PEPPAPOW address");
+            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid BLOBFISH address");
     }
 
     assert(pwalletMain != NULL);

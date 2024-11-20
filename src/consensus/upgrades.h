@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef PEPPAPOWX_CONSENSUS_UPGRADES_H
-#define PEPPAPOWX_CONSENSUS_UPGRADES_H
+#ifndef BLOBFISHX_CONSENSUS_UPGRADES_H
+#define BLOBFISHX_CONSENSUS_UPGRADES_H
 
 #include "consensus/params.h"
 #include "optional.h"
@@ -81,4 +81,4 @@ Optional<int> NextActivationHeight(
         int nHeight,
         const Consensus::Params& params);
 
-#endif // PEPPAPOWX_CONSENSUS_UPGRADES_H
+#endif // BLOBFISHX_CONSENSUS_UPGRADES_H

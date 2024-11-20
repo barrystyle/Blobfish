@@ -35,7 +35,7 @@
 
 extern const char * const DEFAULT_DEBUGLOGFILE;
 
-//PEPPAPOWX only features
+//BLOBFISHX only features
 
 extern bool fMasterNode;
 extern bool fLiteMode;

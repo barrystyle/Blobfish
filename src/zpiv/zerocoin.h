@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef PEPPAPOWX_ZEROCOIN_H
-#define PEPPAPOWX_ZEROCOIN_H
+#ifndef BLOBFISHX_ZEROCOIN_H
+#define BLOBFISHX_ZEROCOIN_H
 
 #include <amount.h>
 #include <limits.h>
@@ -263,4 +263,4 @@ int GetWrapppedSerialInflation(libzerocoin::CoinDenomination denom);
 
 int64_t GetWrapppedSerialInflationAmount();
 
-#endif //PEPPAPOWX_ZEROCOIN_H
+#endif //BLOBFISHX_ZEROCOIN_H

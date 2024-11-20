@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef PEPPAPOWX_SCRIPTPUBKEYMAN_H
-#define PEPPAPOWX_SCRIPTPUBKEYMAN_H
+#ifndef BLOBFISHX_SCRIPTPUBKEYMAN_H
+#define BLOBFISHX_SCRIPTPUBKEYMAN_H
 
 #include "wallet/hdchain.h"
 #include "wallet/wallet.h"
@@ -160,4 +160,4 @@ private:
 };
 
 
-#endif //PEPPAPOWX_SCRIPTPUBKEYMAN_H
+#endif //BLOBFISHX_SCRIPTPUBKEYMAN_H

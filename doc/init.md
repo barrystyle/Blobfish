@@ -84,9 +84,9 @@ OpenRC).
 ### macOS
 
 Binary:              `/usr/local/bin/peppapowd`
-Configuration file:  `~/Library/Application Support/PEPPAPOWX/peppapow.conf`
-Data directory:      `~/Library/Application Support/PEPPAPOWX`
-Lock file:           `~/Library/Application Support/PEPPAPOWX/.lock`
+Configuration file:  `~/Library/Application Support/BLOBFISHX/peppapow.conf`
+Data directory:      `~/Library/Application Support/BLOBFISHX`
+Lock file:           `~/Library/Application Support/BLOBFISHX/.lock`
 
 Installing Service Configuration
 -----------------------------------
@@ -124,7 +124,7 @@ use old versions of Upstart and do not supply the start-stop-daemon utility.
 Copy peppapowd.init to /etc/init.d/peppapowd. Test by running `service peppapowd start`.
 
 Using this script, you can adjust the path and flags to the peppapowd program by
-setting the PEPPAPOWXD and FLAGS environment variables in the file
+setting the BLOBFISHXD and FLAGS environment variables in the file
 /etc/sysconfig/peppapowd. You can also use the DAEMONOPTS environment variable here.
 
 ### macOS

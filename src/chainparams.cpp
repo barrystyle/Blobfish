@@ -109,7 +109,7 @@ public:
         assert(genesis.hashMerkleRoot == uint256S("bea17d3f21bf455d88945483fa4a30a58acad84d8de9c3d0230f913c139bdb1b"));
 
         consensus.fPowAllowMinDifficultyBlocks           = false;
-        consensus.powLimit                               = ~UINT256_ZERO >> 20;    // PEPPAPOWX starting difficulty is 1 / 2^12
+        consensus.powLimit                               = ~UINT256_ZERO >> 20;    // BLOBFISHX starting difficulty is 1 / 2^12
         consensus.posLimitV1                             = ~UINT256_ZERO >> 24;
         consensus.posLimitV2                             = ~UINT256_ZERO >> 20;
         consensus.nBudgetCycleBlocks                     = 43200;                  // approx. 1 every 30 days
@@ -144,8 +144,8 @@ public:
         consensus.height_ZC_RecalcAccumulators           = std::numeric_limits<int>::max();
 
         // validation by-pass
-        consensus.nPeppaPowBadBlockTime = 1471401614;    // Skip nBit validation of Block 259201 per PR #915
-        consensus.nPeppaPowBadBlockBits = 0x1c056dac;    // Skip nBit validation of Block 259201 per PR #915
+        consensus.nBlobfishBadBlockTime = 1471401614;    // Skip nBit validation of Block 259201 per PR #915
+        consensus.nBlobfishBadBlockBits = 0x1c056dac;    // Skip nBit validation of Block 259201 per PR #915
 
         // Zerocoin-related params
         consensus.ZC_Modulus = "25195908475657893494027183240048398571429282126204032027777137836043662020707595556264018525880784"
@@ -268,8 +268,8 @@ public:
         consensus.height_ZC_RecalcAccumulators = 999999999;
 
         // validation by-pass
-        consensus.nPeppaPowBadBlockTime = 1489001494; // Skip nBit validation of Block 201 per PR #915
-        consensus.nPeppaPowBadBlockBits = 0x1e0a20bd; // Skip nBit validation of Block 201 per PR #915
+        consensus.nBlobfishBadBlockTime = 1489001494; // Skip nBit validation of Block 201 per PR #915
+        consensus.nBlobfishBadBlockBits = 0x1e0a20bd; // Skip nBit validation of Block 201 per PR #915
 
         // Zerocoin-related params
         consensus.ZC_Modulus = "25195908475657893494027183240048398571429282126204032027777137836043662020707595556264018525880784"
@@ -369,7 +369,7 @@ public:
         //assert(genesis.hashMerkleRoot == uint256S("0x1b2ef6e2f28be914103a277377ae7729dcd125dfeb8bf97bd5964ba72b6dc39b"));
 
         consensus.fPowAllowMinDifficultyBlocks = true;
-        consensus.powLimit   = ~UINT256_ZERO >> 20;   // PEPPAPOWX starting difficulty is 1 / 2^12
+        consensus.powLimit   = ~UINT256_ZERO >> 20;   // BLOBFISHX starting difficulty is 1 / 2^12
         consensus.posLimitV1 = ~UINT256_ZERO >> 24;
         consensus.posLimitV2 = ~UINT256_ZERO >> 20;
         consensus.nBudgetCycleBlocks = 144;         // approx 10 cycles per day

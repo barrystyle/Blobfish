@@ -277,7 +277,7 @@ std::string ReindexZerocoinDB()
             return _("Reindexing zerocoin failed");
         }
         // update supply
-        UpdateZPEPPAPOWSupplyConnect(block, pindex, true);
+        UpdateZBLOBFISHSupplyConnect(block, pindex, true);
 
         for (const CTransaction& tx : block.vtx) {
             for (unsigned int i = 0; i < tx.vin.size(); i++) {
@@ -296,7 +296,7 @@ std::string ReindexZerocoinDB()
                                 libzerocoin::ZerocoinParams* params = consensus.Zerocoin_Params(false);
                                 PublicCoinSpend publicSpend(params);
                                 CValidationState state;
-                                if (!ZPEPPAPOWModule::ParseZerocoinPublicSpend(in, tx, state, publicSpend)){
+                                if (!ZBLOBFISHModule::ParseZerocoinPublicSpend(in, tx, state, publicSpend)){
                                     return _("Failed to parse public spend");
                                 }
                                 vSpendInfo.push_back(std::make_pair(publicSpend, txid));
@@ -352,7 +352,7 @@ bool RemoveSerialFromDB(const CBigNum& bnSerial)
 
 libzerocoin::CoinSpend TxInToZerocoinSpend(const CTxIn& txin)
 {
-    CDataStream serializedCoinSpend = ZPEPPAPOWModule::ScriptSigToSerializedSpend(txin.scriptSig);
+    CDataStream serializedCoinSpend = ZBLOBFISHModule::ScriptSigToSerializedSpend(txin.scriptSig);
     return libzerocoin::CoinSpend(serializedCoinSpend);
 }
 
@@ -415,7 +415,7 @@ int64_t GetZerocoinSupply()
     return nTotal;
 }
 
-bool UpdateZPEPPAPOWSupplyConnect(const CBlock& block, CBlockIndex* pindex, bool fJustCheck)
+bool UpdateZBLOBFISHSupplyConnect(const CBlock& block, CBlockIndex* pindex, bool fJustCheck)
 {
     AssertLockHeld(cs_main);
 
@@ -423,7 +423,7 @@ bool UpdateZPEPPAPOWSupplyConnect(const CBlock& block, CBlockIndex* pindex, bool
     if (!consensus.NetworkUpgradeActive(pindex->nHeight, Consensus::UPGRADE_ZC))
         return true;
 
-    //Add mints to zPEPPAPOW supply (mints are forever disabled after last checkpoint)
+    //Add mints to zBLOBFISH supply (mints are forever disabled after last checkpoint)
     if (pindex->nHeight < consensus.height_last_ZC_AccumCheckpoint) {
         std::list<CZerocoinMint> listMints;
         std::set<uint256> setAddedToWallet;
@@ -452,7 +452,7 @@ bool UpdateZPEPPAPOWSupplyConnect(const CBlock& block, CBlockIndex* pindex, bool
         }
     }
 
-    //Remove spends from zPEPPAPOW supply
+    //Remove spends from zBLOBFISH supply
     std::list<libzerocoin::CoinDenomination> listDenomsSpent = ZerocoinSpendListFromBlock(block, true);
     for (const libzerocoin::CoinDenomination& denom : listDenomsSpent) {
         mapZerocoinSupply.at(denom)--;
@@ -462,7 +462,7 @@ bool UpdateZPEPPAPOWSupplyConnect(const CBlock& block, CBlockIndex* pindex, bool
     }
 
     // Update Wrapped Serials amount
-    // A one-time event where only the zPEPPAPOW supply was off (due to serial duplication off-chain on main net)
+    // A one-time event where only the zBLOBFISH supply was off (due to serial duplication off-chain on main net)
     if (Params().NetworkID() == CBaseChainParams::MAIN && pindex->nHeight == consensus.height_last_ZC_WrappedSerials + 1) {
         for (const libzerocoin::CoinDenomination& denom : libzerocoin::zerocoinDenomList)
             mapZerocoinSupply.at(denom) += GetWrapppedSerialInflation(denom);
@@ -474,7 +474,7 @@ bool UpdateZPEPPAPOWSupplyConnect(const CBlock& block, CBlockIndex* pindex, bool
     return true;
 }
 
-bool UpdateZPEPPAPOWSupplyDisconnect(const CBlock& block, CBlockIndex* pindex)
+bool UpdateZBLOBFISHSupplyDisconnect(const CBlock& block, CBlockIndex* pindex)
 {
     AssertLockHeld(cs_main);
 
@@ -483,19 +483,19 @@ bool UpdateZPEPPAPOWSupplyDisconnect(const CBlock& block, CBlockIndex* pindex)
         return true;
 
     // Undo Update Wrapped Serials amount
-    // A one-time event where only the zPEPPAPOW supply was off (due to serial duplication off-chain on main net)
+    // A one-time event where only the zBLOBFISH supply was off (due to serial duplication off-chain on main net)
     if (Params().NetworkID() == CBaseChainParams::MAIN && pindex->nHeight == consensus.height_last_ZC_WrappedSerials + 1) {
         for (const libzerocoin::CoinDenomination& denom : libzerocoin::zerocoinDenomList)
             mapZerocoinSupply.at(denom) -= GetWrapppedSerialInflation(denom);
     }
 
-    // Re-add spends to zPEPPAPOW supply
+    // Re-add spends to zBLOBFISH supply
     std::list<libzerocoin::CoinDenomination> listDenomsSpent = ZerocoinSpendListFromBlock(block, true);
     for (const libzerocoin::CoinDenomination& denom : listDenomsSpent) {
         mapZerocoinSupply.at(denom)++;
     }
 
-    // Remove mints from zPEPPAPOW supply (mints are forever disabled after last checkpoint)
+    // Remove mints from zBLOBFISH supply (mints are forever disabled after last checkpoint)
     if (pindex->nHeight < consensus.height_last_ZC_AccumCheckpoint) {
         std::list<CZerocoinMint> listMints;
         std::set<uint256> setAddedToWallet;

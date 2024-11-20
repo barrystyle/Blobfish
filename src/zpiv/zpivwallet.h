@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef PEPPAPOWX_ZPEPPAPOWWALLET_H
-#define PEPPAPOWX_ZPEPPAPOWWALLET_H
+#ifndef BLOBFISHX_ZBLOBFISHWALLET_H
+#define BLOBFISHX_ZBLOBFISHWALLET_H
 
 #include <map>
 #include "libzerocoin/Coin.h"
@@ -14,7 +14,7 @@
 
 class CDeterministicMint;
 
-class CzPEPPAPOWWallet
+class CzBLOBFISHWallet
 {
 private:
     uint256 seedMaster;
@@ -23,13 +23,13 @@ private:
     CMintPool mintPool;
 
 public:
-    CzPEPPAPOWWallet(CWallet* parent);
+    CzBLOBFISHWallet(CWallet* parent);
 
     void AddToMintPool(const std::pair<uint256, uint32_t>& pMint, bool fVerbose);
     bool SetMasterSeed(const uint256& seedMaster, bool fResetCount = false);
     uint256 GetMasterSeed() { return seedMaster; }
     void SyncWithChain(bool fGenerateMintPool = true);
-    void GenerateDeterministicZPEPPAPOW(libzerocoin::CoinDenomination denom, libzerocoin::PrivateCoin& coin, CDeterministicMint& dMint, bool fGenerateOnly = false);
+    void GenerateDeterministicZBLOBFISH(libzerocoin::CoinDenomination denom, libzerocoin::PrivateCoin& coin, CDeterministicMint& dMint, bool fGenerateOnly = false);
     void GenerateMint(const uint32_t& nCount, const libzerocoin::CoinDenomination denom, libzerocoin::PrivateCoin& coin, CDeterministicMint& dMint);
     void GetState(int& nCount, int& nLastGenerated);
     bool RegenerateMint(const CDeterministicMint& dMint, CZerocoinMint& mint);
@@ -40,7 +40,7 @@ public:
     bool IsInMintPool(const CBigNum& bnValue) { return mintPool.Has(bnValue); }
     void UpdateCount();
     void Lock();
-    void SeedToZPEPPAPOW(const uint512& seed, CBigNum& bnValue, CBigNum& bnSerial, CBigNum& bnRandomness, CKey& key);
+    void SeedToZBLOBFISH(const uint512& seed, CBigNum& bnValue, CBigNum& bnSerial, CBigNum& bnRandomness, CKey& key);
     bool CheckSeed(const CDeterministicMint& dMint);
 
 private:
@@ -50,4 +50,4 @@ private:
     uint512 GetZerocoinSeed(uint32_t n);
 };
 
-#endif //PEPPAPOWX_ZPEPPAPOWWALLET_H
+#endif //BLOBFISHX_ZBLOBFISHWALLET_H

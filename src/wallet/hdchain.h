@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef PEPPAPOWX_HDCHAIN_H
-#define PEPPAPOWX_HDCHAIN_H
+#ifndef BLOBFISHX_HDCHAIN_H
+#define BLOBFISHX_HDCHAIN_H
 
 #include "key.h"
 
@@ -63,4 +63,4 @@ public:
     }
 };
 
-#endif // PEPPAPOWX_HDCHAIN_H
+#endif // BLOBFISHX_HDCHAIN_H

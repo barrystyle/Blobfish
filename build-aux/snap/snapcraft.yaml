@@ -3,15 +3,15 @@
 name: peppapow-core
 base: core18
 version: 4.2.0
-summary:   PEPPAPOWX (Private – Instant – Verified – Transaction)
+summary:   BLOBFISHX (Private – Instant – Verified – Transaction)
 description: |
-  PEPPAPOWX is an MIT licensed,
+  BLOBFISHX is an MIT licensed,
   open source, blockchain-based cryptocurrency with
   ultra fast transactions, low fees, high network decentralization, and
   Zero Knowledge cryptography proofs for industry-leading
   transaction anonymity.
 
-  - [Download](https://peppapow.org/wp-content/uploads/2018/10/PEPPAPOWX-White.pdf) PEPPAPOWX White Paper PDF
+  - [Download](https://peppapow.org/wp-content/uploads/2018/10/BLOBFISHX-White.pdf) BLOBFISHX White Paper PDF
 grade: devel
 confinement: strict
 apps:
@@ -68,7 +68,7 @@ apps:
     plugs: [home]
 parts:
   peppapow-core:
-    source: https://github.com/PEPPAPOWX-Project/PEPPAPOWX
+    source: https://github.com/BLOBFISHX-Project/BLOBFISHX
     source-type: git
     source-tag: master
     plugin: nil

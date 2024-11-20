@@ -6,11 +6,11 @@
 
 from time import sleep
 
-from test_framework.test_framework import PeppaPowTestFramework
+from test_framework.test_framework import BlobfishTestFramework
 from test_framework.util import set_node_times, assert_equal
 
 
-class PEPPAPOWX_RPCSporkTest(PeppaPowTestFramework):
+class BLOBFISHX_RPCSporkTest(BlobfishTestFramework):
 
     def set_test_params(self):
         self.setup_clean_chain = True
@@ -70,5 +70,5 @@ class PEPPAPOWX_RPCSporkTest(PeppaPowTestFramework):
 
 
 if __name__ == '__main__':
-    PEPPAPOWX_RPCSporkTest().main()
+    BLOBFISHX_RPCSporkTest().main()
 

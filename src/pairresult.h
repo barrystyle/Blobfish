@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef PEPPAPOWX_PAIRRESULT_H
-#define PEPPAPOWX_PAIRRESULT_H
+#ifndef BLOBFISHX_PAIRRESULT_H
+#define BLOBFISHX_PAIRRESULT_H
 
 
 class PairResult {
@@ -17,4 +17,4 @@ public:
 };
 
 
-#endif //PEPPAPOWX_PAIRRESULT_H
+#endif //BLOBFISHX_PAIRRESULT_H

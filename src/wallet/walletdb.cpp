@@ -1293,7 +1293,7 @@ bool CWalletDB::ReadCurrentSeedHash(uint256& hashSeed)
     return Read(std::string("seedhash"), hashSeed);
 }
 
-bool CWalletDB::WriteZPEPPAPOWSeed(const uint256& hashSeed, const std::vector<unsigned char>& seed)
+bool CWalletDB::WriteZBLOBFISHSeed(const uint256& hashSeed, const std::vector<unsigned char>& seed)
 {
     if (!WriteCurrentSeedHash(hashSeed))
         return error("%s: failed to write current seed hash", __func__);
@@ -1301,13 +1301,13 @@ bool CWalletDB::WriteZPEPPAPOWSeed(const uint256& hashSeed, const std::vector<un
     return Write(std::make_pair(std::string("dzs"), hashSeed), seed);
 }
 
-bool CWalletDB::EraseZPEPPAPOWSeed()
+bool CWalletDB::EraseZBLOBFISHSeed()
 {
     uint256 hash;
     if(!ReadCurrentSeedHash(hash)){
         return error("Failed to read a current seed hash");
     }
-    if(!WriteZPEPPAPOWSeed(hash, ToByteVector(base_uint<256>(0) << 256))) {
+    if(!WriteZBLOBFISHSeed(hash, ToByteVector(base_uint<256>(0) << 256))) {
         return error("Failed to write empty seed to wallet");
     }
     if(!WriteCurrentSeedHash(UINT256_ZERO)) {
@@ -1317,27 +1317,27 @@ bool CWalletDB::EraseZPEPPAPOWSeed()
     return true;
 }
 
-bool CWalletDB::EraseZPEPPAPOWSeed_deprecated()
+bool CWalletDB::EraseZBLOBFISHSeed_deprecated()
 {
     return Erase(std::string("dzs"));
 }
 
-bool CWalletDB::ReadZPEPPAPOWSeed(const uint256& hashSeed, std::vector<unsigned char>& seed)
+bool CWalletDB::ReadZBLOBFISHSeed(const uint256& hashSeed, std::vector<unsigned char>& seed)
 {
     return Read(std::make_pair(std::string("dzs"), hashSeed), seed);
 }
 
-bool CWalletDB::ReadZPEPPAPOWSeed_deprecated(uint256& seed)
+bool CWalletDB::ReadZBLOBFISHSeed_deprecated(uint256& seed)
 {
     return Read(std::string("dzs"), seed);
 }
 
-bool CWalletDB::WriteZPEPPAPOWCount(const uint32_t& nCount)
+bool CWalletDB::WriteZBLOBFISHCount(const uint32_t& nCount)
 {
     return Write(std::string("dzc"), nCount);
 }
 
-bool CWalletDB::ReadZPEPPAPOWCount(uint32_t& nCount)
+bool CWalletDB::ReadZBLOBFISHCount(uint32_t& nCount)
 {
     return Read(std::string("dzc"), nCount);
 }

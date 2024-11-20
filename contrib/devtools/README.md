@@ -25,7 +25,7 @@ git diff -U0 HEAD~1.. | ./contrib/devtools/clang-format-diff.py -p1 -i -v
 copyright\_header.py
 ====================
 
-Provides utilities for managing copyright headers of `The PEPPAPOWX
+Provides utilities for managing copyright headers of `The BLOBFISHX
 developers` in repository source files. It has three subcommands:
 
 ```
@@ -105,7 +105,7 @@ For example:
   ./github-merge.py 3077
 
 (in any git repository) will help you merge pull request #3077 for the
-PEPPAPOWX-Project/PEPPAPOWX repository.
+BLOBFISHX-Project/BLOBFISHX repository.
 
 What it does:
 * Fetch master and the pull request.
@@ -123,9 +123,9 @@ couldn't mess with the sources.
 
 Setup
 ---------
-Configuring the github-merge tool for the PEPPAPOWX repository is done in the following way:
+Configuring the github-merge tool for the BLOBFISHX repository is done in the following way:
 
-    git config githubmerge.repository PEPPAPOWX-Project/PEPPAPOWX
+    git config githubmerge.repository BLOBFISHX-Project/BLOBFISHX
     git config githubmerge.testcmd "make -j4 check" (adapt to whatever you want to use for testing)
     git config --global user.signingkey mykeyid
 
@@ -158,7 +158,7 @@ for further details.
 optimize-pngs.py
 ================
 
-A script to optimize png files in the PEPPAPOWX
+A script to optimize png files in the BLOBFISHX
 repository (requires pngcrush).
 
 security-check.py and test-security-check.py

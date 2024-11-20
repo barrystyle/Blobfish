@@ -4,8 +4,8 @@
 
 
 
-#ifndef PEPPAPOWX_INVALID_SERIALS_JSON_H
-#define PEPPAPOWX_INVALID_SERIALS_JSON_H
+#ifndef BLOBFISHX_INVALID_SERIALS_JSON_H
+#define BLOBFISHX_INVALID_SERIALS_JSON_H
 
 #include <string>
 
@@ -1189,4 +1189,4 @@ std::string LoadInvalidSerials()
     return str;
 }
 
-#endif //PEPPAPOWX_INVALID_SERIALS_JSON_H
+#endif //BLOBFISHX_INVALID_SERIALS_JSON_H

@@ -12,7 +12,7 @@
 #include "zpivchain.h"
 
 
-CzPEPPAPOWWallet::CzPEPPAPOWWallet(CWallet* parent)
+CzBLOBFISHWallet::CzBLOBFISHWallet(CWallet* parent)
 {
     this->wallet = parent;
     CWalletDB walletdb(wallet->strWalletFile);
@@ -24,13 +24,13 @@ CzPEPPAPOWWallet::CzPEPPAPOWWallet(CWallet* parent)
     //Check for old db version of storing zpiv seed
     if (fFirstRun) {
         uint256 seed;
-        if (walletdb.ReadZPEPPAPOWSeed_deprecated(seed)) {
+        if (walletdb.ReadZBLOBFISHSeed_deprecated(seed)) {
             //Update to new format, erase old
             seedMaster = seed;
             hashSeed = Hash(seed.begin(), seed.end());
             if (wallet->AddDeterministicSeed(seed)) {
-                if (walletdb.EraseZPEPPAPOWSeed_deprecated()) {
-                    LogPrintf("%s: Updated zPEPPAPOW seed databasing\n", __func__);
+                if (walletdb.EraseZBLOBFISHSeed_deprecated()) {
+                    LogPrintf("%s: Updated zBLOBFISH seed databasing\n", __func__);
                     fFirstRun = false;
                 } else {
                     LogPrintf("%s: failed to remove old zpiv seed\n", __func__);
@@ -68,7 +68,7 @@ CzPEPPAPOWWallet::CzPEPPAPOWWallet(CWallet* parent)
     this->mintPool = CMintPool(nCountLastUsed);
 }
 
-bool CzPEPPAPOWWallet::SetMasterSeed(const uint256& seedMaster, bool fResetCount)
+bool CzBLOBFISHWallet::SetMasterSeed(const uint256& seedMaster, bool fResetCount)
 {
 
     CWalletDB walletdb(wallet->strWalletFile);
@@ -84,8 +84,8 @@ bool CzPEPPAPOWWallet::SetMasterSeed(const uint256& seedMaster, bool fResetCount
     nCountLastUsed = 0;
 
     if (fResetCount)
-        walletdb.WriteZPEPPAPOWCount(nCountLastUsed);
-    else if (!walletdb.ReadZPEPPAPOWCount(nCountLastUsed))
+        walletdb.WriteZBLOBFISHCount(nCountLastUsed);
+    else if (!walletdb.ReadZBLOBFISHCount(nCountLastUsed))
         nCountLastUsed = 0;
 
     mintPool.Reset();
@@ -93,18 +93,18 @@ bool CzPEPPAPOWWallet::SetMasterSeed(const uint256& seedMaster, bool fResetCount
     return true;
 }
 
-void CzPEPPAPOWWallet::Lock()
+void CzBLOBFISHWallet::Lock()
 {
     seedMaster.SetNull();
 }
 
-void CzPEPPAPOWWallet::AddToMintPool(const std::pair<uint256, uint32_t>& pMint, bool fVerbose)
+void CzBLOBFISHWallet::AddToMintPool(const std::pair<uint256, uint32_t>& pMint, bool fVerbose)
 {
     mintPool.Add(pMint, fVerbose);
 }
 
 //Add the next 20 mints to the mint pool
-void CzPEPPAPOWWallet::GenerateMintPool(uint32_t nCountStart, uint32_t nCountEnd)
+void CzBLOBFISHWallet::GenerateMintPool(uint32_t nCountStart, uint32_t nCountEnd)
 {
 
     //Is locked
@@ -146,7 +146,7 @@ void CzPEPPAPOWWallet::GenerateMintPool(uint32_t nCountStart, uint32_t nCountEnd
         CBigNum bnSerial;
         CBigNum bnRandomness;
         CKey key;
-        SeedToZPEPPAPOW(seedZerocoin, bnValue, bnSerial, bnRandomness, key);
+        SeedToZBLOBFISH(seedZerocoin, bnValue, bnSerial, bnRandomness, key);
 
         mintPool.Add(bnValue, i);
         CWalletDB(wallet->strWalletFile).WriteMintPoolPair(hashSeed, GetPubCoinHash(bnValue), i);
@@ -155,7 +155,7 @@ void CzPEPPAPOWWallet::GenerateMintPool(uint32_t nCountStart, uint32_t nCountEnd
 }
 
 // pubcoin hashes are stored to db so that a full accounting of mints belonging to the seed can be tracked without regenerating
-bool CzPEPPAPOWWallet::LoadMintPoolFromDB()
+bool CzBLOBFISHWallet::LoadMintPoolFromDB()
 {
     std::map<uint256, std::vector<std::pair<uint256, uint32_t> > > mapMintPool = CWalletDB(wallet->strWalletFile).MapMintPool();
 
@@ -166,20 +166,20 @@ bool CzPEPPAPOWWallet::LoadMintPoolFromDB()
     return true;
 }
 
-void CzPEPPAPOWWallet::RemoveMintsFromPool(const std::vector<uint256>& vPubcoinHashes)
+void CzBLOBFISHWallet::RemoveMintsFromPool(const std::vector<uint256>& vPubcoinHashes)
 {
     for (const uint256& hash : vPubcoinHashes)
         mintPool.Remove(hash);
 }
 
-void CzPEPPAPOWWallet::GetState(int& nCount, int& nLastGenerated)
+void CzBLOBFISHWallet::GetState(int& nCount, int& nLastGenerated)
 {
     nCount = this->nCountLastUsed + 1;
     nLastGenerated = mintPool.CountOfLastGenerated();
 }
 
 //Catch the counter up with the chain
-void CzPEPPAPOWWallet::SyncWithChain(bool fGenerateMintPool)
+void CzBLOBFISHWallet::SyncWithChain(bool fGenerateMintPool)
 {
     uint32_t nLastCountUsed = 0;
     bool found = true;
@@ -280,7 +280,7 @@ void CzPEPPAPOWWallet::SyncWithChain(bool fGenerateMintPool)
     }
 }
 
-bool CzPEPPAPOWWallet::SetMintSeen(const CBigNum& bnValue, const int& nHeight, const uint256& txid, const libzerocoin::CoinDenomination& denom)
+bool CzBLOBFISHWallet::SetMintSeen(const CBigNum& bnValue, const int& nHeight, const uint256& txid, const libzerocoin::CoinDenomination& denom)
 {
     if (!mintPool.Has(bnValue))
         return error("%s: value not in pool", __func__);
@@ -292,7 +292,7 @@ bool CzPEPPAPOWWallet::SetMintSeen(const CBigNum& bnValue, const int& nHeight, c
     CBigNum bnSerial;
     CBigNum bnRandomness;
     CKey key;
-    SeedToZPEPPAPOW(seedZerocoin, bnValueGen, bnSerial, bnRandomness, key);
+    SeedToZBLOBFISH(seedZerocoin, bnValueGen, bnSerial, bnRandomness, key);
 
     //Sanity check
     if (bnValueGen != bnValue)
@@ -334,7 +334,7 @@ bool CzPEPPAPOWWallet::SetMintSeen(const CBigNum& bnValue, const int& nHeight, c
     if (nCountLastUsed < pMint.second) {
         CWalletDB walletdb(wallet->strWalletFile);
         nCountLastUsed = pMint.second;
-        walletdb.WriteZPEPPAPOWCount(nCountLastUsed);
+        walletdb.WriteZBLOBFISHCount(nCountLastUsed);
     }
 
     //remove from the pool
@@ -350,7 +350,7 @@ bool IsValidCoinValue(const CBigNum& bnValue)
     return bnValue >= params->accumulatorParams.minCoinValue && bnValue <= params->accumulatorParams.maxCoinValue && bnValue.isPrime();
 }
 
-void CzPEPPAPOWWallet::SeedToZPEPPAPOW(const uint512& seedZerocoin, CBigNum& bnValue, CBigNum& bnSerial, CBigNum& bnRandomness, CKey& key)
+void CzBLOBFISHWallet::SeedToZBLOBFISH(const uint512& seedZerocoin, CBigNum& bnValue, CBigNum& bnSerial, CBigNum& bnRandomness, CKey& key)
 {
     libzerocoin::ZerocoinParams* params = Params().GetConsensus().Zerocoin_Params(false);
 
@@ -399,7 +399,7 @@ void CzPEPPAPOWWallet::SeedToZPEPPAPOW(const uint512& seedZerocoin, CBigNum& bnV
     }
 }
 
-uint512 CzPEPPAPOWWallet::GetZerocoinSeed(uint32_t n)
+uint512 CzBLOBFISHWallet::GetZerocoinSeed(uint32_t n)
 {
     CDataStream ss(SER_GETHASH, 0);
     ss << seedMaster << n;
@@ -407,14 +407,14 @@ uint512 CzPEPPAPOWWallet::GetZerocoinSeed(uint32_t n)
     return zerocoinSeed;
 }
 
-void CzPEPPAPOWWallet::UpdateCount()
+void CzBLOBFISHWallet::UpdateCount()
 {
     nCountLastUsed++;
     CWalletDB walletdb(wallet->strWalletFile);
-    walletdb.WriteZPEPPAPOWCount(nCountLastUsed);
+    walletdb.WriteZBLOBFISHCount(nCountLastUsed);
 }
 
-void CzPEPPAPOWWallet::GenerateDeterministicZPEPPAPOW(libzerocoin::CoinDenomination denom, libzerocoin::PrivateCoin& coin, CDeterministicMint& dMint, bool fGenerateOnly)
+void CzBLOBFISHWallet::GenerateDeterministicZBLOBFISH(libzerocoin::CoinDenomination denom, libzerocoin::PrivateCoin& coin, CDeterministicMint& dMint, bool fGenerateOnly)
 {
     GenerateMint(nCountLastUsed + 1, denom, coin, dMint);
     if (fGenerateOnly)
@@ -424,14 +424,14 @@ void CzPEPPAPOWWallet::GenerateDeterministicZPEPPAPOW(libzerocoin::CoinDenominat
     //LogPrintf("%s : Generated new deterministic mint. Count=%d pubcoin=%s seed=%s\n", __func__, nCount, coin.getPublicCoin().getValue().GetHex().substr(0,6), seedZerocoin.GetHex().substr(0, 4));
 }
 
-void CzPEPPAPOWWallet::GenerateMint(const uint32_t& nCount, const libzerocoin::CoinDenomination denom, libzerocoin::PrivateCoin& coin, CDeterministicMint& dMint)
+void CzBLOBFISHWallet::GenerateMint(const uint32_t& nCount, const libzerocoin::CoinDenomination denom, libzerocoin::PrivateCoin& coin, CDeterministicMint& dMint)
 {
     uint512 seedZerocoin = GetZerocoinSeed(nCount);
     CBigNum bnValue;
     CBigNum bnSerial;
     CBigNum bnRandomness;
     CKey key;
-    SeedToZPEPPAPOW(seedZerocoin, bnValue, bnSerial, bnRandomness, key);
+    SeedToZBLOBFISH(seedZerocoin, bnValue, bnSerial, bnRandomness, key);
     coin = libzerocoin::PrivateCoin(Params().GetConsensus().Zerocoin_Params(false), denom, bnSerial, bnRandomness);
     coin.setPrivKey(key.GetPrivKey());
     coin.setVersion(libzerocoin::PrivateCoin::CURRENT_VERSION);
@@ -445,14 +445,14 @@ void CzPEPPAPOWWallet::GenerateMint(const uint32_t& nCount, const libzerocoin::C
     dMint.SetDenomination(denom);
 }
 
-bool CzPEPPAPOWWallet::CheckSeed(const CDeterministicMint& dMint)
+bool CzBLOBFISHWallet::CheckSeed(const CDeterministicMint& dMint)
 {
     //Check that the seed is correct    todo:handling of incorrect, or multiple seeds
     uint256 hashSeed = Hash(seedMaster.begin(), seedMaster.end());
     return hashSeed == dMint.GetSeedHash();
 }
 
-bool CzPEPPAPOWWallet::RegenerateMint(const CDeterministicMint& dMint, CZerocoinMint& mint)
+bool CzBLOBFISHWallet::RegenerateMint(const CDeterministicMint& dMint, CZerocoinMint& mint)
 {
     if (!CheckSeed(dMint)) {
         uint256 hashSeed = Hash(seedMaster.begin(), seedMaster.end());

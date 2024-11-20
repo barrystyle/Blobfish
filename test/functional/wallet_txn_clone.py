@@ -4,10 +4,10 @@
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test the wallet accounts properly when there are cloned transactions with malleated scriptsigs."""
 
-from test_framework.test_framework import PeppaPowTestFramework
+from test_framework.test_framework import BlobfishTestFramework
 from test_framework.util import *
 
-class TxnMallTest(PeppaPowTestFramework):
+class TxnMallTest(BlobfishTestFramework):
     def set_test_params(self):
         self.num_nodes = 4
 
@@ -22,7 +22,7 @@ class TxnMallTest(PeppaPowTestFramework):
         disconnect_nodes(self.nodes[2], 1)
 
     def run_test(self):
-        # All nodes should start with 6,250 PEPPAPOW:
+        # All nodes should start with 6,250 BLOBFISH:
         starting_balance = 6250
         for i in range(4):
             assert_equal(self.nodes[i].getbalance(), starting_balance)

@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Name=BLOBFISHX Core
+Comment=BLOBFISHX P2P Cryptocurrency
+Comment[fr]=BLOBFISHX, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=BLOBFISHX, eşten eşe kriptografik sanal para birimi
+Exec=peppapow-qt %u
+Terminal=false
+Type=Application
+Icon=peppapow128
+MimeType=x-scheme-handler/peppapow;
+Categories=Office;Finance;
+StartupWMClass=Blobfish-qt

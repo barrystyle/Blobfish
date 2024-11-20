@@ -83,7 +83,7 @@
 
 
 #ifdef ENABLE_WALLET
-CzPEPPAPOWWallet* zwalletMain = NULL;
+CzBLOBFISHWallet* zwalletMain = NULL;
 int nWalletBackups = 10;
 #endif
 volatile bool fFeeEstimatesInitialized = false;
@@ -534,13 +534,13 @@ std::string HelpMessage(HelpMessageMode mode)
     }
     strUsage += HelpMessageOpt("-shrinkdebugfile", _("Shrink debug.log file on client startup (default: 1 when no -debug)"));
     strUsage += HelpMessageOpt("-testnet", _("Use the test network"));
-    strUsage += HelpMessageOpt("-litemode=<n>", strprintf(_("Disable all PEPPAPOW specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)"), 0));
+    strUsage += HelpMessageOpt("-litemode=<n>", strprintf(_("Disable all BLOBFISH specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)"), 0));
 
 #ifdef ENABLE_WALLET
     strUsage += HelpMessageGroup(_("Staking options:"));
     strUsage += HelpMessageOpt("-staking=<n>", strprintf(_("Enable staking functionality (0-1, default: %u)"), 1));
     strUsage += HelpMessageOpt("-coldstaking=<n>", strprintf(_("Enable cold staking functionality (0-1, default: %u). Disabled if staking=0"), 1));
-    strUsage += HelpMessageOpt("-minstakesplit=<amt>", strprintf(_("Minimum positive amount (in PEPPAPOW) allowed by GUI and RPC for the stake split threshold (default: %s)"),
+    strUsage += HelpMessageOpt("-minstakesplit=<amt>", strprintf(_("Minimum positive amount (in BLOBFISH) allowed by GUI and RPC for the stake split threshold (default: %s)"),
                     FormatMoney(DEFAULT_MIN_STAKE_SPLIT_THRESHOLD)));
     if (GetBoolArg("-help-debug", false)) {
         strUsage += HelpMessageOpt("-printstakemodifier", _("Display the stake modifier calculations in the debug.log file."));
@@ -603,7 +603,7 @@ std::string LicenseInfo()
            "\n" +
            FormatParagraph(strprintf(_("Copyright (C) 2014-%i The Dash Core Developers"), COPYRIGHT_YEAR)) + "\n" +
            "\n" +
-           FormatParagraph(strprintf(_("Copyright (C) 2015-%i The PEPPAPOW Core Developers"), COPYRIGHT_YEAR)) + "\n" +
+           FormatParagraph(strprintf(_("Copyright (C) 2015-%i The BLOBFISH Core Developers"), COPYRIGHT_YEAR)) + "\n" +
            "\n" +
            FormatParagraph(_("This is experimental software.")) + "\n" +
            "\n" +
@@ -731,7 +731,7 @@ void ThreadImport(std::vector<fs::path> vImportFiles)
 }
 
 /** Sanity checks
- *  Ensure that PEPPAPOWX is running in a usable environment with all
+ *  Ensure that BLOBFISHX is running in a usable environment with all
  *  necessary library support.
  */
 bool InitSanityCheck(void)
@@ -967,7 +967,7 @@ void InitLogging()
 #else
     version_string += " (release build)";
 #endif
-    LogPrintf("PEPPAPOW version %s (%s)\n", version_string, CLIENT_DATE);
+    LogPrintf("BLOBFISH version %s (%s)\n", version_string, CLIENT_DATE);
 }
 
 /** Initialize peppapow.
@@ -1120,7 +1120,7 @@ bool AppInit2()
 
     // Sanity check
     if (!InitSanityCheck())
-        return UIError(_("Initialization sanity check failed. PEPPAPOW Core is shutting down."));
+        return UIError(_("Initialization sanity check failed. BLOBFISH Core is shutting down."));
 
     std::string strDataDir = GetDataDir().string();
 #ifdef ENABLE_WALLET
@@ -1128,7 +1128,7 @@ bool AppInit2()
     if (strWalletFile != fs::basename(strWalletFile) + fs::extension(strWalletFile))
         return UIError(strprintf(_("Wallet %s resides outside data directory %s"), strWalletFile, strDataDir));
 #endif
-    // Make sure only a single PEPPAPOWX process is using the data directory.
+    // Make sure only a single BLOBFISHX process is using the data directory.
     fs::path pathLockFile = GetDataDir() / ".lock";
     FILE* file = fsbridge::fopen(pathLockFile, "a"); // empty lock file; created if it doesn't exist.
     if (file) fclose(file);
@@ -1136,7 +1136,7 @@ bool AppInit2()
 
     // Wait maximum 10 seconds if an old wallet is still running. Avoids lockup during restart
     if (!lock.timed_lock(boost::get_system_time() + boost::posix_time::seconds(10)))
-        return UIError(strprintf(_("Cannot obtain a lock on data directory %s. PEPPAPOW Core is probably already running."), strDataDir));
+        return UIError(strprintf(_("Cannot obtain a lock on data directory %s. BLOBFISH Core is probably already running."), strDataDir));
 
 #ifndef WIN32
     CreatePidFile(GetPidFile(), getpid());
@@ -1521,7 +1521,7 @@ bool AppInit2()
                 delete zerocoinDB;
                 delete pSporkDB;
 
-                //PEPPAPOWX specific: zerocoin and spork DB's
+                //BLOBFISHX specific: zerocoin and spork DB's
                 zerocoinDB = new CZerocoinDB(0, false, fReindex);
                 pSporkDB = new CSporkDB(0, false, false);
 
@@ -1536,7 +1536,7 @@ bool AppInit2()
                 // End loop if shutdown was requested
                 if (ShutdownRequested()) break;
 
-                // PEPPAPOWX: load previous sessions sporks if we have them.
+                // BLOBFISHX: load previous sessions sporks if we have them.
                 uiInterface.InitMessage(_("Loading sporks..."));
                 sporkManager.LoadSporksFromDB();
 
@@ -1580,17 +1580,17 @@ bool AppInit2()
                     LOCK(cs_main);
                     chainHeight = chainActive.Height();
 
-                    // initialize PEPPAPOW and zPEPPAPOW supply to 0
+                    // initialize BLOBFISH and zBLOBFISH supply to 0
                     mapZerocoinSupply.clear();
                     for (auto& denom : libzerocoin::zerocoinDenomList) mapZerocoinSupply.insert(std::make_pair(denom, 0));
                     nMoneySupply = 0;
 
-                    // Load PEPPAPOW and zPEPPAPOW supply from DB
+                    // Load BLOBFISH and zBLOBFISH supply from DB
                     if (chainHeight >= 0) {
                         const uint256& tipHash = chainActive[chainHeight]->GetBlockHash();
                         CLegacyBlockIndex bi;
 
-                        // Load zPEPPAPOW supply map
+                        // Load zBLOBFISH supply map
                         if (!fReindexZerocoin && consensus.NetworkUpgradeActive(chainHeight, Consensus::UPGRADE_ZC) &&
                                 !zerocoinDB->ReadZCSupply(mapZerocoinSupply)) {
                             // try first reading legacy block index from DB
@@ -1602,7 +1602,7 @@ bool AppInit2()
                             }
                         }
 
-                        // Load PEPPAPOW supply amount
+                        // Load BLOBFISH supply amount
                         if (!fReindexMoneySupply && !pblocktree->ReadMoneySupply(nMoneySupply)) {
                             // try first reading legacy block index from DB
                             if (pblocktree->ReadLegacyBlockIndex(tipHash, bi)) {
@@ -1630,7 +1630,7 @@ bool AppInit2()
                 if (fReindexMoneySupply) {
                     LOCK(cs_main);
                     // Skip zpiv if already reindexed
-                    RecalculatePEPPAPOWSupply(1, fReindexZerocoin);
+                    RecalculateBLOBFISHSupply(1, fReindexZerocoin);
                 }
 
                 if (!fReindex) {
@@ -1743,9 +1743,9 @@ bool AppInit2()
                              " or address book entries might be missing or incorrect."));
                 UIWarning(msg);
             } else if (nLoadWalletRet == DB_TOO_NEW)
-                strErrors << _("Error loading wallet.dat: Wallet requires newer version of PEPPAPOW Core") << "\n";
+                strErrors << _("Error loading wallet.dat: Wallet requires newer version of BLOBFISH Core") << "\n";
             else if (nLoadWalletRet == DB_NEED_REWRITE) {
-                strErrors << _("Wallet needed to be rewritten: restart PEPPAPOW Core to complete") << "\n";
+                strErrors << _("Wallet needed to be rewritten: restart BLOBFISH Core to complete") << "\n";
                 LogPrintf("%s", strErrors.str());
                 return UIError(strErrors.str());
             } else
@@ -1764,7 +1764,7 @@ bool AppInit2()
         // Forced upgrade
         const bool fLegacyWallet = GetBoolArg("-legacywallet", false);
         if (GetBoolArg("-upgradewallet", fFirstRun && !fLegacyWallet)) {
-            if (prev_version <= FEATURE_PRE_PEPPAPOWX && pwalletMain->IsLocked()) {
+            if (prev_version <= FEATURE_PRE_BLOBFISHX && pwalletMain->IsLocked()) {
                 // Cannot upgrade a locked wallet
                 std::string strProblem = "Cannot upgrade a locked wallet.\n";
                 strErrors << _("Error: ") << strProblem;
@@ -1809,7 +1809,7 @@ bool AppInit2()
                 }
                 // Create legacy wallet
                 LogPrintf("Creating Pre-HD Wallet\n");
-                pwalletMain->SetMaxVersion(FEATURE_PRE_PEPPAPOWX);
+                pwalletMain->SetMaxVersion(FEATURE_PRE_BLOBFISHX);
             }
 
             // Top up the keypool
@@ -1824,7 +1824,7 @@ bool AppInit2()
 
         LogPrintf("Init errors: %s\n", strErrors.str());
         LogPrintf("Wallet completed loading in %15dms\n", GetTimeMillis() - nWalletStartTime);
-        zwalletMain = new CzPEPPAPOWWallet(pwalletMain);
+        zwalletMain = new CzBLOBFISHWallet(pwalletMain);
         pwalletMain->setZWallet(zwalletMain);
 
         RegisterValidationInterface(pwalletMain);
@@ -1875,8 +1875,8 @@ bool AppInit2()
         fVerifyingBlocks = false;
 
         if (!zwalletMain->GetMasterSeed().IsNull()) {
-            //Inititalize zPEPPAPOWWallet
-            uiInterface.InitMessage(_("Syncing zPEPPAPOW wallet..."));
+            //Inititalize zBLOBFISHWallet
+            uiInterface.InitMessage(_("Syncing zBLOBFISH wallet..."));
 
             //Load zerocoin mint hashes to memory
             pwalletMain->zpivTracker->Init();

@@ -179,7 +179,7 @@ void OptionsModel::setWindowDefaultOptions(QSettings& settings, bool reset)
 void OptionsModel::setDisplayDefaultOptions(QSettings& settings, bool reset)
 {
     if (!settings.contains("nDisplayUnit") || reset)
-        settings.setValue("nDisplayUnit", BitcoinUnits::PEPPAPOW);
+        settings.setValue("nDisplayUnit", BitcoinUnits::BLOBFISH);
     nDisplayUnit = settings.value("nDisplayUnit").toInt();
     if (!settings.contains("digits") || reset)
         settings.setValue("digits", "2");
@@ -192,8 +192,8 @@ void OptionsModel::setDisplayDefaultOptions(QSettings& settings, bool reset)
     if (!SoftSetArg("-lang", settings.value("language").toString().toStdString()))
         addOverriddenOption("-lang");
 
-    if (settings.contains("nAnonymizePeppaPowAmount") || reset)
-        SoftSetArg("-anonymizepeppapowamount", settings.value("nAnonymizePeppaPowAmount").toString().toStdString());
+    if (settings.contains("nAnonymizeBlobfishAmount") || reset)
+        SoftSetArg("-anonymizepeppapowamount", settings.value("nAnonymizeBlobfishAmount").toString().toStdString());
 
     if (!settings.contains("strThirdPartyTxUrls") || reset)
         settings.setValue("strThirdPartyTxUrls", "");

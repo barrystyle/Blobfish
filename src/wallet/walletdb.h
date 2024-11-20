@@ -197,14 +197,14 @@ public:
     bool ReadZerocoinSpendSerialEntry(const CBigNum& bnSerial);
     bool WriteCurrentSeedHash(const uint256& hashSeed);
     bool ReadCurrentSeedHash(uint256& hashSeed);
-    bool WriteZPEPPAPOWSeed(const uint256& hashSeed, const std::vector<unsigned char>& seed);
-    bool ReadZPEPPAPOWSeed(const uint256& hashSeed, std::vector<unsigned char>& seed);
-    bool ReadZPEPPAPOWSeed_deprecated(uint256& seed);
-    bool EraseZPEPPAPOWSeed();
-    bool EraseZPEPPAPOWSeed_deprecated();
+    bool WriteZBLOBFISHSeed(const uint256& hashSeed, const std::vector<unsigned char>& seed);
+    bool ReadZBLOBFISHSeed(const uint256& hashSeed, std::vector<unsigned char>& seed);
+    bool ReadZBLOBFISHSeed_deprecated(uint256& seed);
+    bool EraseZBLOBFISHSeed();
+    bool EraseZBLOBFISHSeed_deprecated();
 
-    bool WriteZPEPPAPOWCount(const uint32_t& nCount);
-    bool ReadZPEPPAPOWCount(uint32_t& nCount);
+    bool WriteZBLOBFISHCount(const uint32_t& nCount);
+    bool ReadZBLOBFISHCount(uint32_t& nCount);
     std::map<uint256, std::vector<std::pair<uint256, uint32_t> > > MapMintPool();
     bool WriteMintPoolPair(const uint256& hashMasterSeed, const uint256& hashPubcoin, const uint32_t& nCount);
 

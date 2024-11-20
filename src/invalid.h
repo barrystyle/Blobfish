@@ -2,10 +2,10 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef PEPPAPOWX_INVALID_H
-#define PEPPAPOWX_INVALID_H
+#ifndef BLOBFISHX_INVALID_H
+#define BLOBFISHX_INVALID_H
 
-#endif //PEPPAPOWX_INVALID_H
+#endif //BLOBFISHX_INVALID_H
 
 #include <libzerocoin/bignum.h>
 #include <univalue/include/univalue.h>

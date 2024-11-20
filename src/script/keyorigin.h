@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef PEPPAPOWX_SCRIPT_KEYORIGIN_H
-#define PEPPAPOWX_SCRIPT_KEYORIGIN_H
+#ifndef BLOBFISHX_SCRIPT_KEYORIGIN_H
+#define BLOBFISHX_SCRIPT_KEYORIGIN_H
 
 #include <serialize.h>
 #include <vector>
@@ -52,4 +52,4 @@ struct KeyOriginInfo
     }
 };
 
-#endif // PEPPAPOWX_SCRIPT_KEYORIGIN_H
+#endif // BLOBFISHX_SCRIPT_KEYORIGIN_H

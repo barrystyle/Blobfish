@@ -4,8 +4,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef PEPPAPOWX_SERIALIZE_H
-#define PEPPAPOWX_SERIALIZE_H
+#ifndef BLOBFISHX_SERIALIZE_H
+#define BLOBFISHX_SERIALIZE_H
 
 #include <algorithm>
 #include <assert.h>
@@ -905,4 +905,4 @@ size_t GetSerializeSize(const S& s, const T& t)
     return (CSizeComputer(s.GetType(), s.GetVersion()) << t).size();
 }
 
-#endif // PEPPAPOWX_SERIALIZE_H
+#endif // BLOBFISHX_SERIALIZE_H

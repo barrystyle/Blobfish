@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef PEPPAPOWX_MINTPOOL_H
-#define PEPPAPOWX_MINTPOOL_H
+#ifndef BLOBFISHX_MINTPOOL_H
+#define BLOBFISHX_MINTPOOL_H
 
 #include <map>
 #include <list>
@@ -50,4 +50,4 @@ public:
 };
 
 
-#endif //PEPPAPOWX_MINTPOOL_H
+#endif //BLOBFISHX_MINTPOOL_H

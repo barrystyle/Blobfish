@@ -14,7 +14,7 @@
 - (NSString *)__bundleIdentifier
 {
     if (self == [NSBundle mainBundle]) {
-        return @"io.peppapow.PeppaPow-Qt";
+        return @"io.peppapow.Blobfish-Qt";
     } else {
         return [self __bundleIdentifier];
     }

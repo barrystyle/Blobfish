@@ -190,7 +190,7 @@ void AskPassphraseDialog::accept()
         );
         if (ret) {
             newpassCache = newpass1;
-            PEPPAPOWXGUI* window = static_cast<PEPPAPOWXGUI*>(parentWidget());
+            BLOBFISHXGUI* window = static_cast<BLOBFISHXGUI*>(parentWidget());
             LoadingDialog *dialog = new LoadingDialog(window);
             dialog->execute(this, 1);
             openDialogWithOpaqueBackgroundFullScreen(dialog, window);
@@ -310,7 +310,7 @@ bool AskPassphraseDialog::eventFilter(QObject* object, QEvent* event)
 
 bool AskPassphraseDialog::openStandardDialog(QString title, QString body, QString okBtn, QString cancelBtn)
 {
-    PEPPAPOWXGUI* gui = static_cast<PEPPAPOWXGUI*>(parentWidget());
+    BLOBFISHXGUI* gui = static_cast<BLOBFISHXGUI*>(parentWidget());
     DefaultDialog *confirmDialog = new DefaultDialog(gui);
     confirmDialog->setText(title, body, okBtn, cancelBtn);
     confirmDialog->adjustSize();
@@ -343,13 +343,13 @@ void AskPassphraseDialog::updateWarningsLabel()
 void AskPassphraseDialog::warningMessage()
 {
     hide();
-    static_cast<PEPPAPOWXGUI*>(parentWidget())->showHide(true);
+    static_cast<BLOBFISHXGUI*>(parentWidget())->showHide(true);
     openStandardDialog(
             tr("Wallet encrypted"),
             "<qt>" +
-            tr("PEPPAPOWX will close now to finish the encryption process. "
+            tr("BLOBFISHX will close now to finish the encryption process. "
                "Remember that encrypting your wallet cannot fully protect "
-               "your PEPPAPOWs from being stolen by malware infecting your computer.") +
+               "your BLOBFISHs from being stolen by malware infecting your computer.") +
             "<br><br><b>" +
             tr("IMPORTANT: Any previous backups you have made of your wallet file "
                "should be replaced with the newly generated, encrypted wallet file. "
