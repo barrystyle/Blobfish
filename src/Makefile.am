@@ -67,15 +67,15 @@ TESTS =
 BENCHMARKS =
 
 if BUILD_BITCOIND
-  bin_PROGRAMS += peppapowd
+  bin_PROGRAMS += blobfishd
 endif
 
 if BUILD_BITCOIN_UTILS
-  bin_PROGRAMS += peppapow-cli peppapow-tx
+  bin_PROGRAMS += blobfish-cli blobfish-tx
 endif
 
 .PHONY: FORCE check-symbols check-security
-# peppapow core #
+# blobfish core #
 BITCOIN_CORE_H = \
   activemasternode.h \
   addrman.h \
@@ -224,7 +224,7 @@ obj/build.h: FORCE
 	  "$(abs_top_srcdir)"
 libbitcoin_util_a-clientversion.$(OBJEXT): obj/build.h
 
-# server: shared between peppapowd and peppapow-qt
+# server: shared between blobfishd and blobfish-qt
 libbitcoin_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
 libbitcoin_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_server_a_SOURCES = \
@@ -277,7 +277,7 @@ libbitcoin_zmq_a_SOURCES = \
   zmq/zmqpublishnotifier.cpp
 endif
 
-# wallet: shared between peppapowd and peppapow-qt, but only linked
+# wallet: shared between blobfishd and blobfish-qt, but only linked
 # when wallet enabled
 libbitcoin_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
@@ -389,7 +389,7 @@ if USE_NUM_OPENSSL
   libzerocoin_libbitcoin_zerocoin_a_SOURCES += libzerocoin/bignum_openssl.cpp
 endif
 
-# common: shared between peppapowd, and peppapow-qt and non-server tools
+# common: shared between blobfishd, and blobfish-qt and non-server tools
 libbitcoin_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_common_a_SOURCES = \
@@ -459,7 +459,7 @@ libbitcoin_util_a_SOURCES += compat/glibc_compat.cpp
 AM_LDFLAGS += $(COMPAT_LDFLAGS)
 endif
 
-# cli: shared between peppapow-cli and peppapow-qt
+# cli: shared between blobfish-cli and blobfish-qt
 libbitcoin_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_cli_a_SOURCES = \
@@ -469,16 +469,16 @@ libbitcoin_cli_a_SOURCES = \
 nodist_libbitcoin_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
-# peppapowd binary #
-peppapowd_SOURCES = peppapowd.cpp
-peppapowd_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-peppapowd_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-peppapowd_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# blobfishd binary #
+blobfishd_SOURCES = blobfishd.cpp
+blobfishd_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+blobfishd_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+blobfishd_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-peppapowd_SOURCES += peppapowd-res.rc
+blobfishd_SOURCES += blobfishd-res.rc
 endif
-peppapowd_LDADD = \
+blobfishd_LDADD = \
   $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_WALLET) \
   $(LIBBITCOIN_COMMON) \
@@ -492,38 +492,38 @@ peppapowd_LDADD = \
   $(LIBMEMENV) \
   $(LIBSECP256K1)
 
-peppapowd_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
+blobfishd_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
 
-# peppapow-cli binary #
-peppapow_cli_SOURCES = peppapow-cli.cpp
-peppapow_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
-peppapow_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-peppapow_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# blobfish-cli binary #
+blobfish_cli_SOURCES = blobfish-cli.cpp
+blobfish_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
+blobfish_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+blobfish_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-peppapow_cli_SOURCES += peppapow-cli-res.rc
+blobfish_cli_SOURCES += blobfish-cli-res.rc
 endif
 
-peppapow_cli_LDADD = \
+blobfish_cli_LDADD = \
   $(LIBBITCOIN_CLI) \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_UTIL) \
   $(LIBBITCOIN_CRYPTO)
 
-peppapow_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
+blobfish_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
 #
 
-# peppapow-tx binary #
-peppapow_tx_SOURCES = peppapow-tx.cpp
-peppapow_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-peppapow_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-peppapow_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# blobfish-tx binary #
+blobfish_tx_SOURCES = blobfish-tx.cpp
+blobfish_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+blobfish_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+blobfish_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-peppapow_tx_SOURCES += peppapow-tx-res.rc
+blobfish_tx_SOURCES += blobfish-tx-res.rc
 endif
 
-peppapow_tx_LDADD = \
+blobfish_tx_LDADD = \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_COMMON) \
   $(LIBBITCOIN_ZEROCOIN) \
@@ -531,7 +531,7 @@ peppapow_tx_LDADD = \
   $(LIBBITCOIN_CRYPTO) \
   $(LIBSECP256K1)
 
-peppapow_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
+blobfish_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
 #
 
 # bitcoinconsensus library #
@@ -596,12 +596,12 @@ CTAES_DIST += crypto/ctaes/test.c
 EXTRA_DIST = $(CTAES_DIST)
 
 
-config/peppapow-config.h: config/stamp-h1
+config/blobfish-config.h: config/stamp-h1
 	@$(MAKE) -C $(top_builddir) $(subdir)/$(@)
-config/stamp-h1: $(top_srcdir)/$(subdir)/config/peppapow-config.h.in $(top_builddir)/config.status
+config/stamp-h1: $(top_srcdir)/$(subdir)/config/blobfish-config.h.in $(top_builddir)/config.status
 	$(AM_V_at)$(MAKE) -C $(top_builddir) $(subdir)/$(@)
-$(top_srcdir)/$(subdir)/config/peppapow-config.h.in:  $(am__configure_deps)
-	$(AM_V_at)$(MAKE) -C $(top_srcdir) $(subdir)/config/peppapow-config.h.in
+$(top_srcdir)/$(subdir)/config/blobfish-config.h.in:  $(am__configure_deps)
+	$(AM_V_at)$(MAKE) -C $(top_srcdir) $(subdir)/config/blobfish-config.h.in
 
 clean-local:
 	-$(MAKE) -C secp256k1 clean
