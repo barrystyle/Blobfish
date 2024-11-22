@@ -2,13 +2,13 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/peppapow/masternodeswidget.h"
-#include "qt/peppapow/forms/ui_masternodeswidget.h"
+#include "qt/blobfish/masternodeswidget.h"
+#include "qt/blobfish/forms/ui_masternodeswidget.h"
 
-#include "qt/peppapow/qtutils.h"
-#include "qt/peppapow/mnrow.h"
-#include "qt/peppapow/mninfodialog.h"
-#include "qt/peppapow/masternodewizarddialog.h"
+#include "qt/blobfish/qtutils.h"
+#include "qt/blobfish/mnrow.h"
+#include "qt/blobfish/mninfodialog.h"
+#include "qt/blobfish/masternodewizarddialog.h"
 
 #include "activemasternode.h"
 #include "clientmodel.h"
@@ -22,7 +22,7 @@
 #include "wallet/wallet.h"
 #include "askpassphrasedialog.h"
 #include "util.h"
-#include "qt/peppapow/optionbutton.h"
+#include "qt/blobfish/optionbutton.h"
 #include <iostream>
 #include <fstream>
 

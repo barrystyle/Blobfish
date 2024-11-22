@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/peppapow/addresslabelrow.h"
-#include "qt/peppapow/forms/ui_addresslabelrow.h"
+#include "qt/blobfish/addresslabelrow.h"
+#include "qt/blobfish/forms/ui_addresslabelrow.h"
 
 AddressLabelRow::AddressLabelRow(QWidget *parent) :
     QWidget(parent),

@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/peppapow/settings/settingsdisplayoptionswidget.h"
-#include "qt/peppapow/settings/forms/ui_settingsdisplayoptionswidget.h"
+#include "qt/blobfish/settings/settingsdisplayoptionswidget.h"
+#include "qt/blobfish/settings/forms/ui_settingsdisplayoptionswidget.h"
 #include <QListView>
 #include <QSettings>
 #include <QDir>
@@ -11,7 +11,7 @@
 #include "clientmodel.h"
 #include "optionsmodel.h"
 #include "bitcoinunits.h"
-#include "qt/peppapow/qtutils.h"
+#include "qt/blobfish/qtutils.h"
 
 SettingsDisplayOptionsWidget::SettingsDisplayOptionsWidget(BLOBFISHXGUI* _window, QWidget *parent) :
     PWidget(_window,parent),

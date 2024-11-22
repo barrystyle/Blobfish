@@ -7,8 +7,8 @@
 
 #include <QWidget>
 #include <QAbstractTableModel>
-#include "qt/peppapow/pwidget.h"
-#include "qt/peppapow/furabstractlistitemdelegate.h"
+#include "qt/blobfish/pwidget.h"
+#include "qt/blobfish/furabstractlistitemdelegate.h"
 
 class BLOBFISHXGUI;
 

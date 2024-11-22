@@ -2,9 +2,9 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/peppapow/optionbutton.h"
-#include "qt/peppapow/forms/ui_optionbutton.h"
-#include "qt/peppapow/qtutils.h"
+#include "qt/blobfish/optionbutton.h"
+#include "qt/blobfish/forms/ui_optionbutton.h"
+#include "qt/blobfish/qtutils.h"
 #include <QMouseEvent>
 
 OptionButton::OptionButton(QWidget *parent) :

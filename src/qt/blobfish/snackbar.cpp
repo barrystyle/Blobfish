@@ -2,9 +2,9 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/peppapow/snackbar.h"
-#include "qt/peppapow/forms/ui_snackbar.h"
-#include "qt/peppapow/qtutils.h"
+#include "qt/blobfish/snackbar.h"
+#include "qt/blobfish/forms/ui_snackbar.h"
+#include "qt/blobfish/qtutils.h"
 #include <QTimer>
 
 

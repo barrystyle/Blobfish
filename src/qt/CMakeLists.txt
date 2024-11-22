@@ -2,7 +2,7 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.10)
 
 set(QT_MINIMUM_VERSION 5.5.1)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-set(CMAKE_AUTOUIC_SEARCH_PATHS ${CMAKE_CURRENT_SOURCE_DIR}/forms ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/forms ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/settings/forms)
+set(CMAKE_AUTOUIC_SEARCH_PATHS ${CMAKE_CURRENT_SOURCE_DIR}/forms ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/forms ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/settings/forms)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
@@ -112,80 +112,80 @@ SET(QT_SOURCES
         ${CMAKE_CURRENT_SOURCE_DIR}/transactiontablemodel.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/walletmodel.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/walletmodeltransaction.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/peppapowgui.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/loadingdialog.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/pwidget.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/focuseddialog.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/guitransactionsutils.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/snackbar.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/navmenuwidget.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/lockunlock.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/receivedialog.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/furabstractlistitemdelegate.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/txviewholder.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/qtutils.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/expandablebutton.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/topbar.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/txrow.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/addressfilterproxymodel.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/dashboardwidget.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/addresslabelrow.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/contactdropdownrow.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/contactsdropdown.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/optionbutton.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/mninfodialog.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/coldstakingmodel.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/mnmodel.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/masternodewizarddialog.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/mnrow.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/masternodeswidget.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/sendchangeaddressdialog.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/sendconfirmdialog.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/sendcustomfeedialog.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/sendchangeaddressdialog.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/sendmultirow.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/send.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/addnewaddressdialog.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/addnewcontactdialog.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/requestdialog.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/receivewidget.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/myaddressrow.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/csrow.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/addressholder.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/tooltipmenu.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/addresseswidget.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/defaultdialog.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/coldstakingwidget.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/settings/settingsbackupwallet.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/settings/settingsbittoolwidget.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/settings/settingsconsolewidget.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/settings/settingsdisplayoptionswidget.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/settings/settingsfaqwidget.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/settings/settingsinformationwidget.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/settings/settingsmainoptionswidget.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/settings/settingsmultisenddialog.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/settings/settingsmultisendwidget.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/settings/settingssignmessagewidgets.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/settings/settingswalletoptionswidget.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/settings/settingswalletrepairwidget.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/settings/settingsexportcsv.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/settings/settingswidget.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/welcomecontentwidget.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/splash.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/blobfishgui.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/loadingdialog.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/pwidget.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/focuseddialog.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/guitransactionsutils.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/snackbar.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/navmenuwidget.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/lockunlock.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/receivedialog.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/furabstractlistitemdelegate.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/txviewholder.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/qtutils.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/expandablebutton.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/topbar.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/txrow.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/addressfilterproxymodel.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/dashboardwidget.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/addresslabelrow.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/contactdropdownrow.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/contactsdropdown.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/optionbutton.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/mninfodialog.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/coldstakingmodel.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/mnmodel.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/masternodewizarddialog.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/mnrow.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/masternodeswidget.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/sendchangeaddressdialog.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/sendconfirmdialog.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/sendcustomfeedialog.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/sendchangeaddressdialog.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/sendmultirow.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/send.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/addnewaddressdialog.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/addnewcontactdialog.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/requestdialog.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/receivewidget.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/myaddressrow.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/csrow.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/addressholder.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/tooltipmenu.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/addresseswidget.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/defaultdialog.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/coldstakingwidget.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/settings/settingsbackupwallet.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/settings/settingsbittoolwidget.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/settings/settingsconsolewidget.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/settings/settingsdisplayoptionswidget.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/settings/settingsfaqwidget.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/settings/settingsinformationwidget.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/settings/settingsmainoptionswidget.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/settings/settingsmultisenddialog.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/settings/settingsmultisendwidget.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/settings/settingssignmessagewidgets.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/settings/settingswalletoptionswidget.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/settings/settingswalletrepairwidget.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/settings/settingsexportcsv.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/settings/settingswidget.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/welcomecontentwidget.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/splash.cpp
         )
 
 # Workaround until the old rpcconsole UI window is fully removed
-set_property(SOURCE ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/settings/settingsconsolewidget.cpp PROPERTY SKIP_AUTOMOC ON)
+set_property(SOURCE ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/settings/settingsconsolewidget.cpp PROPERTY SKIP_AUTOMOC ON)
 execute_process(
         COMMAND ${MOC_BIN} -o moc_settingsconsolewidget.cpp settingsconsolewidget.h
-        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/settings
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/settings
 )
 
 execute_process(
         COMMAND ${MOC_BIN} -o moc_pfborderimage.cpp pfborderimage.h
-        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/peppapow
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/blobfish
 )
-list(APPEND QT_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/moc_pfborderimage.cpp)
+list(APPEND QT_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/moc_pfborderimage.cpp)
 
 if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     list(APPEND QT_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/macdockiconhandler.mm)
@@ -198,8 +198,8 @@ target_include_directories(qt_stuff PUBLIC ${CMAKE_SOURCE_DIR}/src
         ${CMAKE_SOURCE_DIR}/src/univalue/include
         ${CMAKE_SOURCE_DIR}/src/secp256k1/include
         ${CMAKE_CURRENT_SOURCE_DIR}
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow
-        ${CMAKE_CURRENT_SOURCE_DIR}/peppapow/settings
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish
+        ${CMAKE_CURRENT_SOURCE_DIR}/blobfish/settings
         ${OPENSSL_INCLUDE_DIR}
         ${BerkeleyDB_INCLUDE_DIRS}
         )
@@ -213,13 +213,13 @@ set_source_files_properties(${QT_TRANSLATIONS_FILES} PROPERTIES OUTPUT_LOCATION 
 QT5_ADD_TRANSLATION(QM ${QT_TRANSLATIONS_FILES})
 add_custom_target(translations_target ALL DEPENDS ${QM})
 
-QT5_ADD_RESOURCES(QRC_RESOURCE peppapow.qrc)
-QT5_ADD_RESOURCES(QRC_LOCALE_RESOURCE peppapow_locale.qrc)
+QT5_ADD_RESOURCES(QRC_RESOURCE blobfish.qrc)
+QT5_ADD_RESOURCES(QRC_LOCALE_RESOURCE blobfish_locale.qrc)
 
-add_executable(peppapow-qt peppapow.cpp ${QM} ${QRC_RESOURCE} ${QRC_LOCALE_RESOURCE})
-add_dependencies(peppapow-qt translations_target libunivalue libsecp256k1 leveldb leveldb_sse42 memenv)
-target_include_directories(peppapow-qt PUBLIC ${ENDIAN_INCLUDES})
-target_link_libraries(peppapow-qt
+add_executable(blobfish-qt blobfish.cpp ${QM} ${QRC_RESOURCE} ${QRC_LOCALE_RESOURCE})
+add_dependencies(blobfish-qt translations_target libunivalue libsecp256k1 leveldb leveldb_sse42 memenv)
+target_include_directories(blobfish-qt PUBLIC ${ENDIAN_INCLUDES})
+target_link_libraries(blobfish-qt
         qt_stuff
         univalue
         SERVER_A UTIL_A WALLET_A CLI_A COMMON_A BITCOIN_CRYPTO_A ZEROCOIN_A
@@ -228,30 +228,30 @@ target_link_libraries(peppapow-qt
         pthread
         )
 if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-    target_link_libraries(peppapow-qt "-framework Cocoa")
+    target_link_libraries(blobfish-qt "-framework Cocoa")
 endif()
 if(GMP_FOUND)
-    target_link_libraries(peppapow-qt ${GMP_LIBRARY})
-    target_include_directories(peppapow-qt PUBLIC ${GMP_INCLUDE_DIR})
+    target_link_libraries(blobfish-qt ${GMP_LIBRARY})
+    target_include_directories(blobfish-qt PUBLIC ${GMP_INCLUDE_DIR})
 endif()
 if(ZMQ_FOUND)
-    target_link_libraries(peppapow-qt ZMQ_A ${ZMQ_LIB})
-    target_include_directories(peppapow-qt PUBLIC ${ZMQ_INCLUDE_DIR})
+    target_link_libraries(blobfish-qt ZMQ_A ${ZMQ_LIB})
+    target_include_directories(blobfish-qt PUBLIC ${ZMQ_INCLUDE_DIR})
 endif()
 if (QRCODE_FOUND)
-    target_link_libraries(peppapow-qt ${QRCODE_LIB})
-    target_include_directories(peppapow-qt PUBLIC ${QRCODE_INCLUDE_DIR})
+    target_link_libraries(blobfish-qt ${QRCODE_LIB})
+    target_include_directories(blobfish-qt PUBLIC ${QRCODE_INCLUDE_DIR})
 endif()
 if(MINIUPNP_FOUND)
-    target_compile_definitions(peppapow-qt PUBLIC "-DSTATICLIB -DMINIUPNP_STATICLIB")
-    target_link_libraries(peppapow-qt ${MINIUPNP_LIBRARY})
-    target_include_directories(peppapow-qt PUBLIC ${MINIUPNP_INCLUDE_DIR})
+    target_compile_definitions(blobfish-qt PUBLIC "-DSTATICLIB -DMINIUPNP_STATICLIB")
+    target_link_libraries(blobfish-qt ${MINIUPNP_LIBRARY})
+    target_include_directories(blobfish-qt PUBLIC ${MINIUPNP_INCLUDE_DIR})
 endif()
 
-target_link_libraries(peppapow-qt Qt5::Gui Qt5::Core Qt5::Widgets Qt5::Network Qt5::Svg ${QT_LIBRARIES})
+target_link_libraries(blobfish-qt Qt5::Gui Qt5::Core Qt5::Widgets Qt5::Network Qt5::Svg ${QT_LIBRARIES})
 if (Qt5DBus_FOUND)
-    target_link_libraries(peppapow-qt Qt5::DBus ${QT_LIBRARIES})
+    target_link_libraries(blobfish-qt Qt5::DBus ${QT_LIBRARIES})
 endif()
 if (Qt5Charts_FOUND)
-    target_link_libraries(peppapow-qt Qt5::Charts ${QT_LIBRARIES})
+    target_link_libraries(blobfish-qt Qt5::Charts ${QT_LIBRARIES})
 endif()

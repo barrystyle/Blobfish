@@ -5,14 +5,14 @@
 #ifndef COLDSTAKINGWIDGET_H
 #define COLDSTAKINGWIDGET_H
 
-#include "qt/peppapow/pwidget.h"
-#include "qt/peppapow/furabstractlistitemdelegate.h"
-#include "qt/peppapow/txviewholder.h"
-#include "qt/peppapow/tooltipmenu.h"
-#include "qt/peppapow/sendmultirow.h"
-#include "qt/peppapow/coldstakingmodel.h"
-#include "qt/peppapow/contactsdropdown.h"
-#include "qt/peppapow/addressholder.h"
+#include "qt/blobfish/pwidget.h"
+#include "qt/blobfish/furabstractlistitemdelegate.h"
+#include "qt/blobfish/txviewholder.h"
+#include "qt/blobfish/tooltipmenu.h"
+#include "qt/blobfish/sendmultirow.h"
+#include "qt/blobfish/coldstakingmodel.h"
+#include "qt/blobfish/contactsdropdown.h"
+#include "qt/blobfish/addressholder.h"
 #include "transactiontablemodel.h"
 #include "addresstablemodel.h"
 #include "addressfilterproxymodel.h"

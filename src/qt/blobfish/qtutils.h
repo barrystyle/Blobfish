@@ -5,7 +5,7 @@
 #ifndef QTUTILS_H
 #define QTUTILS_H
 
-#include "qt/peppapow/peppapowgui.h"
+#include "qt/blobfish/blobfishgui.h"
 
 #include <QAbstractAnimation>
 #include <QColor>

@@ -2,11 +2,11 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/peppapow/requestdialog.h"
-#include "qt/peppapow/forms/ui_requestdialog.h"
+#include "qt/blobfish/requestdialog.h"
+#include "qt/blobfish/forms/ui_requestdialog.h"
 #include <QListView>
 
-#include "qt/peppapow/qtutils.h"
+#include "qt/blobfish/qtutils.h"
 #include "guiutil.h"
 #include "amount.h"
 #include "pairresult.h"

@@ -2,11 +2,11 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/peppapow/tooltipmenu.h"
-#include "qt/peppapow/forms/ui_tooltipmenu.h"
+#include "qt/blobfish/tooltipmenu.h"
+#include "qt/blobfish/forms/ui_tooltipmenu.h"
 
-#include "qt/peppapow/peppapowgui.h"
-#include "qt/peppapow/qtutils.h"
+#include "qt/blobfish/blobfishgui.h"
+#include "qt/blobfish/qtutils.h"
 #include <QTimer>
 
 TooltipMenu::TooltipMenu(BLOBFISHXGUI *_window, QWidget *parent) :

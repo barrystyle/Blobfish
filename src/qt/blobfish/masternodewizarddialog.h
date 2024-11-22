@@ -6,10 +6,10 @@
 #define MASTERNODEWIZARDDIALOG_H
 
 #include "walletmodel.h"
-#include "qt/peppapow/focuseddialog.h"
-#include "qt/peppapow/snackbar.h"
+#include "qt/blobfish/focuseddialog.h"
+#include "qt/blobfish/snackbar.h"
 #include "masternodeconfig.h"
-#include "qt/peppapow/pwidget.h"
+#include "qt/blobfish/pwidget.h"
 
 class WalletModel;
 

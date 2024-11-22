@@ -6,8 +6,8 @@
 #define SENDCHANGEADDRESSDIALOG_H
 
 #include "script/standard.h"
-#include "qt/peppapow/focuseddialog.h"
-#include "qt/peppapow/snackbar.h"
+#include "qt/blobfish/focuseddialog.h"
+#include "qt/blobfish/snackbar.h"
 
 class WalletModel;
 

@@ -2,10 +2,10 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/peppapow/settings/settingsconsolewidget.h"
-#include "qt/peppapow/settings/forms/ui_settingsconsolewidget.h"
+#include "qt/blobfish/settings/settingsconsolewidget.h"
+#include "qt/blobfish/settings/forms/ui_settingsconsolewidget.h"
 #include "QGraphicsDropShadowEffect"
-#include "qt/peppapow/qtutils.h"
+#include "qt/blobfish/qtutils.h"
 
 #include "clientmodel.h"
 #include "guiutil.h"
@@ -36,7 +36,7 @@
 #include <QTime>
 #include <QTimer>
 #include <QStringList>
-#include "qt/peppapow/qtutils.h"
+#include "qt/blobfish/qtutils.h"
 #include "utilitydialog.h"
 
 const int CONSOLE_HISTORY = 50;
@@ -96,7 +96,7 @@ public:
     }
 };
 
-#include "qt/peppapow/settings/moc_settingsconsolewidget.cpp"
+#include "qt/blobfish/settings/moc_settingsconsolewidget.cpp"
 
 /**
  * Split shell command line into a list of arguments. Aims to emulate \c bash and friends.

@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/peppapow/txviewholder.h"
-#include "qt/peppapow/qtutils.h"
+#include "qt/blobfish/txviewholder.h"
+#include "qt/blobfish/qtutils.h"
 #include "transactiontablemodel.h"
 #include <QModelIndex>
 

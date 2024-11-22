@@ -1,15 +1,15 @@
 QT_TS = \
-  qt/locale/peppapow_de.ts \
-  qt/locale/peppapow_en.ts \
-  qt/locale/peppapow_en_US.ts \
-  qt/locale/peppapow_es.ts \
-  qt/locale/peppapow_es_ES.ts \
-  qt/locale/peppapow_fr_FR.ts \
-  qt/locale/peppapow_hr_HR.ts \
-  qt/locale/peppapow_it.ts \
-  qt/locale/peppapow_ko_KR.ts \
-  qt/locale/peppapow_nl.ts \
-  qt/locale/peppapow_pl.ts \
-  qt/locale/peppapow_ru.ts \
-  qt/locale/peppapow_tr.ts \
-  qt/locale/peppapow_zh_CN.ts
+  qt/locale/blobfish_de.ts \
+  qt/locale/blobfish_en.ts \
+  qt/locale/blobfish_en_US.ts \
+  qt/locale/blobfish_es.ts \
+  qt/locale/blobfish_es_ES.ts \
+  qt/locale/blobfish_fr_FR.ts \
+  qt/locale/blobfish_hr_HR.ts \
+  qt/locale/blobfish_it.ts \
+  qt/locale/blobfish_ko_KR.ts \
+  qt/locale/blobfish_nl.ts \
+  qt/locale/blobfish_pl.ts \
+  qt/locale/blobfish_ru.ts \
+  qt/locale/blobfish_tr.ts \
+  qt/locale/blobfish_zh_CN.ts

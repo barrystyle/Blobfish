@@ -2,9 +2,9 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/peppapow/addnewcontactdialog.h"
-#include "qt/peppapow/forms/ui_addnewcontactdialog.h"
-#include "qt/peppapow/qtutils.h"
+#include "qt/blobfish/addnewcontactdialog.h"
+#include "qt/blobfish/forms/ui_addnewcontactdialog.h"
+#include "qt/blobfish/qtutils.h"
 
 AddNewContactDialog::AddNewContactDialog(QWidget *parent) :
     FocusedDialog(parent),

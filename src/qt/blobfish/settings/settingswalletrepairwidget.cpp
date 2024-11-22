@@ -2,9 +2,9 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/peppapow/settings/settingswalletrepairwidget.h"
-#include "qt/peppapow/settings/forms/ui_settingswalletrepairwidget.h"
-#include "qt/peppapow/qtutils.h"
+#include "qt/blobfish/settings/settingswalletrepairwidget.h"
+#include "qt/blobfish/settings/forms/ui_settingswalletrepairwidget.h"
+#include "qt/blobfish/qtutils.h"
 
 SettingsWalletRepairWidget::SettingsWalletRepairWidget(BLOBFISHXGUI* _window, QWidget *parent) :
     PWidget(_window, parent),

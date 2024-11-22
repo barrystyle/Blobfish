@@ -2,14 +2,14 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/peppapow/settings/settingsbackupwallet.h"
-#include "qt/peppapow/settings/forms/ui_settingsbackupwallet.h"
+#include "qt/blobfish/settings/settingsbackupwallet.h"
+#include "qt/blobfish/settings/forms/ui_settingsbackupwallet.h"
 #include <QFile>
 #include <QGraphicsDropShadowEffect>
 #include "guiutil.h"
-#include "qt/peppapow/qtutils.h"
+#include "qt/blobfish/qtutils.h"
 #include "guiinterface.h"
-#include "qt/peppapow/qtutils.h"
+#include "qt/blobfish/qtutils.h"
 SettingsBackupWallet::SettingsBackupWallet(BLOBFISHXGUI* _window, QWidget *parent) :
     PWidget(_window, parent),
     ui(new Ui::SettingsBackupWallet)

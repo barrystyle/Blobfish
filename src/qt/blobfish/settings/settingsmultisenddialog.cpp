@@ -2,11 +2,11 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/peppapow/settings/settingsmultisenddialog.h"
-#include "qt/peppapow/settings/forms/ui_settingsmultisenddialog.h"
+#include "qt/blobfish/settings/settingsmultisenddialog.h"
+#include "qt/blobfish/settings/forms/ui_settingsmultisenddialog.h"
 #include <QListView>
 #include <QIntValidator>
-#include "qt/peppapow/qtutils.h"
+#include "qt/blobfish/qtutils.h"
 
 SettingsMultisendDialog::SettingsMultisendDialog(QWidget *parent) :
     QDialog(parent),

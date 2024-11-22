@@ -2,14 +2,14 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/peppapow/sendmultirow.h"
-#include "qt/peppapow/forms/ui_sendmultirow.h"
+#include "qt/blobfish/sendmultirow.h"
+#include "qt/blobfish/forms/ui_sendmultirow.h"
 
 #include "optionsmodel.h"
 #include "addresstablemodel.h"
 #include "guiutil.h"
 #include "bitcoinunits.h"
-#include "qt/peppapow/qtutils.h"
+#include "qt/blobfish/qtutils.h"
 
 SendMultiRow::SendMultiRow(PWidget *parent) :
     PWidget(parent),

@@ -2,11 +2,11 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/peppapow/settings/settingsfaqwidget.h"
-#include "qt/peppapow/settings/forms/ui_settingsfaqwidget.h"
+#include "qt/blobfish/settings/settingsfaqwidget.h"
+#include "qt/blobfish/settings/forms/ui_settingsfaqwidget.h"
 #include <QScrollBar>
 #include <QMetaObject>
-#include "qt/peppapow/qtutils.h"
+#include "qt/blobfish/qtutils.h"
 
 SettingsFaqWidget::SettingsFaqWidget(BLOBFISHXGUI *parent) :
     QDialog(parent),

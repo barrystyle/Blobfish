@@ -11,10 +11,10 @@
 #include "guiconstants.h"
 #include "guiutil.h"
 #include "walletmodel.h"
-#include "qt/peppapow/qtutils.h"
-#include "qt/peppapow/loadingdialog.h"
-#include "qt/peppapow/defaultdialog.h"
-#include "qt/peppapow/peppapowgui.h"
+#include "qt/blobfish/qtutils.h"
+#include "qt/blobfish/loadingdialog.h"
+#include "qt/blobfish/defaultdialog.h"
+#include "qt/blobfish/blobfishgui.h"
 #include <QDebug>
 
 #include <QKeyEvent>

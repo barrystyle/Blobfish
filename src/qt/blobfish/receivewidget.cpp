@@ -2,14 +2,14 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/peppapow/receivewidget.h"
-#include "qt/peppapow/forms/ui_receivewidget.h"
-#include "qt/peppapow/requestdialog.h"
-#include "qt/peppapow/addnewcontactdialog.h"
-#include "qt/peppapow/qtutils.h"
-#include "qt/peppapow/myaddressrow.h"
-#include "qt/peppapow/furlistrow.h"
-#include "qt/peppapow/addressholder.h"
+#include "qt/blobfish/receivewidget.h"
+#include "qt/blobfish/forms/ui_receivewidget.h"
+#include "qt/blobfish/requestdialog.h"
+#include "qt/blobfish/addnewcontactdialog.h"
+#include "qt/blobfish/qtutils.h"
+#include "qt/blobfish/myaddressrow.h"
+#include "qt/blobfish/furlistrow.h"
+#include "qt/blobfish/addressholder.h"
 #include "walletmodel.h"
 #include "guiutil.h"
 #include "pairresult.h"

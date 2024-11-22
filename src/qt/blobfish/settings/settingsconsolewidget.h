@@ -6,7 +6,7 @@
 #define SETTINGSCONSOLEWIDGET_H
 
 #include <QWidget>
-#include "qt/peppapow/pwidget.h"
+#include "qt/blobfish/pwidget.h"
 #include "guiutil.h"
 #include "net.h"
 #include <QCompleter>

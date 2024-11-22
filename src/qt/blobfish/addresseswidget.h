@@ -5,11 +5,11 @@
 #ifndef ADDRESSESWIDGET_H
 #define ADDRESSESWIDGET_H
 
-#include "qt/peppapow/pwidget.h"
+#include "qt/blobfish/pwidget.h"
 #include "addresstablemodel.h"
-#include "qt/peppapow/tooltipmenu.h"
+#include "qt/blobfish/tooltipmenu.h"
 #include "furabstractlistitemdelegate.h"
-#include "qt/peppapow/addressfilterproxymodel.h"
+#include "qt/blobfish/addressfilterproxymodel.h"
 
 #include <QWidget>
 

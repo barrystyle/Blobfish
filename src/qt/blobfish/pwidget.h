@@ -8,7 +8,7 @@
 #include <QObject>
 #include <QWidget>
 #include <QString>
-#include "qt/peppapow/prunnable.h"
+#include "qt/blobfish/prunnable.h"
 #include "walletmodel.h"
 
 class BLOBFISHXGUI;

@@ -6,7 +6,7 @@
 #define FURSZY_BLOBFISHX_GUITRANSACTIONSUTILS_H
 
 #include "walletmodel.h"
-#include "qt/peppapow/pwidget.h"
+#include "qt/blobfish/pwidget.h"
 
 
 namespace GuiTransactionsUtils {

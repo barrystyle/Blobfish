@@ -2,10 +2,10 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/peppapow/settings/settingswidget.h"
-#include "qt/peppapow/settings/forms/ui_settingswidget.h"
-#include "qt/peppapow/qtutils.h"
-#include "qt/peppapow/defaultdialog.h"
+#include "qt/blobfish/settings/settingswidget.h"
+#include "qt/blobfish/settings/forms/ui_settingswidget.h"
+#include "qt/blobfish/qtutils.h"
+#include "qt/blobfish/defaultdialog.h"
 #include "optionsmodel.h"
 #include "clientmodel.h"
 #include "utilitydialog.h"

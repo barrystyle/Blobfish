@@ -11,7 +11,7 @@
 #include "guiutil.h"
 
 #include "util.h"
-#include "qt/peppapow/qtutils.h"
+#include "qt/blobfish/qtutils.h"
 
 #include <QFileDialog>
 #include <QMessageBox>

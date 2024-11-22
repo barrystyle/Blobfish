@@ -3,11 +3,11 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/peppapow/dashboardwidget.h"
-#include "qt/peppapow/forms/ui_dashboardwidget.h"
-#include "qt/peppapow/sendconfirmdialog.h"
-#include "qt/peppapow/txrow.h"
-#include "qt/peppapow/qtutils.h"
+#include "qt/blobfish/dashboardwidget.h"
+#include "qt/blobfish/forms/ui_dashboardwidget.h"
+#include "qt/blobfish/sendconfirmdialog.h"
+#include "qt/blobfish/txrow.h"
+#include "qt/blobfish/qtutils.h"
 #include "guiutil.h"
 #include "walletmodel.h"
 #include "clientmodel.h"

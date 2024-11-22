@@ -6,8 +6,8 @@
 #define SETTINGSSIGNMESSAGEWIDGETS_H
 
 #include <QWidget>
-#include "qt/peppapow/pwidget.h"
-#include "qt/peppapow/contactsdropdown.h"
+#include "qt/blobfish/pwidget.h"
+#include "qt/blobfish/contactsdropdown.h"
 
 namespace Ui {
 class SettingsSignMessageWidgets;

@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/peppapow/defaultdialog.h"
-#include "qt/peppapow/forms/ui_defaultdialog.h"
+#include "qt/blobfish/defaultdialog.h"
+#include "qt/blobfish/forms/ui_defaultdialog.h"
 #include "guiutil.h"
 
 DefaultDialog::DefaultDialog(QWidget *parent) :

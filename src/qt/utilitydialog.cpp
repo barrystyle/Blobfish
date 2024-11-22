@@ -13,7 +13,7 @@
 #include "intro.h"
 #include "guiutil.h"
 
-#include "qt/peppapow/qtutils.cpp"
+#include "qt/blobfish/qtutils.cpp"
 
 #include "clientversion.h"
 #include "init.h"

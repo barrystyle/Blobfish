@@ -2,10 +2,10 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/peppapow/navmenuwidget.h"
-#include "qt/peppapow/forms/ui_navmenuwidget.h"
-#include "qt/peppapow/peppapowgui.h"
-#include "qt/peppapow/qtutils.h"
+#include "qt/blobfish/navmenuwidget.h"
+#include "qt/blobfish/forms/ui_navmenuwidget.h"
+#include "qt/blobfish/blobfishgui.h"
+#include "qt/blobfish/qtutils.h"
 #include "clientversion.h"
 #include "optionsmodel.h"
 #include <QScrollBar>

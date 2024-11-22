@@ -2,22 +2,22 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/peppapow/coldstakingwidget.h"
-#include "qt/peppapow/forms/ui_coldstakingwidget.h"
-#include "qt/peppapow/qtutils.h"
+#include "qt/blobfish/coldstakingwidget.h"
+#include "qt/blobfish/forms/ui_coldstakingwidget.h"
+#include "qt/blobfish/qtutils.h"
 #include "amount.h"
 #include "guiutil.h"
-#include "qt/peppapow/requestdialog.h"
-#include "qt/peppapow/tooltipmenu.h"
-#include "qt/peppapow/furlistrow.h"
-#include "qt/peppapow/sendconfirmdialog.h"
-#include "qt/peppapow/addnewcontactdialog.h"
-#include "qt/peppapow/guitransactionsutils.h"
+#include "qt/blobfish/requestdialog.h"
+#include "qt/blobfish/tooltipmenu.h"
+#include "qt/blobfish/furlistrow.h"
+#include "qt/blobfish/sendconfirmdialog.h"
+#include "qt/blobfish/addnewcontactdialog.h"
+#include "qt/blobfish/guitransactionsutils.h"
 #include "walletmodel.h"
 #include "optionsmodel.h"
 #include "coincontroldialog.h"
 #include "coincontrol.h"
-#include "qt/peppapow/csrow.h"
+#include "qt/blobfish/csrow.h"
 
 #define DECORATION_SIZE 70
 #define NUM_ITEMS 3

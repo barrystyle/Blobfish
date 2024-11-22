@@ -2,9 +2,9 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/peppapow/sendcustomfeedialog.h"
-#include "qt/peppapow/forms/ui_sendcustomfeedialog.h"
-#include "qt/peppapow/qtutils.h"
+#include "qt/blobfish/sendcustomfeedialog.h"
+#include "qt/blobfish/forms/ui_sendcustomfeedialog.h"
+#include "qt/blobfish/qtutils.h"
 #include "walletmodel.h"
 #include "optionsmodel.h"
 #include "guiutil.h"

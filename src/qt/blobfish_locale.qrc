@@ -1,18 +1,18 @@
 <!DOCTYPE RCC><RCC version="1.0">
     <qresource prefix="/translations">
-        <file alias="de">locale/peppapow_de.qm</file>
-        <file alias="en">locale/peppapow_en.qm</file>
-        <file alias="en_US">locale/peppapow_en_US.qm</file>
-        <file alias="es">locale/peppapow_es.qm</file>
-        <file alias="es_ES">locale/peppapow_es_ES.qm</file>
-        <file alias="fr_FR">locale/peppapow_fr_FR.qm</file>
-        <file alias="hr_HR">locale/peppapow_hr_HR.qm</file>
-        <file alias="it">locale/peppapow_it.qm</file>
-        <file alias="ko_KR">locale/peppapow_ko_KR.qm</file>
-        <file alias="nl">locale/peppapow_nl.qm</file>
-        <file alias="pl">locale/peppapow_pl.qm</file>
-        <file alias="ru">locale/peppapow_ru.qm</file>
-        <file alias="tr">locale/peppapow_tr.qm</file>
-        <file alias="zh_CN">locale/peppapow_zh_CN.qm</file>
+        <file alias="de">locale/blobfish_de.qm</file>
+        <file alias="en">locale/blobfish_en.qm</file>
+        <file alias="en_US">locale/blobfish_en_US.qm</file>
+        <file alias="es">locale/blobfish_es.qm</file>
+        <file alias="es_ES">locale/blobfish_es_ES.qm</file>
+        <file alias="fr_FR">locale/blobfish_fr_FR.qm</file>
+        <file alias="hr_HR">locale/blobfish_hr_HR.qm</file>
+        <file alias="it">locale/blobfish_it.qm</file>
+        <file alias="ko_KR">locale/blobfish_ko_KR.qm</file>
+        <file alias="nl">locale/blobfish_nl.qm</file>
+        <file alias="pl">locale/blobfish_pl.qm</file>
+        <file alias="ru">locale/blobfish_ru.qm</file>
+        <file alias="tr">locale/blobfish_tr.qm</file>
+        <file alias="zh_CN">locale/blobfish_zh_CN.qm</file>
     </qresource>
 </RCC>

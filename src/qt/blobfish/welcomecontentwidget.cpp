@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/peppapow/welcomecontentwidget.h"
-#include "qt/peppapow/forms/ui_welcomecontentwidget.h"
+#include "qt/blobfish/welcomecontentwidget.h"
+#include "qt/blobfish/forms/ui_welcomecontentwidget.h"
 
 #include "guiutil.h"
 

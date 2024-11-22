@@ -2,12 +2,12 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/peppapow/mninfodialog.h"
-#include "qt/peppapow/forms/ui_mninfodialog.h"
+#include "qt/blobfish/mninfodialog.h"
+#include "qt/blobfish/forms/ui_mninfodialog.h"
 #include "walletmodel.h"
 #include "wallet/wallet.h"
 #include "guiutil.h"
-#include "qt/peppapow/qtutils.h"
+#include "qt/blobfish/qtutils.h"
 #include <QDateTime>
 
 MnInfoDialog::MnInfoDialog(QWidget *parent) :

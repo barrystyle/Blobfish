@@ -5,10 +5,10 @@
 #ifndef MASTERNODESWIDGET_H
 #define MASTERNODESWIDGET_H
 
-#include "qt/peppapow/pwidget.h"
-#include "qt/peppapow/furabstractlistitemdelegate.h"
-#include "qt/peppapow/mnmodel.h"
-#include "qt/peppapow/tooltipmenu.h"
+#include "qt/blobfish/pwidget.h"
+#include "qt/blobfish/furabstractlistitemdelegate.h"
+#include "qt/blobfish/mnmodel.h"
+#include "qt/blobfish/tooltipmenu.h"
 #include "walletmodel.h"
 
 #include <atomic>

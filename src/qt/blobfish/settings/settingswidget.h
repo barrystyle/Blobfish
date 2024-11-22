@@ -6,18 +6,18 @@
 #define SETTINGSWIDGET_H
 
 #include <QWidget>
-#include "qt/peppapow/pwidget.h"
-#include "qt/peppapow/settings/settingsbackupwallet.h"
-#include "qt/peppapow/settings/settingsexportcsv.h"
-#include "qt/peppapow/settings/settingsbittoolwidget.h"
-#include "qt/peppapow/settings/settingssignmessagewidgets.h"
-#include "qt/peppapow/settings/settingswalletrepairwidget.h"
-#include "qt/peppapow/settings/settingswalletoptionswidget.h"
-#include "qt/peppapow/settings/settingsmainoptionswidget.h"
-#include "qt/peppapow/settings/settingsdisplayoptionswidget.h"
-#include "qt/peppapow/settings/settingsmultisendwidget.h"
-#include "qt/peppapow/settings/settingsinformationwidget.h"
-#include "qt/peppapow/settings/settingsconsolewidget.h"
+#include "qt/blobfish/pwidget.h"
+#include "qt/blobfish/settings/settingsbackupwallet.h"
+#include "qt/blobfish/settings/settingsexportcsv.h"
+#include "qt/blobfish/settings/settingsbittoolwidget.h"
+#include "qt/blobfish/settings/settingssignmessagewidgets.h"
+#include "qt/blobfish/settings/settingswalletrepairwidget.h"
+#include "qt/blobfish/settings/settingswalletoptionswidget.h"
+#include "qt/blobfish/settings/settingsmainoptionswidget.h"
+#include "qt/blobfish/settings/settingsdisplayoptionswidget.h"
+#include "qt/blobfish/settings/settingsmultisendwidget.h"
+#include "qt/blobfish/settings/settingsinformationwidget.h"
+#include "qt/blobfish/settings/settingsconsolewidget.h"
 
 class BLOBFISHXGUI;
 

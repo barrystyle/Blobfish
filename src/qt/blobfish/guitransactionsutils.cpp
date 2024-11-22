@@ -2,7 +2,7 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/peppapow/guitransactionsutils.h"
+#include "qt/blobfish/guitransactionsutils.h"
 #include "bitcoinunits.h"
 #include "optionsmodel.h"
 

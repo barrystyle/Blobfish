@@ -10,7 +10,7 @@
 #include <QAction>
 #include "walletmodel.h"
 #include "amount.h"
-#include "qt/peppapow/pwidget.h"
+#include "qt/blobfish/pwidget.h"
 
 class WalletModel;
 class SendCoinsRecipient;

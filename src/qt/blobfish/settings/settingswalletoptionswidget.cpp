@@ -2,12 +2,12 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/peppapow/settings/settingswalletoptionswidget.h"
-#include "qt/peppapow/settings/forms/ui_settingswalletoptionswidget.h"
+#include "qt/blobfish/settings/settingswalletoptionswidget.h"
+#include "qt/blobfish/settings/forms/ui_settingswalletoptionswidget.h"
 #include <QListView>
 #include "optionsmodel.h"
 #include "clientmodel.h"
-#include "qt/peppapow/qtutils.h"
+#include "qt/blobfish/qtutils.h"
 
 SettingsWalletOptionsWidget::SettingsWalletOptionsWidget(BLOBFISHXGUI* _window, QWidget *parent) :
     PWidget(_window, parent),

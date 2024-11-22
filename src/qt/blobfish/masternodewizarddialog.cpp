@@ -2,15 +2,15 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/peppapow/masternodewizarddialog.h"
-#include "qt/peppapow/forms/ui_masternodewizarddialog.h"
+#include "qt/blobfish/masternodewizarddialog.h"
+#include "qt/blobfish/forms/ui_masternodewizarddialog.h"
 
 #include "activemasternode.h"
 #include "optionsmodel.h"
 #include "pairresult.h"
-#include "qt/peppapow/mnmodel.h"
-#include "qt/peppapow/guitransactionsutils.h"
-#include "qt/peppapow/qtutils.h"
+#include "qt/blobfish/mnmodel.h"
+#include "qt/blobfish/guitransactionsutils.h"
+#include "qt/blobfish/qtutils.h"
 
 #include <QFile>
 #include <QIntValidator>

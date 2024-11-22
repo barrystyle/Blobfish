@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/peppapow/addressholder.h"
-#include "qt/peppapow/qtutils.h"
+#include "qt/blobfish/addressholder.h"
+#include "qt/blobfish/qtutils.h"
 
 void AddressHolder::init(QWidget* holder,const QModelIndex &index, bool isHovered, bool isSelected) const {
     MyAddressRow *row = static_cast<MyAddressRow*>(holder);

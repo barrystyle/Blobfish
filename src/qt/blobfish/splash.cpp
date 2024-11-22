@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/peppapow/splash.h"
-#include "qt/peppapow/forms/ui_splash.h"
+#include "qt/blobfish/splash.h"
+#include "qt/blobfish/forms/ui_splash.h"
 #include "QFile"
 
 #include "init.h"

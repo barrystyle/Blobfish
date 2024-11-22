@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/peppapow/lockunlock.h"
-#include "qt/peppapow/forms/ui_lockunlock.h"
+#include "qt/blobfish/lockunlock.h"
+#include "qt/blobfish/forms/ui_lockunlock.h"
 
 LockUnlock::LockUnlock(QWidget *parent) :
     QWidget(parent),

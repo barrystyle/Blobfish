@@ -5,8 +5,8 @@
 #ifndef REQUESTDIALOG_H
 #define REQUESTDIALOG_H
 
-#include "qt/peppapow/focuseddialog.h"
-#include "qt/peppapow/snackbar.h"
+#include "qt/blobfish/focuseddialog.h"
+#include "qt/blobfish/snackbar.h"
 #include "walletmodel.h"
 
 #include <QPixmap>

@@ -2,9 +2,9 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/peppapow/pwidget.h"
-#include "qt/peppapow/qtutils.h"
-#include "qt/peppapow/loadingdialog.h"
+#include "qt/blobfish/pwidget.h"
+#include "qt/blobfish/qtutils.h"
+#include "qt/blobfish/loadingdialog.h"
 #include <QRunnable>
 #include <QThreadPool>
 

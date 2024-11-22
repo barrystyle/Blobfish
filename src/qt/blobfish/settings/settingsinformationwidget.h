@@ -6,7 +6,7 @@
 #define SETTINGSINFORMATIONWIDGET_H
 
 #include <QWidget>
-#include "qt/peppapow/pwidget.h"
+#include "qt/blobfish/pwidget.h"
 #include "rpcconsole.h"
 
 namespace Ui {

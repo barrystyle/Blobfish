@@ -6,8 +6,8 @@
 #define SENDCONFIRMDIALOG_H
 
 #include "walletmodeltransaction.h"
-#include "qt/peppapow/focuseddialog.h"
-#include "qt/peppapow/snackbar.h"
+#include "qt/blobfish/focuseddialog.h"
+#include "qt/blobfish/snackbar.h"
 
 class WalletModelTransaction;
 class WalletModel;

@@ -5,7 +5,7 @@
 #ifndef SETTINGSMAINOPTIONSWIDGET_H
 #define SETTINGSMAINOPTIONSWIDGET_H
 
-#include "qt/peppapow/pwidget.h"
+#include "qt/blobfish/pwidget.h"
 
 #include <QWidget>
 

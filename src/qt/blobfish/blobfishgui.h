@@ -14,16 +14,16 @@
 #include <QSystemTrayIcon>
 #include <QLabel>
 
-#include "qt/peppapow/navmenuwidget.h"
-#include "qt/peppapow/topbar.h"
-#include "qt/peppapow/dashboardwidget.h"
-#include "qt/peppapow/send.h"
-#include "qt/peppapow/receivewidget.h"
-#include "qt/peppapow/addresseswidget.h"
-#include "qt/peppapow/coldstakingwidget.h"
-#include "qt/peppapow/masternodeswidget.h"
-#include "qt/peppapow/snackbar.h"
-#include "qt/peppapow/settings/settingswidget.h"
+#include "qt/blobfish/navmenuwidget.h"
+#include "qt/blobfish/topbar.h"
+#include "qt/blobfish/dashboardwidget.h"
+#include "qt/blobfish/send.h"
+#include "qt/blobfish/receivewidget.h"
+#include "qt/blobfish/addresseswidget.h"
+#include "qt/blobfish/coldstakingwidget.h"
+#include "qt/blobfish/masternodeswidget.h"
+#include "qt/blobfish/snackbar.h"
+#include "qt/blobfish/settings/settingswidget.h"
 #include "qt/rpcconsole.h"
 
 

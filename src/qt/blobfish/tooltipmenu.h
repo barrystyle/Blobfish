@@ -5,7 +5,7 @@
 #ifndef TOOLTIPMENU_H
 #define TOOLTIPMENU_H
 
-#include "qt/peppapow/pwidget.h"
+#include "qt/blobfish/pwidget.h"
 #include <QWidget>
 #include <QModelIndex>
 

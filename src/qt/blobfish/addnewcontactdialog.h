@@ -5,7 +5,7 @@
 #ifndef ADDNEWCONTACTDIALOG_H
 #define ADDNEWCONTACTDIALOG_H
 
-#include "qt/peppapow/focuseddialog.h"
+#include "qt/blobfish/focuseddialog.h"
 
 namespace Ui {
 class AddNewContactDialog;

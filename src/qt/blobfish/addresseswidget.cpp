@@ -2,16 +2,16 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/peppapow/addresseswidget.h"
-#include "qt/peppapow/forms/ui_addresseswidget.h"
-#include "qt/peppapow/addresslabelrow.h"
-#include "qt/peppapow/addnewaddressdialog.h"
-#include "qt/peppapow/tooltipmenu.h"
+#include "qt/blobfish/addresseswidget.h"
+#include "qt/blobfish/forms/ui_addresseswidget.h"
+#include "qt/blobfish/addresslabelrow.h"
+#include "qt/blobfish/addnewaddressdialog.h"
+#include "qt/blobfish/tooltipmenu.h"
 
-#include "qt/peppapow/addnewcontactdialog.h"
-#include "qt/peppapow/peppapowgui.h"
+#include "qt/blobfish/addnewcontactdialog.h"
+#include "qt/blobfish/blobfishgui.h"
 #include "guiutil.h"
-#include "qt/peppapow/qtutils.h"
+#include "qt/blobfish/qtutils.h"
 #include "walletmodel.h"
 
 #include <QModelIndex>

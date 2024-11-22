@@ -8,13 +8,13 @@
 #include <QWidget>
 #include <QPushButton>
 
-#include "qt/peppapow/pwidget.h"
-#include "qt/peppapow/contactsdropdown.h"
-#include "qt/peppapow/sendmultirow.h"
-#include "qt/peppapow/sendcustomfeedialog.h"
+#include "qt/blobfish/pwidget.h"
+#include "qt/blobfish/contactsdropdown.h"
+#include "qt/blobfish/sendmultirow.h"
+#include "qt/blobfish/sendcustomfeedialog.h"
 #include "walletmodel.h"
 #include "coincontroldialog.h"
-#include "qt/peppapow/tooltipmenu.h"
+#include "qt/blobfish/tooltipmenu.h"
 
 static const int MAX_SEND_POPUP_ENTRIES = 8;
 

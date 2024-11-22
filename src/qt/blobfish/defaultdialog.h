@@ -5,7 +5,7 @@
 #ifndef DEFAULTDIALOG_H
 #define DEFAULTDIALOG_H
 
-#include "qt/peppapow/focuseddialog.h"
+#include "qt/blobfish/focuseddialog.h"
 
 namespace Ui {
 class DefaultDialog;

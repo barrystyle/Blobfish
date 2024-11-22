@@ -5,11 +5,11 @@
 #ifndef DASHBOARDWIDGET_H
 #define DASHBOARDWIDGET_H
 
-#include "qt/peppapow/pwidget.h"
-#include "qt/peppapow/furabstractlistitemdelegate.h"
-#include "qt/peppapow/furlistrow.h"
+#include "qt/blobfish/pwidget.h"
+#include "qt/blobfish/furabstractlistitemdelegate.h"
+#include "qt/blobfish/furlistrow.h"
 #include "transactiontablemodel.h"
-#include "qt/peppapow/txviewholder.h"
+#include "qt/blobfish/txviewholder.h"
 #include "transactionfilterproxy.h"
 
 #include <atomic>

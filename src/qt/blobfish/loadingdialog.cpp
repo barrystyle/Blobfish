@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/peppapow/loadingdialog.h"
-#include "qt/peppapow/forms/ui_loadingdialog.h"
+#include "qt/blobfish/loadingdialog.h"
+#include "qt/blobfish/forms/ui_loadingdialog.h"
 #include <QMovie>
 
 void Worker::process(){

@@ -8,7 +8,7 @@
 #include "config/peppapow-config.h"
 #endif
 
-#include "qt/peppapow/peppapowgui.h"
+#include "qt/blobfish/blobfishgui.h"
 
 #include "clientmodel.h"
 #include "guiconstants.h"
@@ -17,8 +17,8 @@
 #include "net.h"
 #include "networkstyle.h"
 #include "optionsmodel.h"
-#include "qt/peppapow/splash.h"
-#include "qt/peppapow/welcomecontentwidget.h"
+#include "qt/blobfish/splash.h"
+#include "qt/blobfish/welcomecontentwidget.h"
 #include "utilitydialog.h"
 #include "winshutdownmonitor.h"
 
@@ -241,7 +241,7 @@ private:
     void startThread();
 };
 
-#include "peppapow.moc"
+#include "blobfish.moc"
 
 BitcoinCore::BitcoinCore() : QObject()
 {
@@ -539,8 +539,8 @@ int main(int argc, char* argv[])
 // Do not refer to data directory yet, this can be overridden by Intro::pickDataDirectory
 
 /// 2. Basic Qt initialization (not dependent on parameters or configuration)
-    Q_INIT_RESOURCE(peppapow_locale);
-    Q_INIT_RESOURCE(peppapow);
+    Q_INIT_RESOURCE(blobfish_locale);
+    Q_INIT_RESOURCE(blobfish);
 
     // Generate high-dpi pixmaps
     QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);

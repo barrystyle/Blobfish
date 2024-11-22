@@ -10,7 +10,7 @@
 #include <QPointer>
 #include <iostream>
 #include <QTimer>
-#include "qt/peppapow/prunnable.h"
+#include "qt/blobfish/prunnable.h"
 #include "qt/walletmodel.h"
 
 namespace Ui {

@@ -7,8 +7,8 @@
 
 #include <QWidget>
 #include <QColor>
-#include "qt/peppapow/myaddressrow.h"
-#include "qt/peppapow/furlistrow.h"
+#include "qt/blobfish/myaddressrow.h"
+#include "qt/blobfish/furlistrow.h"
 #include "guiutil.h"
 
 

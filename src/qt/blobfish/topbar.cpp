@@ -2,12 +2,12 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/peppapow/topbar.h"
-#include "qt/peppapow/forms/ui_topbar.h"
-#include "qt/peppapow/lockunlock.h"
-#include "qt/peppapow/qtutils.h"
-#include "qt/peppapow/receivedialog.h"
-#include "qt/peppapow/loadingdialog.h"
+#include "qt/blobfish/topbar.h"
+#include "qt/blobfish/forms/ui_topbar.h"
+#include "qt/blobfish/lockunlock.h"
+#include "qt/blobfish/qtutils.h"
+#include "qt/blobfish/receivedialog.h"
+#include "qt/blobfish/loadingdialog.h"
 #include "askpassphrasedialog.h"
 
 #include "bitcoinunits.h"

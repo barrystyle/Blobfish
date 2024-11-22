@@ -2,14 +2,14 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/peppapow/contactsdropdown.h"
+#include "qt/blobfish/contactsdropdown.h"
 
 #include <QPainter>
 #include <QSizePolicy>
-#include "qt/peppapow/addresslabelrow.h"
-#include "qt/peppapow/contactdropdownrow.h"
-#include "qt/peppapow/qtutils.h"
-#include "qt/peppapow/furlistrow.h"
+#include "qt/blobfish/addresslabelrow.h"
+#include "qt/blobfish/contactdropdownrow.h"
+#include "qt/blobfish/qtutils.h"
+#include "qt/blobfish/furlistrow.h"
 #include "walletmodel.h"
 #include "addresstablemodel.h"
 

@@ -2,9 +2,9 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/peppapow/mnrow.h"
-#include "qt/peppapow/forms/ui_mnrow.h"
-#include "qt/peppapow/qtutils.h"
+#include "qt/blobfish/mnrow.h"
+#include "qt/blobfish/forms/ui_mnrow.h"
+#include "qt/blobfish/qtutils.h"
 
 MNRow::MNRow(QWidget *parent) :
     QWidget(parent),

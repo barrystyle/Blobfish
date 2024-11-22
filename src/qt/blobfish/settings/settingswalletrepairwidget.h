@@ -6,7 +6,7 @@
 #define SETTINGSWALLETREPAIRWIDGET_H
 
 #include <QWidget>
-#include "qt/peppapow/pwidget.h"
+#include "qt/blobfish/pwidget.h"
 
 namespace Ui {
 class SettingsWalletRepairWidget;

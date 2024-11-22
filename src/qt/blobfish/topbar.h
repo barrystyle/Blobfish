@@ -6,8 +6,8 @@
 #define TOPBAR_H
 
 #include <QWidget>
-#include "qt/peppapow/pwidget.h"
-#include "qt/peppapow/lockunlock.h"
+#include "qt/blobfish/pwidget.h"
+#include "qt/blobfish/lockunlock.h"
 #include "amount.h"
 #include <QTimer>
 #include <QProgressBar>

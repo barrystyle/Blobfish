@@ -1046,7 +1046,7 @@
   <customwidget>
    <class>PFBorderImage</class>
    <extends>QFrame</extends>
-   <header>qt/peppapow/pfborderimage.h</header>
+   <header>qt/blobfish/pfborderimage.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

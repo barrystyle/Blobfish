@@ -5,7 +5,7 @@
 #ifndef RECEIVEDIALOG_H
 #define RECEIVEDIALOG_H
 
-#include "qt/peppapow/focuseddialog.h"
+#include "qt/blobfish/focuseddialog.h"
 #include <QPixmap>
 
 class SendCoinsRecipient;
