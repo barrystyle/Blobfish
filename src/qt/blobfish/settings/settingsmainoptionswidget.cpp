@@ -7,7 +7,7 @@
 #include "QListView"
 
 #if defined(HAVE_CONFIG_H)
-#include "config/peppapow-config.h"
+#include "config/blobfish-config.h"
 #endif
 
 #include "bitcoinunits.h"

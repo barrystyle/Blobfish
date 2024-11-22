@@ -19,7 +19,7 @@
 #include <QMap>
 
 #if defined(HAVE_CONFIG_H)
-#include "config/peppapow-config.h" /* for USE_QTCHARTS */
+#include "config/blobfish-config.h" /* for USE_QTCHARTS */
 #endif
 
 #ifdef USE_QTCHARTS

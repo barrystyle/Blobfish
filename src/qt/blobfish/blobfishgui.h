@@ -6,7 +6,7 @@
 #define BLOBFISHX_CORE_NEW_GUI_BLOBFISHXGUI_H
 
 #if defined(HAVE_CONFIG_H)
-#include "config/peppapow-config.h"
+#include "config/blobfish-config.h"
 #endif
 
 #include <QMainWindow>

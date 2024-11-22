@@ -6,7 +6,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/peppapow-config.h"
+#include "config/blobfish-config.h"
 #endif
 
 #include "util.h"
@@ -84,7 +84,7 @@
 #include <openssl/rand.h>
 
 
-// BLOBFISHX only features
+// blobfish only features
 // Masternode
 bool fMasterNode = false;
 std::string strMasterNodePrivKey = "";
@@ -284,13 +284,13 @@ void PrintExceptionContinue(const std::exception* pex, const char* pszThread)
 
 fs::path GetDefaultDataDir()
 {
-// Windows < Vista: C:\Documents and Settings\Username\Application Data\BLOBFISHX
-// Windows >= Vista: C:\Users\Username\AppData\Roaming\BLOBFISHX
-// Mac: ~/Library/Application Support/BLOBFISHX
-// Unix: ~/.peppapow
+// Windows < Vista: C:\Documents and Settings\Username\Application Data\blobfish
+// Windows >= Vista: C:\Users\Username\AppData\Roaming\blobfish
+// Mac: ~/Library/Application Support/blobfish
+// Unix: ~/.blobfish
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "BLOBFISHX";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "blobfish";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -302,10 +302,10 @@ fs::path GetDefaultDataDir()
     // Mac
     pathRet /= "Library/Application Support";
     TryCreateDirectory(pathRet);
-    return pathRet / "BLOBFISHX";
+    return pathRet / "blobfish";
 #else
     // Unix
-    return pathRet / ".peppapow";
+    return pathRet / ".blobfish";
 #endif
 #endif
 }
@@ -350,7 +350,7 @@ void ClearDatadirCache()
 
 fs::path GetConfigFile()
 {
-    fs::path pathConfigFile(GetArg("-conf", "peppapow.conf"));
+    fs::path pathConfigFile(GetArg("-conf", "blobfish.conf"));
     if (!pathConfigFile.is_complete())
         pathConfigFile = GetDataDir(false) / pathConfigFile;
 

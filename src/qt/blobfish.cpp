@@ -5,7 +5,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/peppapow-config.h"
+#include "config/blobfish-config.h"
 #endif
 
 #include "qt/blobfish/blobfishgui.h"
@@ -82,7 +82,7 @@ static void InitMessage(const std::string& message)
  */
 static std::string Translate(const char* psz)
 {
-    return QCoreApplication::translate("peppapow-core", psz).toStdString();
+    return QCoreApplication::translate("blobfish-core", psz).toStdString();
 }
 
 static QString GetLangTerritory(bool forceLangFromSetting = false)
