@@ -13,6 +13,7 @@
 #include "amount.h"
 #include "consensus/merkle.h"
 #include "consensus/tx_verify.h" // needed in case of no ENABLE_WALLET
+#include "crypto/kawpow.h"
 #include "hash.h"
 #include "main.h"
 #include "masternode-sync.h"
@@ -434,7 +435,8 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
             UpdateTime(pblock, pindexPrev);
         pblock->nBits = GetNextWorkRequired(pindexPrev, pblock);
         pblock->nNonce = 0;
-
+        pblock->nNonce64         = 0;
+        pblock->nHeight          = nHeight;
         pblocktemplate->vTxSigOps[0] = GetLegacySigOpCount(pblock->vtx[0]);
 
         if (fProofOfStake) {
@@ -649,13 +651,15 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
             unsigned int nHashesDone = 0;
 
             uint256 hash;
+            uint256 mix_hash;
             while (true) {
-                hash = pblock->GetHash();
+                hash = KAWPOWHash(*pblock, mix_hash);
                 if (hash <= hashTarget) {
                     // Found a solution
+                    pblock->mixHash = mix_hash;
                     SetThreadPriority(THREAD_PRIORITY_NORMAL);
                     LogPrintf("%s:\n", __func__);
-                    LogPrintf("proof-of-work found  \n  hash: %s  \ntarget: %s\n", hash.GetHex(), hashTarget.GetHex());
+                    LogPrintf("proof-of-work found  \n  hash: %s  PoW hash: %s \ntarget: %s\n", pblock->GetHash().GetHex(), hash.GetHex(), hashTarget.GetHex());
                     ProcessBlockFound(pblock, *pwallet, opReservekey);
                     SetThreadPriority(THREAD_PRIORITY_LOWEST);
 

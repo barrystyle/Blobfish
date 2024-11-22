@@ -244,10 +244,15 @@ bool CBlockTreeDB::LoadBlockIndexGuts()
                 pindexNew->nFlags = diskindex.nFlags;
                 pindexNew->vStakeModifier = diskindex.vStakeModifier;
 
-                if (!Params().GetConsensus().NetworkUpgradeActive(pindexNew->nHeight, Consensus::UPGRADE_POS)) {
-                    if (!CheckProofOfWork(pindexNew->GetBlockHash(), pindexNew->nBits))
-                        return error("LoadBlockIndex() : CheckProofOfWork failed: %s", pindexNew->ToString());
-                }
+                // kawpow
+                pindexNew->nNonce64       = diskindex.nNonce64;
+                pindexNew->mixHash        = diskindex.mixHash;
+                pindexNew->nHeight        = diskindex.nHeight;
+
+//              if (!Params().GetConsensus().NetworkUpgradeActive(pindexNew->nHeight, Consensus::UPGRADE_POS)) {
+//                  if (!CheckProofOfWork(pindexNew->GetBlockHash(), pindexNew->nBits))
+//                      return error("LoadBlockIndex() : CheckProofOfWork failed: %s", pindexNew->ToString());
+//              }
 
                 pcursor->Next();
             } else {

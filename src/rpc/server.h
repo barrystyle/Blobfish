@@ -213,6 +213,7 @@ extern UniValue getmininginfo(const JSONRPCRequest& request);
 extern UniValue prioritisetransaction(const JSONRPCRequest& request);
 extern UniValue getblocktemplate(const JSONRPCRequest& request);
 extern UniValue submitblock(const JSONRPCRequest& request);
+extern UniValue pprpcsb(const JSONRPCRequest& request);
 extern UniValue estimatefee(const JSONRPCRequest& request);
 extern UniValue estimatepriority(const JSONRPCRequest& request);
 extern UniValue getaddressinfo(const JSONRPCRequest& request);

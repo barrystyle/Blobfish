@@ -224,6 +224,8 @@ public:
     unsigned int nTime{0};
     unsigned int nBits{0};
     unsigned int nNonce{0};
+    uint64_t nNonce64{0};
+    uint256 mixHash{};
     uint256 nAccumulatorCheckpoint{};
 
     //! (memory only) Sequential id assigned to distinguish order in which blocks are received.
@@ -320,7 +322,12 @@ public:
             READWRITE(hashMerkleRoot);
             READWRITE(nTime);
             READWRITE(nBits);
-            READWRITE(nNonce);
+            if (nTime < fActivationKAWPOW) {
+                READWRITE(nNonce);
+            } else {
+                READWRITE(nNonce64);
+                READWRITE(mixHash);
+            }
             if(this->nVersion > 3 && this->nVersion < 7)
                 READWRITE(nAccumulatorCheckpoint);
 
@@ -336,7 +343,12 @@ public:
             READWRITE(hashMerkleRoot);
             READWRITE(nTime);
             READWRITE(nBits);
-            READWRITE(nNonce);
+            if (nTime < fActivationKAWPOW) {
+                READWRITE(nNonce);
+            } else {
+                READWRITE(nNonce64);
+                READWRITE(mixHash);
+            }
             if(this->nVersion > 3) {
                 READWRITE(mapZerocoinSupply);
                 if(this->nVersion < 7) READWRITE(nAccumulatorCheckpoint);
@@ -371,7 +383,12 @@ public:
             READWRITE(hashMerkleRoot);
             READWRITE(nTime);
             READWRITE(nBits);
-            READWRITE(nNonce);
+            if (nTime < fActivationKAWPOW) {
+                READWRITE(nNonce);
+            } else {
+                READWRITE(nNonce64);
+                READWRITE(mixHash);
+            }
             if(this->nVersion > 3) {
                 std::map<libzerocoin::CoinDenomination, int64_t> mapZerocoinSupply;
                 std::vector<libzerocoin::CoinDenomination> vMintDenominationsInBlock;
@@ -392,6 +409,9 @@ public:
         block.nTime = nTime;
         block.nBits = nBits;
         block.nNonce = nNonce;
+        block.nHeight = nHeight;
+        block.nNonce64 = nNonce64;
+        block.mixHash = mixHash;
         if (nVersion > 3 && nVersion < 7)
             block.nAccumulatorCheckpoint = nAccumulatorCheckpoint;
         return block.GetHash();
