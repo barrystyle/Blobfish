@@ -108,7 +108,7 @@ public:
         assert(consensus.hashGenesisBlock == uint256S("00000fe37cd6989e5a6cae4cb5c54191a4356fc68656fac54f00733432b41222"));
         assert(genesis.hashMerkleRoot == uint256S("bea17d3f21bf455d88945483fa4a30a58acad84d8de9c3d0230f913c139bdb1b"));
 
-        consensus.nKAWPOWActivation = std::numeric_limits<uint32_t>::max();
+        consensus.nKAWPOWActivation = genesis.nTime+1;
 
         consensus.fPowAllowMinDifficultyBlocks           = false;
         consensus.powLimit                               = ~UINT256_ZERO >> 20;    // BLOBFISHX starting difficulty is 1 / 2^12
